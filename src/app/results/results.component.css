@@ -1,0 +1,109 @@
+body, html {
+    font-family: Roboto, sans-serif;
+    margin: 0;
+}
+
+.header {
+    background-color: #002a5c;
+    color: white;
+    width: 100%;
+    padding: 60px 20px 20px; 
+    border-bottom: 10px solid #f15a22;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.branding .logo {
+    height: 80px;
+}
+
+.branding .title {
+    font-size: 3em; 
+    margin-left: 20px; 
+    position: relative;
+    bottom: -20px; 
+}
+
+main {
+    background-color: #f8f9fa;
+    overflow-y: auto;
+    margin: 0 auto;
+    padding-top: 20px; 
+}
+
+.result-card {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.result-card:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+.result-card h2 {
+    color: #333;
+}
+
+.bold {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+  }
+
+.regular{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    margin: 0 4px;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    color: #333;
+}
+
+.pagination a.active {
+    background-color: #002a5c;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.pagination a.disabled {
+    background-color: #f8f9fa; 
+    color: #ccc;
+    pointer-events: none; 
+    cursor: default;
+}

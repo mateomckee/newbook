@@ -1,13 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="results.component.css" />
-        <title>Results</title>
-    </head>
-    <body>
-        <header class="header">
-            <h1>Results</h1>
-        </header>
-    </body>
-</html>
+<header class="header">
+    <div class="branding">
+      <img src="{{ imageUrl }}" alt="UTSA Logo" class="logo">
+      <span class="title bold">Bluebook 2.0</span>
+    </div>
+  </header>
+  <main>
+    <div *ngFor="let result of results" class="result-card">
+        <h2 class="bold">{{ result.title + ' ' + result.id }}</h2>
+      <p class="regular">{{ result.text }}</p>
+    </div>
+    <div class="pagination bold">
+      <a href="javascript:void(0);" (click)="navigateToPage(currentPage - 1)" [class.disabled]="currentPage === 1">« Previous</a>
+      <!-- Dynamically generate page numbers based on maxPages -->
+      <a href="javascript:void(0);" *ngFor="let page of [].constructor(maxPages); let pageIndex = index" (click)="navigateToPage(pageIndex + 1)" [class.active]="currentPage === pageIndex + 1">{{ pageIndex + 1 }}</a>
+      <a href="javascript:void(0);" (click)="navigateToPage(currentPage + 1)" [class.disabled]="currentPage >= maxPages">Next »</a>
+    </div>
+  </main>
+  <footer class="bold">
+    UTSA Bluebook 2.0
+  </footer>
+  
