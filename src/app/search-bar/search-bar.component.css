@@ -1,0 +1,75 @@
+/*-- outer container --*/
+.search-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin: auto;
+    padding-top: var(--search-bar-padding-top, 0%); /* Edit the padding on your own css file */
+    padding-bottom: var(--search-bar-padding-bottom, 0%); 
+    letter-spacing: 0.1em;
+    font-family: 'Roboto', sans-serif;
+    color: #f15a22;
+}
+
+/*-- inner container --*/
+.search-form {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+}
+
+/*-- actual search bar --*/
+.search-input {
+    width: 87%;
+    padding-right: 80px;
+    padding: 0.375rem 0.75rem;
+    margin-right: -1px;
+    border-color: #002a5c;
+    transition: all 0.3s ease;
+}
+
+/*-- buttons --*/
+.search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: calc(100% - 2px);
+    border-color: #002a5c;
+}
+
+/*-- search button specific styles --*/
+.btn-outline-success {
+    right: 45px;
+}
+
+/*-- question mark button specific styles --*/
+.btn-outline-primary {
+    right: 0;
+}
+
+/*-- hover and focus styles for buttons --*/
+.btn-outline-success:hover, .btn-outline-success:focus,
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+    background-color: #002a5c;
+    color: #fff;
+    border-color: #002a5c;
+}
+
+/*-- SVG icon fill colors --*/
+.btn-outline-success svg, .btn-outline-primary svg {
+    fill: #aaa;
+}
+
+/*-- SVG icon fill colors on hover --*/
+.btn-outline-success:hover svg, .btn-outline-primary:hover svg {
+    fill: #fcfcfc;
+}
+
+/*-- apply glow effect on focus --*/
+.search-input:focus {
+    box-shadow: 0 0 8px rgba(0, 42, 92, 0.8);
+}

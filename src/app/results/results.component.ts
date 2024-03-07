@@ -15,40 +15,45 @@ interface Result {
 export class ResultsComponent implements OnInit {
   imageUrl = 'assets/images/UTSA_Logo.png';
   currentPage = 1;
-  pagesToShow = 3; // the number of page links to show at any time
+  pagesToShow = 3; // The number of page links to show at any time
   maxPages = 10; // Static value for testing purposes
   results: Result[] = []; // This will hold the results for the current page
+  searchQuery: string = ''; // Holds the current search query
 
   constructor(private route: ActivatedRoute, private router: Router) {}
+
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.currentPage = params['page'] ? +params['page'] : 1;
+    this.route.queryParams.subscribe(params => {
+      this.searchQuery = params['search'] || '';
+      this.currentPage = parseInt(params['page'], 10) || 1;
       this.loadResults();
     });
   }
 
+  onSearch(searchTerm: string) {
+    console.trace('Where is this being called from?', searchTerm);
+    this.router.navigate(['/results'], { queryParams: { search: searchTerm, page: 1 } });
+  }
+  
   loadResults() {
     const resultsPerPage = 5;
     const startIndex = (this.currentPage - 1) * resultsPerPage;
     this.results = Array.from({ length: resultsPerPage }, (_, i) => ({
-      title: `Result `, 
+      title: `${this.searchQuery} Result`, 
       id: startIndex + i + 1, 
-      text: `Blah Blah Blah # ${startIndex + i + 1}`
+      text: `${this.searchQuery} Blah Blah Blah # ${startIndex + i + 1}`
     }));
 
+    // If we're on the last page, adjust the results count
     if (this.currentPage === this.maxPages) {
-      this.results = this.results.filter(result => result.id <= 47); // 13 is a static value for testing purposes
+      this.results = this.results.filter(result => result.id <= 47); // Adjust this to your total results
     }
   }
 
   navigateToPage(pageNumber: number) {
-    if (pageNumber >= 1 && pageNumber <= this.maxPages) {
-      // Update the currentPage without routing to a new URL
-      this.currentPage = pageNumber;
-      this.loadResults();
-      // Optional: Scroll to the top of the page every time you click on a new page, just uncoomment next line to test it out
-      //window.scrollTo(0, 0);
-    }
+    this.router.navigate(['/results'], { queryParams: { search: this.searchQuery, page: pageNumber } });
+    // Optional: Scroll to the top of the page every time you click on a new page, just uncoomment next line to test it out
+    //window.scrollTo(0, 0);
   }
 
   get paginationArray() {

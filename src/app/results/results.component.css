@@ -25,14 +25,14 @@ html {
 /* 'Bluebook 2.0' styles */
 .title{
     color: #f15a22;
-    top: 12%;
     height: 10%;
     width: 75%;
-    padding-left: 22%;
+    padding-top: 2%;
+    text-align: center;  
     border: 0px solid black;
     z-index: 2;
     margin: auto;
-    position: absolute;
+    font-weight: bold;
     letter-spacing: 0.1em;
     font-family: 'Roboto', sans-serif;
 }
@@ -111,78 +111,11 @@ html {
     margin-right: 8px;
 }
 
-/********************************* Search bar styles *********************************/
-.search-container {
-    padding-top: 7%;
-    padding-bottom: 3%;
-    color: #f15a22;
-    height: 10%;
-    margin: auto;
-    width: 75%;
-    letter-spacing: 0.1em;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  /* Search bar glow */
-  .search-input:focus {
-    box-shadow: 0 0 8px rgba(0, 42, 92, 0.8);
-    border-color: #002a5c;
+/********************************* Search bar padding *********************************/
+app-search-bar {
+  --search-bar-padding-top: 1%;
+  --search-bar-padding-bottom: 3%;
 }
-  
-  /* Search form styles */
-  .search-form {
-    position: relative;
-    width: 100%;
-    max-width: 700px;
-  }
-  
-  /* Search input styles */
-  .search-input {
-    width: 87%;
-    padding-right: 80px;
-    border-color: #002a5c;
-    padding: 0.375rem 0.75rem;
-    margin-right: -1px; 
-  }
-  
-  /* Button styles for search and question mark */
-  .search-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border-color: #002a5c;
-    height: 38px;
-  }
-  
-  /* Search button specific styles */
-  .btn-outline-success {
-    right: 45px;
-  }
-  
-  /* Question mark button specific styles */
-  .btn-outline-primary {
-    right: 0;
-  }
-  
-  /* Hover and focus styles for buttons */
-  .btn-outline-success:hover, .btn-outline-success:focus,
-  .btn-outline-primary:hover, .btn-outline-primary:focus {
-    background-color: #002a5c;
-    color: #fff;
-    border-color: #002a5c;
-  }
-  
-  /* SVG icon fill colors */
-  form .btn-outline-success svg,
-  form .btn-outline-primary svg {
-    fill: #aaa;
-  }
-  
-  /* SVG icon fill colors on hover */
-  form .btn-outline-success:hover svg,
-  form .btn-outline-primary:hover svg {
-    fill: #fcfcfc;
-  }
 
 /********************************* Card styles *********************************/
 .result-card {
