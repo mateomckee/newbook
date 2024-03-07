@@ -1,22 +1,75 @@
-<header class="header">
-    <div class="branding">
-      <img src="{{ imageUrl }}" alt="UTSA Logo" class="logo">
-      <span class="title bold">Bluebook 2.0</span>
+<!-- Header -->
+<header class="header-background">
+  <img src="https://adfs.utsa.edu/adfs/portal/logo/logo.png" alt="UTSA Logo" class="logo">
+  <nav class="navbar navbar-expand navbar-light">
+    <div class="nav-wrapper">
+      <!-- Home link with icon -->
+      <a href="/" class="nav-link home-link">
+        <!-- SVG for Home icon from your home HTML -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor">
+          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"></path>
+        </svg>
+        <span class="link-text">Home</span>
+      </a>
+      <!-- Info link with icon -->
+      <a href="/info" class="nav-link info-link">
+        <!-- SVG for Info icon from your home HTML -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+          <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+        </svg>
+        <span class="link-text">Info</span>
+      </a>
+      <!-- UTGrades+ link with icon -->
+      <a href="https://onestop.utsa.edu/registration/degree-planning/degreeworks/" class="nav-link grades-link">
+        <!-- SVG for UTGrades+ icon from your home HTML -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor">
+          <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"></path>
+        </svg>
+        <span class="link-text">DegreeWorks</span>
+      </a>
     </div>
-  </header>
-  <main>
-    <div *ngFor="let result of results" class="result-card">
-        <h2 class="bold">{{ result.title + ' ' + result.id }}</h2>
-      <p class="regular">{{ result.text }}</p>
-    </div>
-    <div class="pagination bold">
-      <a href="javascript:void(0);" (click)="navigateToPage(currentPage - 1)" [class.disabled]="currentPage === 1">« Previous</a>
-      <!-- Dynamically generate page numbers based on maxPages -->
-      <a href="javascript:void(0);" *ngFor="let page of [].constructor(maxPages); let pageIndex = index" (click)="navigateToPage(pageIndex + 1)" [class.active]="currentPage === pageIndex + 1">{{ pageIndex + 1 }}</a>
-      <a href="javascript:void(0);" (click)="navigateToPage(currentPage + 1)" [class.disabled]="currentPage >= maxPages">Next »</a>
-    </div>
-  </main>
-  <footer class="bold">
-    UTSA Bluebook 2.0
-  </footer>
-  
+  </nav>
+</header>
+
+<!-- Search Bar -->
+<div class="search-container position-relative d-flex justify-content-center">
+  <h1 class="title">Bluebook 2.0</h1>
+  <form class="search-form d-flex">
+    <input class="form-control search-input" type="search" placeholder="Search; e.g. CS 1714 Samuel Ang" aria-label="Search">
+    <button class="btn btn-outline-success position-absolute search-button" type="submit">
+      <!-- SVG for search icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </svg>
+    </button>
+    <button class="btn btn-outline-primary position-absolute search-button" type="button">
+      <!-- SVG for question mark icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215 0 1.344-.665 2.288-1.79 2.973-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712 1.03-.632 1.397-1.135 1.397-2.028 0-.979-.758-1.698-1.926-1.698-1.009 0-1.71.529-1.938 1.402-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09 0-.618-.473-1.092-1.095-1.092-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"/>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<!-- Main Content -->
+<main class="main-content" class>
+  <div *ngFor="let result of results" class="result-card">
+    <h2 class="card-heading bold-text">{{ result.title }} {{ result.id }}</h2>
+    <p class="regular-text">{{ result.text }}</p>
+  </div>
+  <!-- Pagination -->
+  <div class="pagination bold-text">
+    <a href="javascript:void(0);" (click)="navigateToFirstPage()" [class.disabled]="currentPage === 1">&lt;&lt;</a>
+    <a href="javascript:void(0);" (click)="navigateToPage(currentPage - 1)" [class.disabled]="currentPage === 1">&lt;</a>
+    <a href="javascript:void(0);" *ngFor="let page of paginationArray" (click)="navigateToPage(page)" [class.active]="currentPage === page">{{ page }}</a>
+    <a href="javascript:void(0);" (click)="navigateToPage(currentPage + 1)" [class.disabled]="currentPage >= maxPages">&gt;</a>
+    <a href="javascript:void(0);" (click)="navigateToLastPage()" [class.disabled]="currentPage >= maxPages">&gt;&gt;</a>
+  </div>
+</main>
+
+<footer class="footer-background">
+  <div class="container-fluid_text-center">
+    <span class="text-muted">Bluebook 2.0 Rowdy Creators</span>
+  </div>
+</footer>

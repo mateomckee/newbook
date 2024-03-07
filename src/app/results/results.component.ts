@@ -15,7 +15,8 @@ interface Result {
 export class ResultsComponent implements OnInit {
   imageUrl = 'assets/images/UTSA_Logo.png';
   currentPage = 1;
-  maxPages = 3; // Static value for testing purposes
+  pagesToShow = 3; // the number of page links to show at any time
+  maxPages = 10; // Static value for testing purposes
   results: Result[] = []; // This will hold the results for the current page
 
   constructor(private route: ActivatedRoute, private router: Router) {}
@@ -36,13 +37,41 @@ export class ResultsComponent implements OnInit {
     }));
 
     if (this.currentPage === this.maxPages) {
-      this.results = this.results.filter(result => result.id <= 13); // 13 is a static value for testing purposes
+      this.results = this.results.filter(result => result.id <= 47); // 13 is a static value for testing purposes
     }
   }
 
   navigateToPage(pageNumber: number) {
     if (pageNumber >= 1 && pageNumber <= this.maxPages) {
-      this.router.navigate(['/results', pageNumber]);
+      // Update the currentPage without routing to a new URL
+      this.currentPage = pageNumber;
+      this.loadResults();
+      // Optional: Scroll to the top of the page or to a specific element
+      window.scrollTo(0, 0);
     }
+  }
+
+  get paginationArray() {
+    const halfWay = Math.ceil(this.pagesToShow / 2);
+    const isStart = this.currentPage <= halfWay;
+    const isEnd = this.maxPages - halfWay < this.currentPage;
+    const isMiddle = !isStart && !isEnd;
+
+    let start = 1;
+    if (isMiddle) {
+      start = this.currentPage - halfWay + 1;
+    } else if (isEnd) {
+      start = this.maxPages - this.pagesToShow + 1;
+    }
+
+    return Array.from({ length: Math.min(this.pagesToShow, this.maxPages) }, (_, index) => start + index);
+  }
+
+  navigateToFirstPage() {
+    this.navigateToPage(1);
+  }
+
+  navigateToLastPage() {
+    this.navigateToPage(this.maxPages);
   }
 }
