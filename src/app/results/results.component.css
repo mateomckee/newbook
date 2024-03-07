@@ -122,6 +122,12 @@ html {
     letter-spacing: 0.1em;
     font-family: 'Roboto', sans-serif;
   }
+
+  /* Search bar glow */
+  .search-input:focus {
+    box-shadow: 0 0 8px rgba(0, 42, 92, 0.8);
+    border-color: #002a5c;
+}
   
   /* Search form styles */
   .search-form {
