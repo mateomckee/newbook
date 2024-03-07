@@ -113,7 +113,7 @@ html {
 
 /********************************* Search bar padding *********************************/
 app-search-bar {
-  --search-bar-padding-top: 1%;
+  --search-bar-padding-top: 1.5%;
   --search-bar-padding-bottom: 3%;
 }
 
