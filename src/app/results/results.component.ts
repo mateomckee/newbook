@@ -46,8 +46,8 @@ export class ResultsComponent implements OnInit {
       // Update the currentPage without routing to a new URL
       this.currentPage = pageNumber;
       this.loadResults();
-      // Optional: Scroll to the top of the page or to a specific element
-      window.scrollTo(0, 0);
+      // Optional: Scroll to the top of the page every time you click on a new page, just uncoomment next line to test it out
+      //window.scrollTo(0, 0);
     }
   }
 
