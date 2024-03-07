@@ -11,8 +11,7 @@ export class SearchBarComponent {
 
   // Inside SearchBarComponent
   onSearchSubmit(event: Event) {
-    event.preventDefault(); // Stop the form from causing a page reload
-    console.log('Search submitted:', this.searchQuery); // Add this to debug
+    event.preventDefault();
     this.search.emit(this.searchQuery);
   }
 }

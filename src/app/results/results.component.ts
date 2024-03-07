@@ -52,7 +52,7 @@ export class ResultsComponent implements OnInit {
 
   navigateToPage(pageNumber: number) {
     this.router.navigate(['/results'], { queryParams: { search: this.searchQuery, page: pageNumber } });
-    // Optional: Scroll to the top of the page every time you click on a new page, just uncoomment next line to test it out
+    //Scroll to the top of the page every time you click on a new page, just uncoomment/comment next line to test it out
     window.scrollTo(0, 0);
   }
 
