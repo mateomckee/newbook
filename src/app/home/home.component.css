@@ -1,5 +1,7 @@
 body{
+    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
     background-color: #fcfcfc;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100%;
@@ -114,6 +116,7 @@ input.form-control {
     padding-right: 80px; 
     transition: all 0.3s ease;
     border-color: #002a5c;
+    
 }
 
 /*-- buttons --*/
@@ -121,6 +124,7 @@ form .btn {
     position: absolute;
     top: 50%;
     height: calc(100% - 2px);
+    background-color: #fcfcfc;
 }
 
 /*-- buttons --*/
