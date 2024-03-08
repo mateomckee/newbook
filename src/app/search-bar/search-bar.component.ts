@@ -9,9 +9,8 @@ export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
   searchQuery: string = '';
 
-  // Inside SearchBarComponent
-  onSearchSubmit(event: Event) {
-    event.preventDefault();
+  onSearchSubmit() {
     this.search.emit(this.searchQuery);
   }
 }
+

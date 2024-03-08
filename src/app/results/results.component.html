@@ -32,27 +32,30 @@
   </nav>
 </header>
 
+<!-- Title -->
 <h1 class="title">BLUEBOOK 2.0</h1>
 
 <!-- Search Bar -->
 <app-search-bar (search)="onSearch($event)"></app-search-bar>
 
 <!-- Main Content -->
-<main class="main-content" class>
+<main class="main-content">
   <div *ngFor="let result of results" class="result-card">
-    <h2 class="card-heading bold-text">{{ result.title }} {{ result.id }}</h2>
+    <h2 class="card-heading bold-text">{{ result.title }}</h2>
     <p class="regular-text">{{ result.text }}</p>
   </div>
 
   <!-- Pagination -->
   <div class="pagination bold-text">
-    <a href="javascript:void(0);" (click)="navigateToFirstPage()" [class.disabled]="currentPage === 1">&lt;&lt;</a>
-    <a href="javascript:void(0);" (click)="navigateToPage(currentPage - 1)" [class.disabled]="currentPage === 1">&lt;</a>
-    <a href="javascript:void(0);" *ngFor="let page of paginationArray" (click)="navigateToPage(page)" [class.active]="currentPage === page">{{ page }}</a>
-    <a href="javascript:void(0);" (click)="navigateToPage(currentPage + 1)" [class.disabled]="currentPage >= maxPages">&gt;</a>
-    <a href="javascript:void(0);" (click)="navigateToLastPage()" [class.disabled]="currentPage >= maxPages">&gt;&gt;</a>
+    <a href="#" (click)="navigateToFirstPage(); $event.preventDefault()" [class.disabled]="currentPage === 1">&lt;&lt;</a>
+    <a href="#" (click)="navigateToPreviousPage(); $event.preventDefault()" [class.disabled]="currentPage === 1">&lt;</a>
+    <!-- Adjust your *ngFor to ensure paginationArray is populated -->
+    <a href="#" *ngFor="let page of paginationArray" (click)="navigateToPage(page); $event.preventDefault()" [class.active]="currentPage === page">{{ page }}</a>
+    <a href="#" (click)="navigateToNextPage(); $event.preventDefault()" [class.disabled]="currentPage >= maxPages">&gt;</a>
+    <a href="#" (click)="navigateToLastPage(); $event.preventDefault()" [class.disabled]="currentPage >= maxPages">&gt;&gt;</a>
   </div>
 </main>
+
 
  <!-- Footer -->
 <footer class="footer-background">

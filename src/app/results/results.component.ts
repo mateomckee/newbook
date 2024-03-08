@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SearchService } from '../services/search.service';
 
 interface Result {
   title: string;
@@ -12,50 +14,60 @@ interface Result {
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent implements OnInit {
-  imageUrl = 'assets/images/UTSA_Logo.png';
+export class ResultsComponent implements OnInit, OnDestroy {
+  results: Result[] = [];
   currentPage = 1;
-  pagesToShow = 3; // The number of page links to show at any time
+  pagesToShow = 3;// The number of page links to show at any time
   maxPages = 10; // Static value for testing purposes
-  results: Result[] = []; // This will hold the results for the current page
-  searchQuery: string = ''; // Holds the current search query
+  searchQuery = ''; // Holds the current search input value
+  private searchSubscription: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit() {
+    this.searchSubscription = this.searchService.searchObservable.subscribe(searchTerm => {
+      this.searchQuery = searchTerm;
+      this.loadResults();
+    });
+
     this.route.queryParams.subscribe(params => {
-      this.searchQuery = params['search'] || '';
-      this.currentPage = parseInt(params['page'], 10) || 1;
+      this.currentPage = +params['page'] || 1;
+      if (params['search']) {
+        this.searchQuery = params['search'];
+      }
       this.loadResults();
     });
   }
 
+  ngOnDestroy() {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+  }
+
   onSearch(searchTerm: string) {
-    console.trace('Where is this being called from?', searchTerm);
     this.router.navigate(['/results'], { queryParams: { search: searchTerm, page: 1 } });
   }
-  
+
   loadResults() {
     const resultsPerPage = 5;
     const startIndex = (this.currentPage - 1) * resultsPerPage;
     this.results = Array.from({ length: resultsPerPage }, (_, i) => ({
-      title: `${this.searchQuery} Result`, 
+      title: `${this.searchQuery} Result ${startIndex + i + 1}`, 
       id: startIndex + i + 1, 
-      text: `${this.searchQuery} Blah Blah Blah # ${startIndex + i + 1}`
+      text: `Blah Blah Blah ${this.searchQuery} # ${startIndex + i + 1}`
     }));
 
-    // If we're on the last page, adjust the results count
     if (this.currentPage === this.maxPages) {
       this.results = this.results.filter(result => result.id <= 47); // Adjust this to your total results
     }
   }
-
-  navigateToPage(pageNumber: number) {
-    this.router.navigate(['/results'], { queryParams: { search: this.searchQuery, page: pageNumber } });
-    //Scroll to the top of the page every time you click on a new page, just uncoomment/comment next line to test it out
-    window.scrollTo(0, 0);
-  }
-
+  
+  /////////////////////////// PAGINATION /////////////////////////////////
   get paginationArray() {
     const halfWay = Math.ceil(this.pagesToShow / 2);
     const isStart = this.currentPage <= halfWay;
@@ -72,11 +84,30 @@ export class ResultsComponent implements OnInit {
     return Array.from({ length: Math.min(this.pagesToShow, this.maxPages) }, (_, index) => start + index);
   }
 
-  navigateToFirstPage() {
+  navigateToFirstPage(): void {
     this.navigateToPage(1);
   }
 
-  navigateToLastPage() {
+  navigateToPreviousPage(): void {
+    if (this.currentPage > 1) {
+      this.navigateToPage(this.currentPage - 1);
+    }
+  }
+
+  navigateToNextPage(): void {
+    if (this.currentPage < this.maxPages) {
+      this.navigateToPage(this.currentPage + 1);
+    }
+  }
+
+  navigateToLastPage(): void {
     this.navigateToPage(this.maxPages);
+  }
+
+  navigateToPage(page: number): void {
+    this.currentPage = page;
+    this.router.navigate(['/results'], { queryParams: { page: page } });
+    this.loadResults();
+    window.scrollTo(0, 0);
   }
 }
