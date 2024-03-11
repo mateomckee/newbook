@@ -8,19 +8,27 @@ html {
     height: 100%;
   }
   
-  body {
+body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
-  }
+}
 
 /* Main content styles */
+.background {
+    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
+
+    background-repeat: no-repeat; 
+    display: flex;
+    flex-direction: column;
+}
+
 .main-content {
-    background-color: #fcfcfc;
     font-size: 18px;
     flex: 1;
 }
+
 
 /* 'Bluebook 2.0' styles */
 .title{
@@ -180,6 +188,7 @@ app-search-bar {
     padding: 8px 16px;
     background: #f8f9fa;
     color: #333;
+    border-radius:5px;
 }
 
 .pagination a.active {

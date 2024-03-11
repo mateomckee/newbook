@@ -37,8 +37,10 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    height: calc(100% - 2px);
+    height: 100%;
     border-color: #002a5c;
+    background-color: #fcfcfc;
+
 }
 
 /*-- search button specific styles --*/
