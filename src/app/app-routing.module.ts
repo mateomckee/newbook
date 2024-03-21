@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, PreloadingStrategy, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { ResultsComponent } from './results/results.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-const websiteName = 'Bluebook 2.0';
-
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: '**', pathMatch: 'full', component: PageNotFoundComponent, title: `${websiteName} - 404`}
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'results', component: ResultsComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

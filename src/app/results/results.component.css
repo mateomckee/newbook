@@ -1,0 +1,210 @@
+/* Global styles */
+body, html {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+  }
+  
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Main content styles */
+.background {
+    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
+
+    background-repeat: no-repeat; 
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    font-size: 18px;
+    flex: 1;
+}
+
+
+/* 'Newbook' styles */
+.title{
+    color: #f15a22;
+    height: 10%;
+    width: 75%;
+    padding-top: 2%;
+    text-align: center;  
+    border: 0px solid black;
+    z-index: 2;
+    margin: auto;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Bold text styles */
+.bold-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+/* Regular text styles */
+.regular-text {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Logo styles */
+.logo {
+    max-width: 120px;
+    margin-left: 20px;
+}
+
+/********************************* Header styles *********************************/
+.header-background {
+    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    color: white;
+    padding: 20px;
+    border-bottom: 5px solid #f15a22;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Title styles within header */
+.header-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px; 
+    margin-left: 20px; 
+}
+
+/* Link styles within header */
+.link-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px; 
+}
+
+/* Navigation styles */
+.nav-wrapper {
+    display: flex;
+    gap: 20px; 
+    align-items: center;
+    z-index: 10;
+}
+
+/* Navigation item styles */
+.nav-link {
+    background-color: transparent;
+    color: #f15a22;
+    transition: color 0.3s ease;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.nav-link:hover {
+    color: white;
+    background-color: #f15a22;
+    z-index: 10;
+}
+
+/* Icons within navigation items */
+.nav-icon {
+    margin-right: 8px;
+}
+
+/********************************* Search bar padding *********************************/
+app-search-bar {
+  --search-bar-padding-top: 1.5%;
+  --search-bar-padding-bottom: 3%;
+}
+
+/********************************* Card styles *********************************/
+.result-card {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+}
+
+.result-card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    transform: translateY(-3px);
+}
+
+/* Heading styles within card */
+.card-heading {
+    color: #333;
+}
+
+/********************************* Footer styles *********************************/
+.footer-background {
+    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    color: white;
+    width: 100%;
+    padding: 10px 20px;
+    border-top: 5px solid #f15a22;
+    margin-top: auto;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.192);
+  }
+  
+
+
+/* Muted text styles */
+.text-muted {
+    color: #fcfcfc !important;
+    font-size: x-small;
+}
+
+/********************************* Pagination styles *********************************/
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    margin: 0 4px;
+    text-decoration: none;
+    padding: 8px 16px;
+    background: #f8f9fa;
+    color: #333;
+    border-radius:5px;
+}
+
+.pagination a.active {
+    background-color: #002a5c;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.pagination a.disabled {
+    background-color: #f8f9fa; 
+    color: #ccc;
+    pointer-events: none; 
+    cursor: default;
+}
