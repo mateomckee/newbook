@@ -1,209 +1,123 @@
-body{
+#hero {
+    width: 100%;
+    height: calc(80vh);
     background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
-    background-color: #fcfcfc;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100%;
-    font-size: 18px;
-    z-index: 5;
-    font-family: Roboto, sans-serif;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #f15a22;
+}
+
+#hero .container {
+    padding-top: 72px;
+}
+
+#hero h1 {
     margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: var(--main-light-color);
+    font-family: "Poppins", sans-serif;
+}
+
+#hero h2 {
+    color: var(--main-light-color);
+    margin: 10px 0 0 0;
+    font-size: 24px;
+}
+
+#logo-img {
+    position: relative;
+    height: 100%;
+
+    min-width: 225px;
+    width: calc(25vw);
+    max-width: 350px;
+
+    top: -45px;
+}
+
+@media (max-width: 768px) {
+    #hero {
+        height: 83vh;
     }
 
+    #hero h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
 
+    #hero h2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
 
-/* vvv---------------------------------All the stuff below is for the Header-----------------------------------vvv */
+    #logo-container {
+        margin-bottom: 10%;
+    }
 
-.App-header {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
-    color: white;
-    width: 100%;
-    padding: 20px;
-    border-bottom: 5px solid #f15a22;
-    z-index: 10;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: absolute;
+    #logo-img {
+        top: -25px;
+        min-width: 260px;
+    }
 }
 
-.utsaLogo {
-    max-width: 120px;
-    height: auto;
-    margin-left: 20px;
+@media (min-width: 1024px) {
+    #hero {
+        background-attachment: fixed;
+    }
 }
 
-.header-nav-wrapper {
-    display: flex;
-    gap: 20px; 
-    align-items: center;
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.about .content h3 {
+    font-weight: 600;
+    font-size: 26px;
 }
 
-.nav-item {
-    background-color: transparent;
+.about .content ul {
+    list-style: none;
+    padding: 0;
 }
 
-.burnt-orange-hover-link, .blue-icon-hover-link {
-    color: #f15a22;
-    transition: color 0.3s ease;
-    padding: 5px 10px; 
-    text-decoration: none; 
-    display: flex; 
-    align-items: center;
-    border-radius: 5px; 
+.about .content ul li {
+    padding-bottom: 10px;
 }
 
-.burnt-orange-hover-link:hover, .blue-icon-hover-link:hover {
-    color: white;
-    background-color: #f15a22;
+/* Check mark */
+.about .content ul i {
+    font-size: 20px;
+    padding-right: 4px;
+    color: green;
 }
 
-
-.nav-item svg {
-    margin-right: 8px; 
+.about .content .learn-more-btn {
+    background: var(--accent-default-color);
+    color: var(--main-light-color);
+    border-radius: 50px;
+    padding: 8px 25px 9px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
 }
 
-/* ^^^------------------------------------------ Header ----------------------------------------------------^^^ */
-
-
-
-/* vvv-------------------------------------------search bar-------------------------------------------------vvv */
-
- .px-4d-flexalign-items-centerjustify-content-centercontainer-fluid{
-    color: #f15a22;
-    height: 150px;
-    width: 75%;
-    border: 0px solid black;
-    z-index: 2;
-    margin: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    letter-spacing: 0.1em;
-    font-family: 'Roboto', sans-serif;
+.about .content .learn-more-btn:hover {
+    background: var(--accent-default-color);
+    color: var(--main-light-color);
 }
 
-.d-flexjustify-content-center{
-    background-color: #fcfcfc;
-    width: 100%; 
-    margin: 0 auto;
-    padding: 20px;
+@media (max-width: 768px) {
+    .about .content .learn-more-btn {
+        margin: 0 48px 0 0;
+        padding: 6px 18px;
+    }
 }
-
-/*-- outer container --*/
-.position-relative {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%; 
-}
-
-/*-- inner container --*/
-form.d-flex {
-    position: relative;
-    width: 100%; 
-    max-width: 700px; 
-}
-
-/*-- actual search bar --*/
-input.form-control {
-    width: 87%;
-    padding-right: 80px; 
-    transition: all 0.3s ease;
-    border-color: #002a5c;
-    
-}
-
-/*-- buttons --*/
-form .btn {
-    position: absolute;
-    top: 50%;
-    height: calc(100% - 2px);
-    background-color: #fcfcfc;
-}
-
-/*-- buttons --*/
-form .btn-outline-success {
-    right: 45px; 
-    border-color: #002a5c; 
-}
-
-/*-- buttons --*/
-form .btn-outline-primary {
-    right: 0px; 
-    border-color: #002a5c; 
-}
-
-/*-- buttons --*/
-form .btn-outline-success:hover {
-    background-color: #002a5c; 
-    color: #ffffff;
-    border-color: #002a5c; 
-}
-
-/*-- buttons --*/
-form .btn-outline-primary:hover {
-    background-color: #002a5c; 
-    color: #ffffff; 
-    border-color: #002a5c; 
-}
-
-/*-- search icon --*/
-form .btn-outline-success svg {
-    fill: #aaa; 
-}
-
-
-/*-- question mark icon --*/
-form .btn-outline-primary svg {
-    fill: #aaa; 
-}
-
-/*-- search icon --*/
-form .btn-outline-success:hover svg {
-    fill: #fcfcfc; 
-}
-
-
-/*-- question mark icon --*/
-form .btn-outline-primary:hover svg {
-    fill: #fcfcfc; 
-}
-
-/* ^^^----------------------------------------- Search bar ----------------------------------^^^ */
-
-
-/* vvv----------------------------------------- Footer ----------------------------------vvv */
-
-.custom-footer{
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
-    color: white;
-    width: 100%;
-    height: 40px;
-    padding: 10px 20px 5px;
-    border-top: 5px solid #f15a22;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.192);
-}
-
-.custom-footer .text-muted {
-    color: #fcfcfc !important; 
-    font-size: x-small;
-}
-
-
-/* ^^^----------------------------------------- Footer ----------------------------------^^^ */

@@ -1,42 +1,99 @@
-/* Global styles */
-body, html {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
+/* Rectangles */
+
+.rectangle {
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
 }
 
-html {
-    height: 100%;
-  }
-  
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
-
-/* Main content styles */
-.background {
-    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
-
-    background-repeat: no-repeat; 
-    display: flex;
-    flex-direction: column;
-}
-
-.main-content {
-    font-size: 18px;
+.top {
     flex: 1;
 }
 
+.middle {
+    flex: 5;
+    overflow-y: auto; /* Enable scrolling if content exceeds the height */
+}
+
+.bottom {
+    flex: 1;
+}
+
+/*  */
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100%);
+    grid-gap: 7px;
+}
+
+#hero {
+    width: 100%;
+    height: calc(95vh - 98px);
+    margin-top: 98px;
+    /* Important value, must match the height*/
+    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
+    background-size: cover;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    color: #f15a22;
+}
+
+#hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: var(--main-light-color);
+    font-family: "Poppins", sans-serif;
+}
+
+#hero h2 {
+    color: var(--main-light-color);
+    margin: 10px 0 0 0;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    #hero {
+        height: 83vh;
+    }
+
+    #hero h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    #hero h2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    #logo-container {
+        margin-bottom: 10%;
+    }
+
+    #logo-img {
+        top: -25px;
+        min-width: 260px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero {
+        background-attachment: fixed;
+    }
+}
 
 /* 'Newbook' styles */
-.title{
+.title {
     color: #f15a22;
     height: 10%;
     width: 75%;
     padding-top: 2%;
-    text-align: center;  
+    text-align: center;
     border: 0px solid black;
     z-index: 2;
     margin: auto;
@@ -62,69 +119,6 @@ body {
     margin-left: 20px;
 }
 
-/********************************* Header styles *********************************/
-.header-background {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
-    color: white;
-    padding: 20px;
-    border-bottom: 5px solid #f15a22;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Title styles within header */
-.header-title {
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px; 
-    margin-left: 20px; 
-}
-
-/* Link styles within header */
-.link-text {
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px; 
-}
-
-/* Navigation styles */
-.nav-wrapper {
-    display: flex;
-    gap: 20px; 
-    align-items: center;
-    z-index: 10;
-}
-
-/* Navigation item styles */
-.nav-link {
-    background-color: transparent;
-    color: #f15a22;
-    transition: color 0.3s ease;
-    padding: 5px 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    z-index: 10;
-}
-
-.nav-link:hover {
-    color: white;
-    background-color: #f15a22;
-    z-index: 10;
-}
-
-/* Icons within navigation items */
-.nav-icon {
-    margin-right: 8px;
-}
-
-/********************************* Search bar padding *********************************/
-app-search-bar {
-  --search-bar-padding-top: 1.5%;
-  --search-bar-padding-bottom: 3%;
-}
-
 /********************************* Card styles *********************************/
 .result-card {
     background-color: white;
@@ -141,7 +135,7 @@ app-search-bar {
 }
 
 .result-card:hover {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     background-color: #f9f9f9;
     transform: translateY(-3px);
 }
@@ -149,30 +143,6 @@ app-search-bar {
 /* Heading styles within card */
 .card-heading {
     color: #333;
-}
-
-/********************************* Footer styles *********************************/
-.footer-background {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
-    color: white;
-    width: 100%;
-    padding: 10px 20px;
-    border-top: 5px solid #f15a22;
-    margin-top: auto;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.1em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.192);
-  }
-  
-
-
-/* Muted text styles */
-.text-muted {
-    color: #fcfcfc !important;
-    font-size: x-small;
 }
 
 /********************************* Pagination styles *********************************/
@@ -188,7 +158,7 @@ app-search-bar {
     padding: 8px 16px;
     background: #f8f9fa;
     color: #333;
-    border-radius:5px;
+    border-radius: 5px;
 }
 
 .pagination a.active {
@@ -203,8 +173,8 @@ app-search-bar {
 }
 
 .pagination a.disabled {
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
     color: #ccc;
-    pointer-events: none; 
+    pointer-events: none;
     cursor: default;
 }
