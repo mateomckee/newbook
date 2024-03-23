@@ -19,6 +19,13 @@ body {
 }
 /********* REMOVING SCROLL BAR **********/
 
+/* Newbook Title */
+#logo-container {
+    height: 75px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
 
 body {
     -webkit-font-smoothing: antialiased;

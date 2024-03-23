@@ -1,73 +1,97 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchService } from '../services/search.service';
-
-interface Result {
-  title: string;
-  id: number;
-  text: string;
-}
+import { ItemData } from '../interfaces/item.interface'
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent implements OnInit, OnDestroy {
-  results: Result[] = [];
+export class ResultsComponent {
+
+  items: ItemData[] | undefined; //all items received from search API, cached here for later use
+  displayItems: ItemData[] | undefined; //items that are displayed on the page
+
+  currentSearchResult: any;
+
+  //page info
   currentPage = 1;
-  pagesToShow = 3;// The number of page links to show at any time
-  maxPages = 10; // Static value for testing purposes
-  searchQuery = ''; // Holds the current search input value
-  private searchSubscription: Subscription = new Subscription();
+  pagesToShow = 3;
+  maxPages = 10;
+  itemsPerPage = 10;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private searchService: SearchService
-  ) {}
+  ) { }
 
-  ngOnInit() {
-    this.searchSubscription = this.searchService.searchObservable.subscribe(searchTerm => {
-      this.searchQuery = searchTerm;
-      this.loadResults();
-    });
+  public onChangeSearchResultEvent(newSearchResult: any) {
+    this.currentSearchResult = newSearchResult;
+    this.cacheItems();
+  }
 
-    this.route.queryParams.subscribe(params => {
-      this.currentPage = +params['page'] || 1;
-      if (params['search']) {
-        this.searchQuery = params['search'];
+  private cacheItems() {
+    this.items = [];
+    const responseItems = this.currentSearchResult.data;
+    const numItems = responseItems.length;
+
+    for (var i = 0; i < numItems; i++) {
+      const currItem: ItemData = {
+        index: 0,
+        crn: 0,
+        semester: '',
+        courseLabel: '',
+        courseTitle: '',
+        instructor: '',
+        description: '',
+        enrollment: 0,
+        instructorEval: 0,
+        instructorEvalStudentNum: 0,
+        courseEval: 0,
+        courseEvalStudentNum: 0,
+        timestamp: new Date()
       }
-      this.loadResults();
-    });
-  }
 
-  ngOnDestroy() {
-    if (this.searchSubscription) {
-      this.searchSubscription.unsubscribe();
+      //access data from search API
+      currItem.index = i;
+      currItem.crn = responseItems[i].crn;
+      currItem.semester = responseItems[i].semester;
+      currItem.courseLabel = responseItems[i].courselabel;
+      currItem.courseTitle = responseItems[i].coursetitle;
+      currItem.instructor = responseItems[i].instructor;
+      currItem.description = responseItems[i].description;
+      currItem.enrollment = responseItems[i].enrollment;
+      currItem.instructorEval = responseItems[i].instructoreval;
+      currItem.courseEval = responseItems[i].courseeval;
+      currItem.courseEvalStudentNum = responseItems[i].courseevalstudentNum;
+      currItem.instructorEvalStudentNum = responseItems[i].instructorevalstudentnum;
+      currItem.timestamp = responseItems[i].timestamp;
+
+      //hardcoded, temporary solution
+      if (currItem.description.length >= 200) currItem.description = currItem.description.substring(0, 200) + "...";
+
+      this.items.push(currItem);
     }
+    this.maxPages = Math.floor((numItems + this.itemsPerPage - 1) / this.itemsPerPage);
+    this.loadDisplayItems();
   }
 
-  onSearch(searchTerm: string) {
-    this.router.navigate(['/results'], { queryParams: { search: searchTerm, page: 1 } });
-  }
-
-  loadResults() {
-    const resultsPerPage = 5;
-    const startIndex = (this.currentPage - 1) * resultsPerPage;
-    this.results = Array.from({ length: resultsPerPage }, (_, i) => ({
-      title: `${this.searchQuery} Result ${startIndex + i + 1}`, 
-      id: startIndex + i + 1, 
-      text: `Blah Blah Blah ${this.searchQuery} # ${startIndex + i + 1}`
-    }));
-
-    if (this.currentPage === this.maxPages) {
-      this.results = this.results.filter(result => result.id <= 47); // Adjust this to your total results
+  private loadDisplayItems() {
+    //error case
+    if (this.currentPage < 0) {
+      this.navigateToPage(0);
+      return;
     }
+
+    const lowIndex = ((this.currentPage - 1) * this.itemsPerPage) + 1;
+    const highIndex = lowIndex + this.itemsPerPage;
+
+    this.displayItems = this.items?.slice(lowIndex, highIndex);
   }
-  
-  /////////////////////////// PAGINATION /////////////////////////////////
+
+  //#region Pagination
+
   get paginationArray() {
     const halfWay = Math.ceil(this.pagesToShow / 2);
     const isStart = this.currentPage <= halfWay;
@@ -107,7 +131,18 @@ export class ResultsComponent implements OnInit, OnDestroy {
   navigateToPage(page: number): void {
     this.currentPage = page;
     this.router.navigate(['/results'], { queryParams: { page: page } });
-    this.loadResults();
+    this.loadDisplayItems();
     window.scrollTo(0, 0);
+  }
+
+  //#endregion
+
+  ngOnInit() {
+    this.searchService.onChangeSearchResult.subscribe((newSearchResult) => {
+      this.onChangeSearchResultEvent(newSearchResult);
+    });
+  }
+
+  ngOnDestroy() {
   }
 }
