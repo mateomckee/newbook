@@ -25,22 +25,18 @@ export class SearchService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  //on search input
   public onSearch(): void {
     if (this.inputQuery == '') return;
     if (this.isSearchOnCooldown) return
 
-    //navigate if necessary
     if (this.router.url != '/results') {
       this.router.navigate(['/results']);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    //start cooldown
     this.setSearchCooldown();
     this.isLoading = true;
 
-    //process user input here as needed
     const searchQuery = this.inputQuery;
 
     this.search(searchQuery)
@@ -59,8 +55,7 @@ export class SearchService {
       });
   }
 
-  // main search functionpublic async search(searchQuery: string): Promise<ItemData[] | null> {
-    public async search(searchQuery: string): Promise<ItemData[] | null> {
+  public async search(searchQuery: string): Promise<ItemData[] | null> {
       console.log("Beginning search for", searchQuery);
       const url = `${this.searchAPI_URL}?q=${searchQuery}`;
       const headers = new HttpHeaders({ 'q': searchQuery });
@@ -97,6 +92,6 @@ export class SearchService {
     this.isSearchOnCooldown = true;
     setTimeout(() => {
       this.isSearchOnCooldown = false;
-    }, this.cooldownTimeMS); // cooldown time in milliseconds
+    }, this.cooldownTimeMS); 
   }
 }
