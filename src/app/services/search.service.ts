@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ItemData } from '../interfaces/item.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -58,20 +59,39 @@ export class SearchService {
       });
   }
 
-  // main search function
-  private async search(searchQuery: string): Promise<any> {
-    console.log("Beginning search for", searchQuery);
-
-    const url = `${this.searchAPI_URL}?q=${searchQuery}`;
-    const headers = new HttpHeaders({ 'q': searchQuery });
-
-    try {
-      return await this.http.get(url, { headers }).toPromise();
-    } catch (error) {
-      console.error("An error occurred during the search.", error);
-      throw new Error('An error occurred during the search.');
+  // main search functionpublic async search(searchQuery: string): Promise<ItemData[] | null> {
+    public async search(searchQuery: string): Promise<ItemData[] | null> {
+      console.log("Beginning search for", searchQuery);
+      const url = `${this.searchAPI_URL}?q=${searchQuery}`;
+      const headers = new HttpHeaders({ 'q': searchQuery });
+      try {
+        const response: any = await this.http.get<any>(url, { headers }).toPromise();
+    
+        if (response && response.data && Array.isArray(response.data)) {
+          const itemData: ItemData[] = response.data.map((item: any) => ({
+            crn: item.crn,
+            semester: item.semester,
+            courselabel: item.courselabel,
+            instructor: item.instructor,
+            coursetitle: item.coursetitle,
+            inseval: item.inseval,
+            insevalstudentnum: item.insevalstudentnum,
+            creval: item.creval,
+            crevalstudentnum: item.crevalstudentnum,
+            enrollment: item.enrollment,
+            description: item.description,
+            timestamp: item.timestamp
+          }));
+          return itemData;
+        } else {
+          console.error('Unexpected response format:', response);
+          return null;
+        }
+      } catch (error) {
+        console.error("An error occurred during the search.", error);
+        throw new Error('An error occurred during the search.');
+      }
     }
-  }
 
   private setSearchCooldown() {
     this.isSearchOnCooldown = true;

@@ -1,6 +1,6 @@
 <section id="hero">
 
-  <div class="rectangle top">
+  <div class="rectangle top bottom-padding">
     <!-- Title -->
     <div id="logo-container">
       <h1 class="mb-4text-uppercase"><strong>NEWBOOK</strong></h1>
@@ -8,15 +8,22 @@
     <!-- Search Bar -->
     <app-search-bar></app-search-bar>
   </div>
-  <!-- Results Boxes -->
-  <div class="rectangle middle container">
-    <div class="item-grid">
-      <app-item *ngFor="let item of displayItems" [data]="item"></app-item>
-    </div>
+
+  <!-- Loading GIF -->
+<div *ngIf="isLoading" class="loading-container">
+  <img src="/assets/images/Loading.gif" alt="Loading...">
+</div>
+
+<!-- Results Boxes, only shown when not loading -->
+<div *ngIf="!isLoading" class="rectangle middle container">
+  <div class="item-grid">
+    <app-item *ngFor="let item of displayItems" [data]="item"></app-item>
   </div>
+</div>
+
   <div class="rectangle bottom">
     <!-- Pagination -->
-    <div class="pagination bold-text">
+    <div *ngIf="items.length > 0" class="pagination bold-text">
       <a href="#" (click)="navigateToFirstPage(); $event.preventDefault()"
         [class.disabled]="currentPage === 1">&lt;&lt;</a>
       <a href="#" (click)="navigateToPreviousPage(); $event.preventDefault()"

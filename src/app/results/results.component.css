@@ -1,94 +1,77 @@
 /* Rectangles */
-
-.rectangle {
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-}
-
-.top {
-    flex: 1;
-}
-
-.middle {
-    flex: 5;
-    overflow-y: auto; /* Enable scrolling if content exceeds the height */
-}
-
-.bottom {
-    flex: 1;
-}
-
-/*  */
-
-.item-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 100%);
-    grid-gap: 7px;
-}
-
-#hero {
+.top, .middle, .bottom {
+    flex: unset;
+    overflow-y: unset;
+    margin-bottom: unset;
+    max-height: unset;
+  }
+  
+  .rectangle.bottom {
+    padding-bottom: 20px; /* Add some padding at the bottom */
+  }
+  
+  .bottom-padding {
+    padding-bottom: 20px;
+  }
+  
+  #hero {
     width: 100%;
-    height: calc(95vh - 98px);
     margin-top: 98px;
-    /* Important value, must match the height*/
-    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
-    background-size: cover;
+    min-height: calc(78vh - 98px);
     position: relative;
-
     display: flex;
     flex-direction: column;
     color: #f15a22;
-}
-
-#hero h1 {
+    padding-bottom: 50px; /* Add some padding at the bottom */
+  }
+  
+  .container {
+    margin-top: 20px; /* Add some margin at the top */
+    margin-bottom: 20px; /* Add some margin at the bottom */
+  }
+  
+  #hero h1 {
     margin: 0;
     font-size: 48px;
     font-weight: 700;
     line-height: 56px;
     color: var(--main-light-color);
     font-family: "Poppins", sans-serif;
-}
-
-#hero h2 {
+  }
+  
+  #hero h2 {
     color: var(--main-light-color);
     margin: 10px 0 0 0;
     font-size: 24px;
-}
-
-@media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
     #hero {
-        height: 83vh;
+      height: 83vh;
     }
-
+  
     #hero h1 {
-        font-size: 28px;
-        line-height: 36px;
+      font-size: 28px;
+      line-height: 36px;
     }
-
+  
     #hero h2 {
-        font-size: 18px;
-        line-height: 24px;
+      font-size: 18px;
+      line-height: 24px;
     }
-
+  
     #logo-container {
-        margin-bottom: 10%;
+      margin-bottom: 10%;
     }
-
+  
     #logo-img {
-        top: -25px;
-        min-width: 260px;
+      top: -25px;
+      min-width: 260px;
     }
-}
-
-@media (min-width: 1024px) {
-    #hero {
-        background-attachment: fixed;
-    }
-}
-
-/* 'Newbook' styles */
-.title {
+  }
+  
+  /* 'Newbook' styles */
+  .title {
     color: #f15a22;
     height: 10%;
     width: 75%;
@@ -99,28 +82,35 @@
     margin: auto;
     font-weight: bold;
     letter-spacing: 0.1em;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Bold text styles */
-.bold-text {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Bold text styles */
+  .bold-text {
+    font-family: "Poppins", sans-serif;
     font-weight: bold;
-}
-
-/* Regular text styles */
-.regular-text {
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Logo styles */
-.logo {
+  }
+  
+  /* Regular text styles */
+  .regular-text {
+    font-family: "Poppins", sans-serif;
+  }
+  
+  /* Logo styles */
+  .logo {
     max-width: 120px;
     margin-left: 20px;
-}
+  }
+  
+  .loading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
-/********************************* Card styles *********************************/
-.result-card {
+  /************************ Card styles ************************/
+  .result-card {
     background-color: white;
     margin-bottom: 20px;
     padding: 20px;
@@ -132,49 +122,49 @@
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     line-height: 1.6;
-}
-
-.result-card:hover {
+  }
+  
+  .result-card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     background-color: #f9f9f9;
     transform: translateY(-3px);
-}
-
-/* Heading styles within card */
-.card-heading {
+  }
+  
+  /* Heading styles within card */
+  .card-heading {
     color: #333;
-}
-
-/********************************* Pagination styles *********************************/
-.pagination {
+  }
+  
+  /************************ Pagination styles ************************/
+  .pagination {
     display: flex;
     justify-content: center;
     margin: 20px 0;
-}
-
-.pagination a {
+  }
+  
+  .pagination a {
     margin: 0 4px;
     text-decoration: none;
     padding: 8px 16px;
     background: #f8f9fa;
     color: #333;
     border-radius: 5px;
-}
-
-.pagination a.active {
+  }
+  
+  .pagination a.active {
     background-color: #002a5c;
     color: white;
     border-radius: 5px;
-}
-
-.pagination a:hover:not(.active) {
+  }
+  
+  .pagination a:hover:not(.active) {
     background-color: #ddd;
     border-radius: 5px;
-}
-
-.pagination a.disabled {
+  }
+  
+  .pagination a.disabled {
     background-color: #f8f9fa;
     color: #ccc;
     pointer-events: none;
     cursor: default;
-}
+  }

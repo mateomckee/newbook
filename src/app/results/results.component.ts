@@ -1,111 +1,78 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ItemData } from '../interfaces/item.interface';
 import { SearchService } from '../services/search.service';
-import { ItemData } from '../interfaces/item.interface'
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.css']
 })
-export class ResultsComponent {
+export class ResultsComponent implements OnInit {
 
-  items: ItemData[] | undefined; //all items received from search API, cached here for later use
-  displayItems: ItemData[] | undefined; //items that are displayed on the page
-
-  currentSearchResult: any;
-
-  //page info
-  currentPage = 1;
-  pagesToShow = 3;
-  maxPages = 10;
-  itemsPerPage = 10;
+  items: ItemData[] = []; // All items received from search API, cached here for later use
+  displayItems: ItemData[] = []; // Items that are displayed on the page
+  currentPage: number = 1;
+  pagesToShow: number = 3;
+  maxPages: number = 10;
+  itemsPerPage: number = 10;
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-  public onChangeSearchResultEvent(newSearchResult: any) {
-    this.currentSearchResult = newSearchResult;
-    this.cacheItems();
-  }
-
-  private cacheItems() {
-    this.items = [];
-    const responseItems = this.currentSearchResult.data;
-    const numItems = responseItems.length;
-
-    for (var i = 0; i < numItems; i++) {
-      const currItem: ItemData = {
-        index: 0,
-        crn: 0,
-        semester: '',
-        courseLabel: '',
-        courseTitle: '',
-        instructor: '',
-        description: '',
-        enrollment: 0,
-        instructorEval: 0,
-        instructorEvalStudentNum: 0,
-        courseEval: 0,
-        courseEvalStudentNum: 0,
-        timestamp: new Date()
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const searchQuery = params['q'];
+      if (searchQuery) {
+        this.isLoading = true; 
+        this.searchService.search(searchQuery).then(results => {
+          this.isLoading = false;
+          if (results) {
+            this.items = results;
+            console.log('Items after search:', this.items);
+            this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
+            this.updateDisplayItems();
+          } else {
+            this.items = [];
+            console.log('No items found');
+          }
+        });
       }
-
-      //access data from search API
-      currItem.index = i;
-      currItem.crn = responseItems[i].crn;
-      currItem.semester = responseItems[i].semester;
-      currItem.courseLabel = responseItems[i].courselabel;
-      currItem.courseTitle = responseItems[i].coursetitle;
-      currItem.instructor = responseItems[i].instructor;
-      currItem.description = responseItems[i].description;
-      currItem.enrollment = responseItems[i].enrollment;
-      currItem.instructorEval = responseItems[i].instructoreval;
-      currItem.courseEval = responseItems[i].courseeval;
-      currItem.courseEvalStudentNum = responseItems[i].courseevalstudentNum;
-      currItem.instructorEvalStudentNum = responseItems[i].instructorevalstudentnum;
-      currItem.timestamp = responseItems[i].timestamp;
-
-      //hardcoded, temporary solution
-      if (currItem.description.length >= 200) currItem.description = currItem.description.substring(0, 200) + "...";
-
-      this.items.push(currItem);
-    }
-    this.maxPages = Math.floor((numItems + this.itemsPerPage - 1) / this.itemsPerPage);
-    this.loadDisplayItems();
+    });
+  
+    this.searchService.onChangeSearchResult.subscribe((newSearchResult: ItemData[]) => {
+      this.items = newSearchResult;
+      this.updateDisplayItems();
+    });
   }
 
-  private loadDisplayItems() {
-    //error case
-    if (this.currentPage < 0) {
-      this.navigateToPage(0);
+  private updateDisplayItems(): void {
+    if (!this.items || this.items.length === 0) {
+      console.log('No items to display');
+      this.displayItems = [];
       return;
     }
-
-    const lowIndex = ((this.currentPage - 1) * this.itemsPerPage) + 1;
-    const highIndex = lowIndex + this.itemsPerPage;
-
-    this.displayItems = this.items?.slice(lowIndex, highIndex);
+  
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.displayItems = this.items.slice(startIndex, endIndex);
+    console.log('Display items:', this.displayItems);
   }
+  
 
-  //#region Pagination
+  get paginationArray(): number[] {
+    const paginationStart = Math.max(1, this.currentPage - Math.floor(this.pagesToShow / 2));
+    const paginationEnd = Math.min(paginationStart + this.pagesToShow - 1, this.maxPages);
 
-  get paginationArray() {
-    const halfWay = Math.ceil(this.pagesToShow / 2);
-    const isStart = this.currentPage <= halfWay;
-    const isEnd = this.maxPages - halfWay < this.currentPage;
-    const isMiddle = !isStart && !isEnd;
-
-    let start = 1;
-    if (isMiddle) {
-      start = this.currentPage - halfWay + 1;
-    } else if (isEnd) {
-      start = this.maxPages - this.pagesToShow + 1;
+    const paginationArray: number[] = [];
+    for (let i = paginationStart; i <= paginationEnd; i++) {
+      paginationArray.push(i);
     }
-
-    return Array.from({ length: Math.min(this.pagesToShow, this.maxPages) }, (_, index) => start + index);
+    return paginationArray;
   }
 
   navigateToFirstPage(): void {
@@ -113,36 +80,24 @@ export class ResultsComponent {
   }
 
   navigateToPreviousPage(): void {
-    if (this.currentPage > 1) {
-      this.navigateToPage(this.currentPage - 1);
-    }
+    this.navigateToPage(Math.max(1, this.currentPage - 1));
   }
 
   navigateToNextPage(): void {
-    if (this.currentPage < this.maxPages) {
-      this.navigateToPage(this.currentPage + 1);
-    }
+    this.navigateToPage(Math.min(this.maxPages, this.currentPage + 1));
   }
 
   navigateToLastPage(): void {
     this.navigateToPage(this.maxPages);
   }
 
-  navigateToPage(page: number): void {
-    this.currentPage = page;
-    this.router.navigate(['/results'], { queryParams: { page: page } });
-    this.loadDisplayItems();
+  navigateToPage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    this.updateDisplayItems();
     window.scrollTo(0, 0);
   }
 
-  //#endregion
-
-  ngOnInit() {
-    this.searchService.onChangeSearchResult.subscribe((newSearchResult) => {
-      this.onChangeSearchResultEvent(newSearchResult);
-    });
-  }
-
   ngOnDestroy() {
+    this.searchService.onChangeSearchResult.unsubscribe();
   }
 }

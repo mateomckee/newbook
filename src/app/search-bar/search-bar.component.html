@@ -1,8 +1,7 @@
 <!-- Search Bar -->
 <div class="search-container position-relative d-flex justify-content-center">
-  <form class="search-form d-flex" (ngSubmit)="searchService.onSearch()">
-    <input type="search" id="search" name="search" [(ngModel)]="searchService.inputQuery" autocomplete="off"
-      placeholder="Search">
+  <form class="search-form d-flex" (ngSubmit)="onSearch()">
+    <input type="search" id="search" name="search" [(ngModel)]="searchService.inputQuery" autocomplete="off" placeholder="Search">
   </form>
   <div class="buttons">
     <button type="submit" class="btn btn-outline-success search-button">

@@ -1,3 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+
 /********************************* Header styles *********************************/
 #header {
     background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
@@ -55,6 +69,17 @@
     margin-right: 8px;
 }
 
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+
 /********************************* Footer styles *********************************/
 #footer-background {
     background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
@@ -65,6 +90,9 @@
     font-family: "Poppins", sans-serif;
     letter-spacing: 0.1em;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.192);
+    position: relative; /* change this to relative */
+    margin-top: auto; 
+    flex-shrink: 0;
 }
 
 .footer-container {
