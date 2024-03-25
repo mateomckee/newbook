@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     color: #f15a22;
+    padding-top: -15%;
   }
   
   #hero .container {
@@ -50,20 +51,25 @@
     width: 80%;
     max-width: 600px;
     z-index: 1;
-    margin: -27.5% auto 20px; /* Lifting the box up by 50px and centering it horizontally */
-    position: relative; /* Remove if not needed */
-    transform: translateX(-50%); /* Remove if not needed */
-    left: 90%; /* Add this line if you want horizontal centering */
+    margin: -27.5% auto 20px; 
+    position: relative;
+    transform: translateX(-50%); 
+    left: 90%; 
   }
-  
+
   @media (max-width: 768px) {
     #hero {
       height: 83vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 50px; /* Adjust this value to move title */
     }
   
     #hero h1 {
       font-size: 28px;
       line-height: 36px;
+      margin-bottom: 80px; 
     }
   
     #hero h2 {
@@ -72,20 +78,44 @@
     }
   
     #logo-container {
-      margin-bottom: 10%;
+      margin-bottom: -30px; 
     }
   
     #logo-img {
-      top: -25px;
+      top: 0;
       min-width: 260px;
+    }
+  
+    app-search-bar {
+      margin-bottom: 200px; /* Adjust this value to move search bar */
+    }
+  
+    .white-bg {
+      position: static;
+      transform: none;
+      width: 100%;
+      max-width: none;
+      margin-top: -167.5%; /* Adjust this value to move text box */
+    }
+
+    .about .content .learn-more-btn {
+      margin: 0 48px 0 0;
+      padding: 6px 18px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    #hero h1 {
+      margin-top: -22px; /* Adjust this value to move title */
+    }
+  
+    app-search-bar {
+      margin-bottom: 300px; /* Adjust this value to move search bar */
     }
 
     .white-bg {
-        position: static;
-        transform: none;
-        width: 100%;
-        max-width: none;
-      }
+      margin-top: -55%; /* Adjust this value to move text box */
+    }
   }
   
   /*-------------------------------------------------------------- # About --------------------------------------------------------------*/
@@ -124,11 +154,4 @@
   .about .content .learn-more-btn:hover {
     background: var(--accent-default-color);
     color: var(--main-light-color);
-  }
-  
-  @media (max-width: 768px) {
-    .about .content .learn-more-btn {
-      margin: 0 48px 0 0;
-      padding: 6px 18px;
-    }
   }

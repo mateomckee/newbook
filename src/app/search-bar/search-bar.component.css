@@ -139,3 +139,13 @@
 .modal-footer .btn-secondary:hover {
     color: white; 
 }
+
+/*----------------- Pop Up Styling Mobile ---------------------*/
+@media (max-width: 767px) {
+  .modal-dialog {
+    margin-top: 25vh; /* Center vertically in the viewport */
+    position: fixed; /* Position fixed to stay in place on scroll */   
+    width: 80%;
+    translate: 10%;
+  }
+}

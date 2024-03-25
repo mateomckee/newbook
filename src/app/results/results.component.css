@@ -1,13 +1,11 @@
 /* Rectangles */
-.top, .middle, .bottom {
-    flex: unset;
-    overflow-y: unset;
-    margin-bottom: unset;
-    max-height: unset;
-  }
-  
-  .rectangle.bottom {
-    padding-bottom: 20px; 
+
+  html, body {
+    min-height: 100vh; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
   }
   
   .bottom-padding {
@@ -15,14 +13,34 @@
   }
   
   #hero {
+    flex-grow: 1; 
     width: 100%;
-    margin-top: 98px;
-    min-height: calc(78vh - 98px);
-    position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
+    margin-top: 15px;
     color: #f15a22;
     padding-bottom: 50px; 
+  }
+
+  .rectangle.middle {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex; 
+    flex-direction: column; 
+    min-height: 0; 
+  }
+
+  .rectangle.middle.no-results {
+    min-height: calc(100vh - 150px); 
+  }
+  .rectangle.bottom {
+    margin-top: auto; 
+    padding-bottom: 20px;
+  }
+
+  #logo-container {
+    margin-top: -10px;
+    margin-bottom: 10px; 
   }
   
   .container {
@@ -47,12 +65,26 @@
   
   @media (max-width: 768px) {
     #hero {
-      height: 83vh;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 30px; 
+    }
+  
+    .rectangle.top {
+      flex-shrink: 0;
+    }
+  
+    .rectangle.bottom {
+      flex-shrink: 0;
+      margin-top: auto;
+      padding-bottom: 10px; 
     }
   
     #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
+      font-size: 24px;
+      line-height: 32px;
+      margin-top: -30px;
     }
   
     #hero h2 {
@@ -60,13 +92,37 @@
       line-height: 24px;
     }
   
+    app-search-bar {
+      position: relative;
+      top: -35px; 
+      margin-bottom: -20px; 
+    }
+  
     #logo-container {
-      margin-bottom: 10%;
+      margin-bottom: 8%; 
     }
   
     #logo-img {
       top: -25px;
       min-width: 260px;
+    }
+  
+    .container {
+      margin-top: -25px;
+      margin-bottom: 10px; 
+    }
+  
+    .result-card {
+      margin-bottom: 15px; 
+      padding: 15px; 
+    }
+  
+    .pagination {
+      margin-bottom: -1%; 
+    }
+  
+    .pagination a {
+      padding: 6px 12px; 
     }
   }
   
@@ -106,7 +162,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    flex-grow: 1;
   }
 
   /************************ Card styles ************************/
@@ -139,7 +195,7 @@
   .pagination {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin-bottom: -2%;
   }
   
   .pagination a {
