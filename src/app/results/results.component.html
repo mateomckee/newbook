@@ -14,7 +14,7 @@
   <img src="/assets/images/Loading.gif" alt="Loading...">
 </div>
 
-<!-- Results Boxes, only shown when not loading -->
+<!-- Results Boxes -->
 <div *ngIf="!isLoading" class="rectangle middle container" [class.no-results]="displayItems.length === 0">
   <div class="item-grid">
     <app-item *ngFor="let item of displayItems" [data]="item"></app-item>

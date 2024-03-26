@@ -29,6 +29,7 @@ export class ResultsComponent implements OnInit {
       const searchQuery = params['q'];
       if (searchQuery) {
         this.isLoading = true; 
+        this.currentPage = 1;
         this.searchService.search(searchQuery).then(results => {
           this.isLoading = false;
           if (results) {
