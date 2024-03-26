@@ -20,7 +20,7 @@ main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
+    background-image: url('/assets/images/UTSA background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
