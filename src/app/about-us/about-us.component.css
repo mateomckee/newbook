@@ -1,126 +1,127 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif; 
+}
 
+h1 {
+  color: #f15a22; 
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-    /*-- ======= left box ======= --*/
+.our-team-box {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 auto 30px; 
+  text-align: center;
+  position: relative;
+  max-width: 60%; 
+  top: 20px; 
+  padding-top: 15%;
+}
 
+.our-team-box img {
+  width: 50%; 
+  height: 55%;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border-radius: 20px;
+}
 
+.team-section h3 {
+  color: #f15a22; 
+  font-weight: bold; 
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: -2%;
+}
 
-    #logo-container {
-        width: 100%;
-        height: 100px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: #f15a22;
-        padding-top: 2.5%;
-        padding-right: 80%;
-      }
-    
-      
-      #logo-container h1 {
-        font-size: 48px;
-        font-weight: 700;
-        line-height: 56px;
-        color: var(--main-light-color);
-        font-family: "Poppins", sans-serif
-      }
+.section-title{
+  text-align: center;
+  color: #f15a22; 
+}
 
-    .row {
-        display: flex;
-        height: 10%;
-        width: 30%;
-        display: flex;
-        flex-direction: column;
-        padding-right: 2.5%;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        margin-left: 25px;
-        align-items: flex-start; 
-      }
-      
-      .col-lg-6 {
-        display: inline-block; 
-        width: 100%;
-        padding-bottom: 20px;
-        padding-left: 40px;
-        text-align: left; 
-        color: #f15a22;
-        font-size: 15px;
-        font-weight: 100;
-        line-height: 35px;
-        font-family: "Poppins", sans-serif
-      }
-      
-      h2 {
-        display: block; 
-        color: #f15a22;
-        padding-top: 2.5%;
-        text-align: left; 
-        font-size: 25px;
-        font-weight: 100;
-        line-height: 35px;
-        font-family: "Poppins", sans-serif
-      }
-      
+.team-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
 
-    /*-- ======= left box ======= --*/
+.team-member {
+  width: 200px;
+  margin: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
+.team-member:hover {
+  transform: translateY(-5px);
+}
 
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
 
+.team-member h3, .team-member p {
+  color: #333; 
+}
 
+.team-member p {
+  color: #888; 
+  font-size: 14px;
+}
 
+.profile-details {
+  display: block; 
+  text-align: center;
+}
 
+.profile-details a {
+  color: #007bff;
+  text-decoration: none;
+}
 
+.profile-details a:hover {
+  text-decoration: underline;
+}
 
-
-
-    /*-- ======= info box ======= --*/
-
-  .grid-item {
-    background-color: white;
-    margin-bottom: 20px;
-    margin-top: -33%;
-    margin-right: 15%;
-    border-radius: 8px;
-    height: 400px;
-    width: 45%;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    line-height: 1.6;
-    font-family: 'Poppins', sans-serif;
-    color: #000;
-    float: right;
-
+@media (max-width: 768px) { 
+  .our-team-box {
+    max-width: 95%; 
+    padding-top: 50%; 
+    margin-bottom: 13%;
+    margin-top: -8%;
   }
-  
-  .grid-item:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: #f9f9f9;
-    transform: translateY(-3px);
+
+  .our-team-box img {
+    width: 60%;
+    top: 22.5%;
+    left: 50%;
+    transform: translate(-50%, -30%); 
   }
-  
-  .grid-item a {
-    text-decoration: none;
-    color: var(--text-default-color);
+
+  .team-section {
+    display: block; 
   }
-  
-  .info-container {
+
+  .team-member {
     width: 100%;
-    padding: 10px;
+    margin: 10px 0; 
   }
-  
-  .title {
-    font-size: 15px;
-    color: var(--text-default-color);
-  }
-  
-  .small-information {
-    font-size: 13px;
-  }
-  
-  .content-information p {
-    margin-bottom: 5px;
-  }
-
-  /*-- ======= info box ======= --*/
+}

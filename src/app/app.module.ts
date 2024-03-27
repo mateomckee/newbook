@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -20,6 +21,7 @@ import { ItemComponent } from './results/item/item.component';
     ResultsComponent,
     SearchBarComponent,
     ItemComponent,
+    AboutUsComponent,
   ],
 
   imports: [
@@ -27,6 +29,7 @@ import { ItemComponent } from './results/item/item.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]
