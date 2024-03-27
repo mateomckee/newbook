@@ -22,6 +22,14 @@
     padding-bottom: 50px; 
   }
 
+  .Title{
+    font-size: 48px;
+    font-weight: 700;
+    color: #f15a22;
+    padding-bottom: 20px;
+    text-decoration: none;
+  }
+
   .rectangle.middle {
     flex-grow: 1;
     padding: 20px;
