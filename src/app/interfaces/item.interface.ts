@@ -1,4 +1,5 @@
 export interface ItemData {
+  key: number;
   crn: number;
   semester: string;
   courselabel: string;
