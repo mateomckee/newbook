@@ -9,15 +9,21 @@
     padding-top: var(--search-bar-padding-top, 0%); /* Edit the padding on your own css file */
     padding-bottom: var(--search-bar-padding-bottom, 0%); 
     letter-spacing: 0.1em;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: #f15a22;
 }
 
 .search-container input {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 25px;
     border: #ffffff 1px solid;
     padding: 10px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.search-container input:focus {
+    outline: none;
 }
 
 .buttons {
@@ -44,6 +50,7 @@
     height: 100%;
     border: #ffffff 1px solid;
     background-color: white;
+    border-radius: 25px;
 
 }
 
@@ -60,21 +67,85 @@
 /*-- hover and focus styles for buttons --*/
 .btn-outline-success:hover,
 .btn-outline-primary:hover {
-    background-color: #f15a22;
+    background-color: #ddd;
     color: white;
-    border-color: #f15a22;
+    border-color: #ddd;
 }
 
 /*-- SVG icon fill colors --*/
 .btn-outline-success svg, .btn-outline-primary svg {
-    fill: #aaa;
+    fill: #000;
 }
 
 /*-- SVG icon fill colors on hover --*/
 .btn-outline-success:hover svg, .btn-outline-primary:hover svg {
-    fill: #fcfcfc;
+    fill: #000;
 }
 
-/*-- apply glow effect on focus --*/
-.search-input:focus {
+/*----------------- Pop Up Styling ---------------------*/
+.modal-header {
+    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    color: #f15a22;
+    padding: 20px;
+    font-weight: bold;
+    border-bottom: 5px solid #f15a22;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal title styles to match the header links */
+.modal-title {
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    font-size: 24px; 
+    margin: 0;
+}
+
+/* Modal body styles */
+.modal-body {
+    text-align: center; 
+    color: #000; 
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Modal footer styles */
+.modal-footer {
+    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    color: white;
+    width: 100%;
+    border-top: 5px solid #f15a22;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Modal close button */
+.modal-footer .btn-secondary {
+    background-color: transparent; 
+    border-color: transparent; 
+    color: #f15a22; 
+    border-radius: 25px; 
+    font-size: 1rem;
+}
+
+/* Hover */
+.modal-footer .btn-secondary:hover {
+    color: white; 
+}
+
+/*----------------- Pop Up Styling Mobile ---------------------*/
+@media (max-width: 767px) {
+  .modal-dialog {
+    margin-top: 25vh; /* Center vertically in the viewport */
+    position: fixed; /* Position fixed to stay in place on scroll */   
+    width: 80%;
+    translate: 10%;
+  }
 }

@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ItemData } from '../interfaces/item.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,22 +25,18 @@ export class SearchService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  //on search input
   public onSearch(): void {
     if (this.inputQuery == '') return;
     if (this.isSearchOnCooldown) return
 
-    //navigate if necessary
     if (this.router.url != '/results') {
       this.router.navigate(['/results']);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    //start cooldown
     this.setSearchCooldown();
     this.isLoading = true;
 
-    //process user input here as needed
     const searchQuery = this.inputQuery;
 
     this.search(searchQuery)
@@ -58,25 +55,43 @@ export class SearchService {
       });
   }
 
-  // main search function
-  private async search(searchQuery: string): Promise<any> {
-    console.log("Beginning search for", searchQuery);
-
-    const url = `${this.searchAPI_URL}?q=${searchQuery}`;
-    const headers = new HttpHeaders({ 'q': searchQuery });
-
-    try {
-      return await this.http.get(url, { headers }).toPromise();
-    } catch (error) {
-      console.error("An error occurred during the search.", error);
-      throw new Error('An error occurred during the search.');
+  public async search(searchQuery: string): Promise<ItemData[] | null> {
+      console.log("Beginning search for", searchQuery);
+      const url = `${this.searchAPI_URL}?q=${searchQuery}`;
+      const headers = new HttpHeaders({ 'q': searchQuery });
+      try {
+        const response: any = await this.http.get<any>(url, { headers }).toPromise();
+    
+        if (response && response.data && Array.isArray(response.data)) {
+          const itemData: ItemData[] = response.data.map((item: any) => ({
+            crn: item.crn,
+            semester: item.semester,
+            courselabel: item.courselabel,
+            instructor: item.instructor,
+            coursetitle: item.coursetitle,
+            inseval: item.inseval,
+            insevalstudentnum: item.insevalstudentnum,
+            creval: item.creval,
+            crevalstudentnum: item.crevalstudentnum,
+            enrollment: item.enrollment,
+            description: item.description,
+            timestamp: item.timestamp
+          }));
+          return itemData;
+        } else {
+          console.error('Unexpected response format:', response);
+          return null;
+        }
+      } catch (error) {
+        console.error("An error occurred during the search.", error);
+        throw new Error('An error occurred during the search.');
+      }
     }
-  }
 
   private setSearchCooldown() {
     this.isSearchOnCooldown = true;
     setTimeout(() => {
       this.isSearchOnCooldown = false;
-    }, this.cooldownTimeMS); // cooldown time in milliseconds
+    }, this.cooldownTimeMS); 
   }
 }

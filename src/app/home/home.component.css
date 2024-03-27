@@ -1,105 +1,146 @@
 #hero {
     width: 100%;
     height: calc(80vh);
-    background-image: url('https://www.utsa.edu/roadmap/do-your-part/backgrounds/images/UTSA-SU.png');
-    background-size: cover;
     position: relative;
-
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
-
     color: #f15a22;
-}
-
-#hero .container {
+    padding-top: -15%;
+  }
+  
+  #hero .container {
     padding-top: 72px;
-}
-
-#hero h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  #hero h1 {
     margin: 0;
     font-size: 48px;
     font-weight: 700;
     line-height: 56px;
     color: var(--main-light-color);
     font-family: "Poppins", sans-serif;
-}
-
-#hero h2 {
+  }
+  
+  #hero h2 {
     color: var(--main-light-color);
     margin: 10px 0 0 0;
     font-size: 24px;
-}
-
-#logo-img {
+  }
+  
+  #logo-img {
     position: relative;
     height: 100%;
-
     min-width: 225px;
     width: calc(25vw);
     max-width: 350px;
-
     top: -45px;
-}
+  }
 
-@media (max-width: 768px) {
+  .white-bg {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    z-index: 1;
+    margin: -27.5% auto 20px; 
+    position: relative;
+    transform: translateX(-50%); 
+    left: 90%; 
+  }
+
+  @media (max-width: 768px) {
     #hero {
-        height: 83vh;
+      height: 83vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 50px; /* Adjust this value to move title */
     }
-
+  
     #hero h1 {
-        font-size: 28px;
-        line-height: 36px;
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 80px; 
     }
-
+  
     #hero h2 {
-        font-size: 18px;
-        line-height: 24px;
+      font-size: 18px;
+      line-height: 24px;
     }
-
+  
     #logo-container {
-        margin-bottom: 10%;
+      margin-bottom: -30px; 
     }
-
+  
     #logo-img {
-        top: -25px;
-        min-width: 260px;
+      top: 0;
+      min-width: 260px;
     }
-}
-
-@media (min-width: 1024px) {
-    #hero {
-        background-attachment: fixed;
+  
+    app-search-bar {
+      margin-bottom: 200px; /* Adjust this value to move search bar */
     }
-}
+  
+    .white-bg {
+      position: static;
+      transform: none;
+      width: 100%;
+      max-width: none;
+      margin-top: -167.5%; /* Adjust this value to move text box */
+    }
 
-/*--------------------------------------------------------------
-# About
---------------------------------------------------------------*/
-.about .content h3 {
+    .about .content .learn-more-btn {
+      margin: 0 48px 0 0;
+      padding: 6px 18px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    #hero h1 {
+      margin-top: -22px; /* Adjust this value to move title */
+    }
+  
+    app-search-bar {
+      margin-bottom: 300px; /* Adjust this value to move search bar */
+    }
+
+    .white-bg {
+      margin-top: -55%; /* Adjust this value to move text box */
+    }
+  }
+  
+  /*-------------------------------------------------------------- # About --------------------------------------------------------------*/
+  .about .content h3 {
     font-weight: 600;
     font-size: 26px;
-}
-
-.about .content ul {
+  }
+  
+  .about .content ul {
     list-style: none;
     padding: 0;
-}
-
-.about .content ul li {
+  }
+  
+  .about .content ul li {
     padding-bottom: 10px;
-}
-
-/* Check mark */
-.about .content ul i {
+  }
+  
+  /* Check mark */
+  .about .content ul i {
     font-size: 20px;
     padding-right: 4px;
     color: green;
-}
-
-.about .content .learn-more-btn {
+  }
+  
+  .about .content .learn-more-btn {
     background: var(--accent-default-color);
     color: var(--main-light-color);
     border-radius: 50px;
@@ -108,16 +149,9 @@
     transition: 0.3s;
     font-size: 14px;
     display: inline-block;
-}
-
-.about .content .learn-more-btn:hover {
+  }
+  
+  .about .content .learn-more-btn:hover {
     background: var(--accent-default-color);
     color: var(--main-light-color);
-}
-
-@media (max-width: 768px) {
-    .about .content .learn-more-btn {
-        margin: 0 48px 0 0;
-        padding: 6px 18px;
-    }
-}
+  }
