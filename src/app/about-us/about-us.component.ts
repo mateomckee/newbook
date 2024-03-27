@@ -21,7 +21,7 @@ export class AboutUsComponent implements OnInit {
       name: 'Michael De Leon',
       bio: 'Bio here',
       role: 'Web Developer',
-      linkedInUrl: 'www.linkedin.com/in/michael-de-leon-61196421b',
+      linkedInUrl: 'https://www.linkedin.com/in/michael-de-leon-61196421b/',
       imageUrl: '/assets/images/Profile Images/Miko.jpg',
       },
       {
@@ -37,7 +37,7 @@ export class AboutUsComponent implements OnInit {
       name: 'Joshua Zamora',
       bio: 'Bio here',
       role: 'Web Developer',
-      linkedInUrl: 'www.linkedin.com/in/michael-de-leon-61196421b',
+      linkedInUrl: 'https://www.linkedin.com/in/joshua-zamora-620984264/',
       imageUrl: '/assets/images/Profile Images/Default.jpg',
       },
       {
