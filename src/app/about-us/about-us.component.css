@@ -1,0 +1,126 @@
+
+
+    /*-- ======= left box ======= --*/
+
+
+
+    #logo-container {
+        width: 100%;
+        height: 100px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #f15a22;
+        padding-top: 2.5%;
+        padding-right: 80%;
+      }
+    
+      
+      #logo-container h1 {
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: var(--main-light-color);
+        font-family: "Poppins", sans-serif
+      }
+
+    .row {
+        display: flex;
+        height: 10%;
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        padding-right: 2.5%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 25px;
+        align-items: flex-start; 
+      }
+      
+      .col-lg-6 {
+        display: inline-block; 
+        width: 100%;
+        padding-bottom: 20px;
+        padding-left: 40px;
+        text-align: left; 
+        color: #f15a22;
+        font-size: 15px;
+        font-weight: 100;
+        line-height: 35px;
+        font-family: "Poppins", sans-serif
+      }
+      
+      h2 {
+        display: block; 
+        color: #f15a22;
+        padding-top: 2.5%;
+        text-align: left; 
+        font-size: 25px;
+        font-weight: 100;
+        line-height: 35px;
+        font-family: "Poppins", sans-serif
+      }
+      
+
+    /*-- ======= left box ======= --*/
+
+
+
+
+
+
+
+
+
+
+    /*-- ======= info box ======= --*/
+
+  .grid-item {
+    background-color: white;
+    margin-bottom: 20px;
+    margin-top: -33%;
+    margin-right: 15%;
+    border-radius: 8px;
+    height: 400px;
+    width: 45%;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    color: #000;
+    float: right;
+
+  }
+  
+  .grid-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    transform: translateY(-3px);
+  }
+  
+  .grid-item a {
+    text-decoration: none;
+    color: var(--text-default-color);
+  }
+  
+  .info-container {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 15px;
+    color: var(--text-default-color);
+  }
+  
+  .small-information {
+    font-size: 13px;
+  }
+  
+  .content-information p {
+    margin-bottom: 5px;
+  }
+
+  /*-- ======= info box ======= --*/
