@@ -22,7 +22,7 @@ export class AboutUsComponent implements OnInit {
       bio: 'Bio here',
       role: 'Web Developer',
       linkedInUrl: 'www.linkedin.com/in/michael-de-leon-61196421b',
-      imageUrl: '/assets/images/Profile Images/Default.jpg',
+      imageUrl: '/assets/images/Profile Images/Miko.jpg',
       },
       {
       id: 3,
