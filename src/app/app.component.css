@@ -20,15 +20,13 @@ main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('/assets/images/UTSA background.jpg');
+    background: url('/assets/images/UTSA background.jpg') center fixed no-repeat;
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 /* Header styles */
 #header {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    background: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png') bottom no-repeat;
     color: white;
     padding: 20px;
     border-bottom: 5px solid #f15a22;
@@ -36,18 +34,16 @@ main {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: static; /* change to fixed if we dont want the header and footer to move */
+    position: static; 
+}
+
+.header-title, .link-text {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
 }
 
 .header-title {
-    font-family: "Poppins", sans-serif;
-    font-size: 18px;
     margin-left: 20px;
-}
-
-.link-text {
-    font-family: "Poppins", sans-serif;
-    font-size: 18px;
 }
 
 .nav-wrapper {
@@ -80,7 +76,7 @@ main {
 
 /* Footer styles */
 #footer-background {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    background: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png') top no-repeat;
     color: white;
     width: 100%;
     padding: 10px 20px;
@@ -88,8 +84,7 @@ main {
     font-family: "Poppins", sans-serif;
     letter-spacing: 0.1em;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.192);
-    bottom: 0;
-    position: relative; /* change to fixed if we dont want the header and footer to move */
+    position: relative; /* change to fixed if you don't want the header and footer to move */
     margin-top: auto;
     flex-shrink: 0;
 }
@@ -97,7 +92,6 @@ main {
 .footer-container {
     display: flex;
     flex-direction: column;
-    font-family: "Poppins", sans-serif;
 }
 
 .footer-top {
@@ -121,7 +115,6 @@ main {
 
 .footer-contact-info {
     color: #f15a22;
-    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -253,16 +246,15 @@ main {
     text-decoration: none;
 }
 
-/*************** Mobile Formatting **************/
+/* Mobile Formatting */
 @media (max-width: 767px) {
     #header {
         padding: 10px 5px;
     }
 
     .logo {
-        max-width: 120px; 
-        max-height: auto; 
-        margin-bottom: 10px; 
+        max-width: 120px;
+        margin-bottom: 10px;
     }
 
     .nav-wrapper {
@@ -270,23 +262,20 @@ main {
     }
 
     .nav-link {
-        padding: 8px 0; 
+        padding: 8px 0;
     }
 
     .nav-link .link-text {
-        display: none; 
+        display: none;
     }
 
     .navbar {
-        padding: 0; 
+        padding: 0;
     }
 
     #footer-background {
-        position: relative; 
-        bottom: 0; 
-        left: 0; 
-        width: 100%; 
-        padding: 15px 5px; 
+        position: relative;
+        padding: 15px 5px;
     }
 
     .footer-container {
@@ -295,12 +284,12 @@ main {
 
     .footer-top {
         flex-direction: column;
-        align-items: center; 
+        align-items: center;
     }
 
     .footer-bottom a {
-        display: inline-block; 
-        margin: 2px; 
+        display: inline-block;
+        margin: 2px;
     }
 
     .footer-contact-info {
@@ -309,22 +298,21 @@ main {
     }
 
     .footer-contact-info p {
-        margin: 3px 0; 
-        font-size: 12px; 
-        line-height: 1.4; 
+        margin: 3px 0;
+        font-size: 12px;
+        line-height: 1.4;
         white-space: normal;
     }
 
     .social-link {
-        margin: 0 5px; 
+        margin: 0 5px;
     }
 
     main {
-        padding: 15px; 
+        padding: 15px;
     }
 
     html, body {
         width: 100%;
-        overflow-x: hidden;
     }
 }
