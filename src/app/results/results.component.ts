@@ -10,13 +10,14 @@ import { SearchService } from '../services/search.service';
 })
 export class ResultsComponent implements OnInit {
 
-  items: ItemData[] = []; // All items received from search API, cached here for later use
-  displayItems: ItemData[] = []; // Items that are displayed on the page
+  items: ItemData[] = []; 
+  displayItems: ItemData[] = []; 
   currentPage: number = 1;
   pagesToShow: number = 3;
   maxPages: number = 10;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 50;
   isLoading: boolean = false;
+  selectedCourse: ItemData | null = null;
 
   constructor(
     private router: Router,
@@ -26,23 +27,31 @@ export class ResultsComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      const searchQuery = params['q'];
-      if (searchQuery) {
-        this.isLoading = true; 
-        this.currentPage = 1;
-        this.searchService.search(searchQuery).then(results => {
-          this.isLoading = false;
-          if (results) {
-            this.items = results;
-            console.log('Items after search:', this.items);
-            this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
-            this.updateDisplayItems();
-          } else {
-            this.items = [];
-            console.log('No items found');
+      const searchQuery = params['q'] || '';
+      const filters: { [key: string]: string } = {};
+      Object.keys(params).forEach(key => {
+        if (key !== 'q') {
+          filters[key] = params[key];
+        }
+      });
+  
+      this.isLoading = true;
+      this.currentPage = 1;
+      this.searchService.search(searchQuery, filters).then(results => {
+        this.isLoading = false;
+        if (results) {
+          this.items = results;
+          console.log('Items after search:', this.items);
+          this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
+          this.updateDisplayItems();
+          if (this.displayItems.length > 0) {
+            this.selectedCourse = this.displayItems[0];
           }
-        });
-      }
+        } else {
+          this.items = [];
+          console.log('No items found');
+        }
+      });
     });
   
     this.searchService.onChangeSearchResult.subscribe((newSearchResult: ItemData[]) => {
@@ -96,9 +105,18 @@ export class ResultsComponent implements OnInit {
     this.currentPage = pageNumber;
     this.updateDisplayItems();
     window.scrollTo(0, 0);
+
+    // Select the first course of the new page
+    if (this.displayItems.length > 0) {
+      this.selectedCourse = this.displayItems[0];
+    }
   }
 
   ngOnDestroy() {
     this.searchService.onChangeSearchResult.unsubscribe();
+  }
+
+  selectCourse(course: ItemData) {
+    this.selectedCourse = course;
   }
 }

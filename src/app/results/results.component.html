@@ -1,23 +1,32 @@
 <section id="hero">
-
   <div class="rectangle top bottom-padding">
     <!-- Title -->
     <div id="logo-container">
-      <h1 class="mb-4text-uppercase"><strong>NEWBOOK</strong></h1>
+      <h1 class="mb-4 text-uppercase"><strong>NEWBOOK</strong></h1>
     </div>
     <!-- Search Bar -->
     <app-search-bar></app-search-bar>
   </div>
 
   <!-- Loading GIF -->
-<div *ngIf="isLoading" class="loading-container">
-  <img src="/assets/images/Loading.gif" alt="Loading...">
-</div>
+  <div *ngIf="isLoading" class="loading-container">
+    <img src="/assets/images/Loading.gif" alt="Loading...">
+  </div>
 
 <!-- Results Boxes -->
 <div *ngIf="!isLoading" class="rectangle middle container" [class.no-results]="displayItems.length === 0">
-  <div class="item-grid">
-    <app-item *ngFor="let item of displayItems" [data]="item"></app-item>
+  <div class="results-container">
+    <div class="course-list">
+      <div *ngFor="let item of displayItems" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
+        <app-item [data]="item"></app-item>
+      </div>
+    </div>
+    <div class="course-details">
+      <app-course-details *ngIf="selectedCourse" [course]="selectedCourse"></app-course-details>
+      <div *ngIf="!selectedCourse" class="no-course-selected">
+        <p>Click on a course to view its details.</p>
+      </div>
+    </div>
   </div>
 </div>
 

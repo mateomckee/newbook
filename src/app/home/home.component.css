@@ -1,37 +1,75 @@
+/* Rectangles */
+
+html, body {
+  min-height: 100vh; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; 
+}
+
+.bottom-padding {
+  padding-bottom: 20px;
+}
+
 #hero {
-    width: 100%;
-    height: calc(80vh);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #f15a22;
-    padding-top: -15%;
-  }
-  
-  #hero .container {
-    padding-top: 72px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  #hero h1 {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    color: var(--main-light-color);
-    font-family: "Poppins", sans-serif;
-  }
-  
-  #hero h2 {
-    color: var(--main-light-color);
-    margin: 10px 0 0 0;
-    font-size: 24px;
-  }
+  flex-grow: 1; 
+  width: 100%;
+  display: flex;
+  flex-direction: column; 
+  margin-top: 15px;
+  color: #f15a22;
+  padding-bottom: 50px; 
+}
+
+.Title{
+  font-size: 48px;
+  font-weight: 700;
+  color: #f15a22;
+  padding-bottom: 20px;
+  text-decoration: none;
+}
+
+.rectangle.middle {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex; 
+  flex-direction: column; 
+  min-height: 0; 
+}
+
+.rectangle.middle.no-results {
+  min-height: calc(100vh - 150px); 
+}
+.rectangle.bottom {
+  margin-top: auto; 
+  padding-bottom: 20px;
+}
+
+#logo-container {
+  margin-top: -10px;
+  margin-bottom: 10px; 
+}
+
+.container {
+  margin-top: 20px; 
+  margin-bottom: 20px; 
+}
+
+#hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: var(--main-light-color);
+  font-family: "Poppins", sans-serif;
+}
+
+#hero h2 {
+  color: var(--main-light-color);
+  margin: 10px 0 0 0;
+  font-size: 24px;
+}
   
   #logo-img {
     position: relative;
@@ -46,15 +84,9 @@
     background-color: white;
     font-family: 'Poppins', sans-serif;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
     z-index: 1;
-    margin: -27.5% auto 20px; 
-    position: relative;
-    transform: translateX(-50%); 
-    left: 90%; 
+    border-radius: 10px;
   }
 
   @media (max-width: 768px) {
@@ -119,6 +151,16 @@
   }
   
   /*-------------------------------------------------------------- # About --------------------------------------------------------------*/
+  .about {
+    margin-top: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+    transform: translateX(20%);
+  }
+
   .about .content h3 {
     font-weight: 600;
     font-size: 26px;

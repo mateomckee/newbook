@@ -1,44 +1,21 @@
 .grid-item {
-    background-color: white;
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    line-height: 1.6;
-    font-family: 'Poppins', sans-serif;
-    color: #000;
-  }
-  
-  .grid-item:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: #f9f9f9;
-    transform: translateY(-3px);
-  }
-  
-  .grid-item a {
-    text-decoration: none;
-    color: var(--text-default-color);
-  }
-  
-  .info-container {
-    width: 100%;
-    padding: 10px;
-  }
-  
-  .title {
-    font-size: 15px;
-    color: var(--text-default-color);
-  }
-  
-  .small-information {
-    font-size: 13px;
-  }
-  
-  .content-information p {
-    margin-bottom: 5px;
-  }
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+  color: black;
+}
+
+.grid-item:hover {
+  background-color: #f9f9f9;
+}
+
+.info-container {
+  width: 100%;
+}
+
+.title {
+  font-size: 15px;
+  color: var(--text-default-color);
+}

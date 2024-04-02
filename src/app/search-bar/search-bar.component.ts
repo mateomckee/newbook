@@ -1,6 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SearchService } from '../services/search.service';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SearchService } from '../services/search.service';
+import { subjects } from 'src/app/interfaces/auto-complete';
+
+interface FilterOptions {
+  instructor: boolean;
+  crn: boolean;
+  // Add more filter options as needed
+}
+
+interface FilterValues {
+  instructor: string;
+  crn: string;
+  // Add more filter values as needed
+}
 
 @Component({
   selector: 'app-search-bar',
@@ -8,28 +21,72 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  @Input() isHomePage: boolean = true;
-  @Input() searchPrompt: string = 'Get Started By Searching...';
+  inputQuery: string = '';
+  filteredSubjects: string[] = [];
+  isFocused: boolean = false;
+
+  filterOptions: FilterOptions = {
+    instructor: false,
+    crn: false,
+    // Initialize more filter options as needed
+  };
+
+  filterValues: FilterValues = {
+    instructor: '',
+    crn: '',
+    // Initialize more filter values as needed
+  };
 
   constructor(
-    public searchService: SearchService, 
+    public searchService: SearchService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       const searchQuery = params['q'];
       if (searchQuery) {
-        this.searchService.inputQuery = searchQuery;
-        this.searchService.onSearch();
+        this.inputQuery = searchQuery;
+        this.onSearch();
       }
     });
   }
 
+  onInputFocus(): void {
+    this.isFocused = true;
+  }
+
+  onInputBlur(): void {
+    this.isFocused = false;
+  }
+
   onSearch(): void {
-    if (this.searchService.inputQuery) {
-      this.router.navigate(['/results'], { queryParams: { q: this.searchService.inputQuery } });
-    }
+    const filters: { [key: string]: string } = {};
+    const optionsKeys = Object.keys(this.filterOptions) as Array<keyof FilterOptions>;
+    optionsKeys.forEach(key => {
+      if (this.filterOptions[key] && this.filterValues[key]) {
+        filters[key] = this.filterValues[key];
+      }
+    });
+  
+    this.router.navigate(['/results'], { queryParams: { q: this.inputQuery.trim(), ...filters } });
+    this.isFocused = false;
+    this.filteredSubjects = [];
+  }
+  
+
+  filterSubjects(): void {
+    this.isFocused = !!this.inputQuery;
+    this.filteredSubjects = this.inputQuery ?
+      subjects.filter(subject =>
+        subject.toLowerCase().includes(this.inputQuery.toLowerCase())
+      ) : [];
+  }
+
+  selectSubject(subject: string): void {
+    this.inputQuery = subject;
+    this.isFocused = false;
+    this.filteredSubjects = [];
   }
 }

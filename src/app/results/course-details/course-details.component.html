@@ -1,0 +1,12 @@
+<div *ngIf="course" class="course-details-container">
+    <h2>{{ course.coursetitle }} ({{ course.courselabel }})</h2>
+    <p>Instructor: {{ course.instructor }}</p>
+    <p>Description: {{ course.description }}</p>
+    <p>Semester: {{ course.semester }}</p>
+    <p>Instructor Evaluation: {{ course.inseval || 'N/A' }}</p>
+    <p>Instructor Evaluation Student Number: {{ course.insevalstudentnum || 'N/A' }}</p>
+    <p>Course Evaluation: {{ course.creval || 'N/A' }}</p>
+    <p>Course Evaluation Student Number: {{ course.crevalstudentnum || 'N/A' }}</p>
+    <p>Enrollment: {{ course.enrollment }}</p>
+    <p>Timestamp: {{ course.timestamp }}</p>
+  </div>
