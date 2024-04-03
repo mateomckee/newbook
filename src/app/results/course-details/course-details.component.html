@@ -1,12 +1,53 @@
 <div *ngIf="course" class="course-details-container">
-    <h2>{{ course.coursetitle }} ({{ course.courselabel }})</h2>
-    <p>Instructor: {{ course.instructor }}</p>
-    <p>Description: {{ course.description }}</p>
-    <p>Semester: {{ course.semester }}</p>
-    <p>Instructor Evaluation: {{ course.inseval || 'N/A' }}</p>
-    <p>Instructor Evaluation Student Number: {{ course.insevalstudentnum || 'N/A' }}</p>
-    <p>Course Evaluation: {{ course.creval || 'N/A' }}</p>
-    <p>Course Evaluation Student Number: {{ course.crevalstudentnum || 'N/A' }}</p>
-    <p>Enrollment: {{ course.enrollment }}</p>
-    <p>Timestamp: {{ course.timestamp }}</p>
+  <h2>{{ course.coursetitle }} ({{ course.courselabel }})</h2>
+  <p>Instructor: {{ course.instructor }}</p>
+  <p>Description: {{ course.description }}</p>
+  <p>Semester: {{ course.semester }}</p>
+  <div class="evaluation-container">
+    <p class="evaluation-label">Instructor Evaluation:</p>
+    <svg width="36" height="36" viewBox="0 0 36 36" class="circular-chart">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+        fill="none" stroke="#ccc" stroke-width="3.8"></path>
+      <path class="circle"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+        fill="none" stroke="navy" stroke-width="3.8"
+        [attr.stroke-dasharray]="getStrokeDashArray(course.inseval)"
+        [attr.stroke-dashoffset]="getStrokeDashOffset(course.inseval)"></path>
+        <text x="37" y="37" class="evaluation-score" text-anchor="middle" dominant-baseline="middle" fill="navy">
+          {{ getEvaluationScore(course.inseval) }}
+      </text>
+    </svg>
   </div>
+  <p>Instructor Evaluation Student Number: {{ course.insevalstudentnum || 'N/A' }}</p>
+  <div class="evaluation-container">
+    <p class="evaluation-label">Course Evaluation:</p>
+    <svg width="36" height="36" viewBox="0 0 36 36" class="circular-chart">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+        fill="none" stroke="#ccc" stroke-width="3.8"></path>
+      <path class="circle"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+        fill="none" stroke="navy" stroke-width="3.8"
+        [attr.stroke-dasharray]="getStrokeDashArray(course.creval)"
+        [attr.stroke-dashoffset]="getStrokeDashOffset(course.creval)"></path>
+        <text x="37" y="37" class="evaluation-score" text-anchor="middle" dominant-baseline="middle" fill="navy">
+          {{ getEvaluationScore(course.creval) }}
+      </text>
+    </svg>
+  </div>
+  <p>Course Evaluation Student Number: {{ course.crevalstudentnum || 'N/A' }}</p>
+  <p>Enrollment: {{ course.enrollment }}</p>
+  <p>Timestamp: {{ course.timestamp | date:'MMMM d, y, h:mm a' }}</p>
+  <div class="syllabus-button-container">
+    <button class="syllabus-button" (click)="openSyllabus(course.syllabusUrl)">Open Syllabus</button>
+  </div>
+</div>

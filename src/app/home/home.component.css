@@ -8,6 +8,11 @@ html, body {
   flex-direction: column; 
 }
 
+a {
+  color: #f15a22;
+  text-decoration: none;
+}
+
 .bottom-padding {
   padding-bottom: 20px;
 }
@@ -17,7 +22,7 @@ html, body {
   width: 100%;
   display: flex;
   flex-direction: column; 
-  margin-top: 15px;
+  margin-top: 7.5vh;
   color: #f15a22;
   padding-bottom: 50px; 
 }
@@ -151,49 +156,50 @@ html, body {
   }
   
   /*-------------------------------------------------------------- # About --------------------------------------------------------------*/
-  .about {
-    margin-top: 25vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 150px);
-    transform: translateX(20%);
-  }
-
-  .about .content h3 {
-    font-weight: 600;
-    font-size: 26px;
+  .about-section {
+    padding: 50px 0;
+    margin: auto;
+    margin-top: -10vh;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    font-family: 'Poppins', sans-serif;
   }
   
-  .about .content ul {
+  .container {
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  .about-content {
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+  }
+  
+  .about-content h3 {
+    color: #333;
+  }
+  
+  .about-content p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .about-content ul {
     list-style: none;
     padding: 0;
   }
   
-  .about .content ul li {
-    padding-bottom: 10px;
+  .about-content ul li {
+    position: relative;
+    padding-left: 20px;
   }
   
-  /* Check mark */
-  .about .content ul i {
-    font-size: 20px;
-    padding-right: 4px;
-    color: green;
-  }
-  
-  .about .content .learn-more-btn {
-    background: var(--accent-default-color);
-    color: var(--main-light-color);
-    border-radius: 50px;
-    padding: 8px 25px 9px 25px;
-    white-space: nowrap;
-    transition: 0.3s;
-    font-size: 14px;
-    display: inline-block;
-  }
-  
-  .about .content .learn-more-btn:hover {
-    background: var(--accent-default-color);
-    color: var(--main-light-color);
+  .about-content ul li::before {
+    color: #f15a22;
+    position: absolute;
+    left: 0;
+    top: 0;
   }

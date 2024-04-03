@@ -1,10 +1,84 @@
 .course-details-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    line-height: 1.6;
-    font-family: 'Poppins', sans-serif;
-    color: #000;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+}
+
+.circle-bg {
+  stroke: #eee;
+}
+
+.circle {
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.circular-chart .circle {
+  fill: none;
+  stroke-width: 3.8;
+  stroke-linecap: round; 
+  transform-origin: 50% 50%;
+}
+
+.evaluation-container {
+  display: flex;
+  align-items: center;
+}
+
+.chart-container {
+  position: relative;
+  width: 36px;
+  height: 36px; 
+}
+
+.circular-chart {
+  position: relative; 
+  width: 36px;
+  height: 36px;
+  margin-bottom: 2vh;
+  margin-left: 1vh;
+}
+
+.evaluation-score {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.65em; 
+}
+
+.evaluation-label {
+  margin-right: 5px; 
+}
+
+.syllabus-button {
+  padding: 10px 15px;
+  background-color: #f15a22; 
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; 
+}
+
+.syllabus-button:hover {
+  background-color: #e14e1a;
+}
+
+.syllabus-button-container {
+  text-align: center;
+  padding: 20px; 
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
   }
+}

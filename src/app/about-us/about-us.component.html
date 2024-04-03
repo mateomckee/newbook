@@ -14,9 +14,8 @@
         <div class="team-member" *ngIf="profile.role.includes('Manager')" (click)="selectProfile(profile)">
           <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
           <h3>{{ profile.name }}</h3>
-          <p></p>
           <p>{{ profile.role }}</p>
-          <a [href]="profile.linkedInUrl" target="_blank">LinkedIn</a>
+          <a [href]="profile.linkedInUrl" class="social-link linkedin" target="_blank"></a>
         </div>
       </ng-container>
     </div>
@@ -28,9 +27,8 @@
         <div class="team-member" *ngIf="profile.role.includes('Web Developer')" (click)="selectProfile(profile)">
           <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
           <h3>{{ profile.name }}</h3>
-          <p></p>
           <p>{{ profile.role }}</p>
-          <a [href]="profile.linkedInUrl" target="_blank">LinkedIn</a>
+          <a [href]="profile.linkedInUrl" class="social-link linkedin" target="_blank"></a>
         </div>
       </ng-container>
     </div>
@@ -42,9 +40,8 @@
         <div class="team-member" *ngIf="profile.role.includes('Data Scientist')" (click)="selectProfile(profile)">
           <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
           <h3>{{ profile.name }}</h3>
-          <p></p>
           <p>{{ profile.role }}</p>
-          <a [href]="profile.linkedInUrl" target="_blank">LinkedIn</a>
+          <a [href]="profile.linkedInUrl" class="social-link linkedin" target="_blank"></a>
         </div>
       </ng-container>
     </div>

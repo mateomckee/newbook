@@ -12,4 +12,5 @@ export interface ItemData {
   enrollment: number;
   description: string;
   timestamp: string;
+  syllabusUrl: string;
 }
