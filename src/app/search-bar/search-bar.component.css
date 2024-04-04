@@ -28,7 +28,7 @@ body {
     position: relative;
     min-width: 300px;
     width: 80vw;
-    max-width: 600px; /* maximum width */
+    max-width: 600px; 
 }
 
 .search-container input[type="search"] {
@@ -36,6 +36,7 @@ body {
     border-radius: 10px;
     border: 1px solid #ddd;
     padding: 10px 20px;
+    height: 40px;
 }
 
 .search-container input[type="search"]:focus {

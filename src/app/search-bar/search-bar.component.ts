@@ -70,7 +70,10 @@ export class SearchBarComponent implements OnInit {
       }
     });
   
-    this.router.navigate(['/results'], { queryParams: { q: this.inputQuery.trim(), ...filters } });
+    this.router.navigate(['/results'], {
+      queryParams: { q: this.inputQuery.trim(), ...filters }
+    });
+  
     this.isFocused = false;
     this.filteredSubjects = [];
   }

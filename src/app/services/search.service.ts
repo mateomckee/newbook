@@ -17,88 +17,100 @@ export class SearchService {
   public isLoading: boolean = false;
   private isSearchOnCooldown = false;
   private cooldownTimeMS = 5000;
+  public isError: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  public onSearch(): void {
-    if (this.inputQuery == '') return;
+  public resetSearchResults(): void {
+    this.searchResult = null;
+    this.isError = false; // Also reset the error state
+  }
+
+  public onSearch(query: string, filters: any): void {
+    if (!query) return;
     if (this.isSearchOnCooldown) return;
 
-    if (this.router.url != '/results') {
-      this.router.navigate(['/results']);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    this.setSearchCooldown();
+    this.isError = false;
     this.isLoading = true;
-
-    const searchQuery = this.inputQuery;
-
-    this.search(searchQuery, {})
+    this.search(query, filters)
       .then(searchResult => {
+        this.searchResult.emit(searchResult);
         this.isLoading = false;
-
-        this.searchResult = searchResult;
-        this.onChangeSearchResult.emit(this.searchResult);
-
-        console.log(this.searchResult);
+        if (!searchResult) {
+          this.isError = true;
+        }
       })
       .catch(error => {
+        this.isError = true;
         this.isLoading = false;
         console.error('An error occurred during the search:', error);
-        throw new Error('An error occurred during the search.');
       });
-  }
 
-  public async search(searchQuery: string, filters: any): Promise<ItemData[] | null> {
-    console.log("Beginning search for", searchQuery);
-
-    // Simulating an error for testing purposes
-     if (searchQuery.toLowerCase() === 'error') {
-      throw new Error('Simulated error for testing');
-    }
-
-    const url = new URL(`${this.searchAPI_URL}`);
-  
-    if (searchQuery) {
-      url.searchParams.append('q', searchQuery);
-    }
-  
-    Object.keys(filters).forEach(key => {
-      if (filters[key]) {
-        url.searchParams.append(key, filters[key]);
-      }
-    });
-
-    const headers = new HttpHeaders();
-    
-    try {
-      const response: any = await this.http.get<any>(url.toString(), { headers }).toPromise();
-      if (response && response.data && Array.isArray(response.data)) {
-        const itemData: ItemData[] = response.data.map((item: any) => ({
-          crn: item.crn,
-          semester: item.semester,
-          courselabel: item.courselabel,
-          instructor: item.instructor,
-          coursetitle: item.coursetitle,
-          inseval: item.inseval,
-          insevalstudentnum: item.insevalstudentnum,
-          creval: item.creval,
-          crevalstudentnum: item.crevalstudentnum,
-          enrollment: item.enrollment,
-          description: item.description,
-          timestamp: item.timestamp
-        }));
-        return itemData;
-      } else {
-        console.error('Unexpected response format:', response);
-        return null;
-      }
-    } catch (error) {
-      console.error("An error occurred during the search.", error);
-      throw error;
+    if (this.router.url !== '/results') {
+      this.router.navigate(['/results']);
     }
   }
+
+  private searchInProgress = false;
+
+public async search(searchQuery: string, filters: any): Promise<ItemData[] | null> {
+  if (this.searchInProgress) {
+    return null;
+  }
+
+  this.searchInProgress = true;
+  this.isLoading = true;
+  this.isError = false; 
+
+  console.log("Beginning search for", searchQuery);
+  // Simulating an error for testing purposes
+  if (searchQuery.toLowerCase() === 'error') {
+    throw new Error('Simulated error for testing');
+  }
+
+  const url = new URL(`${this.searchAPI_URL}`);
+  if (searchQuery) {
+    url.searchParams.append('q', searchQuery);
+  }
+  Object.keys(filters).forEach(key => {
+    if (filters[key]) {
+      url.searchParams.append(key, filters[key]);
+    }
+  });
+
+  const headers = new HttpHeaders();
+
+  try {
+    const response: any = await this.http.get<any>(url.toString(), { headers }).toPromise();
+    if (response && response.data && Array.isArray(response.data)) {
+      const itemData: ItemData[] = response.data.map((item: any) => ({
+        crn: item.crn,
+        semester: item.semester,
+        courselabel: item.courselabel,
+        instructor: item.instructor,
+        coursetitle: item.coursetitle,
+        inseval: item.inseval,
+        insevalstudentnum: item.insevalstudentnum,
+        creval: item.creval,
+        crevalstudentnum: item.crevalstudentnum,
+        enrollment: item.enrollment,
+        description: item.description,
+        timestamp: item.timestamp
+      }));
+      this.searchInProgress = false;
+      return itemData;
+    } else {
+      console.error('Unexpected response format:', response);
+      this.searchInProgress = false;
+      return null;
+    }
+  } catch (error) {
+    console.error("An error occurred during the search.", error);
+    this.isError = true;
+    this.isLoading = false;
+    return null;
+  }
+}
 
   private setSearchCooldown() {
     this.isSearchOnCooldown = true;

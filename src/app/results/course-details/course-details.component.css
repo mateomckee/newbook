@@ -8,7 +8,7 @@
   font-family:  Arial, Helvetica, sans-serif;
   color: #000;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   height: 500px;
   overflow-y: auto;
 }
@@ -45,14 +45,14 @@
 
 .chart-container {
   position: relative;
-  width: 36px;
-  height: 36px; 
+  width: 60px;
+  height: 60px; 
 }
 
 .circular-chart {
   position: relative; 
-  width: 36px;
-  height: 36px;
+  width: 60px;
+  height: 60px;
   margin-bottom: 2vh;
   margin-left: 1vh;
 }

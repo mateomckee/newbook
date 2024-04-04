@@ -18,22 +18,22 @@
     <img src="/assets/images/Loading.gif" alt="Loading...">
   </div>
 
-<!-- Results Boxes -->
-<div *ngIf="!isLoading" class="rectangle middle container" [class.no-results]="displayItems.length === 0">
-  <div class="results-container">
-    <div class="course-list">
-      <div *ngFor="let item of displayItems" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
-        <app-item [data]="item" [isSelected]="item === selectedCourse"></app-item>
+  <!-- Results Boxes -->
+  <div *ngIf="!isLoading" class="rectangle middle container" [class.no-results]="displayItems.length === 0">
+    <div class="results-container">
+      <div class="course-list">
+        <div *ngFor="let item of displayItems" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
+          <app-item [data]="item" [isSelected]="item === selectedCourse"></app-item>
+        </div>
       </div>
-    </div>
-    <div class="course-details">
-      <app-course-details *ngIf="selectedCourse && displayItems.length > 0" [course]="selectedCourse"></app-course-details>
-      <div *ngIf="displayItems.length === 0" class="no-course-selected">
-        <p>No Results Found.</p>
+      <div class="course-details">
+        <app-course-details *ngIf="selectedCourse && displayItems.length > 0" [course]="selectedCourse"></app-course-details>
+        <div *ngIf="displayItems.length === 0" class="no-course-selected">
+          <p>No Results Found.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <div class="rectangle bottom">
     <!-- Pagination -->

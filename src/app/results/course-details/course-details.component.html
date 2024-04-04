@@ -2,12 +2,12 @@
   <h2>{{ course.coursetitle }}</h2>
   <h3>({{ course.courselabel }}) {{ course.semester }}</h3>
   <h4>Professor: {{ course.instructor }}</h4>
-  <p>Description: {{ course.description }}</p>
+  <p>{{ course.description }}</p>
   <p>Students Enrolled: {{ course.enrollment }}</p>
   <div class="evaluation-container">
     <div class="evaluation">
     <p class="evaluation-label">Instructor Evaluation: </p>      
-    <svg width="36" height="36" viewBox="0 0 36 36" class="circular-chart">
+    <svg width="72" height="72" viewBox="0 0 36 36" class="circular-chart">
       <path class="circle-bg"
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831

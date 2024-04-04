@@ -30,37 +30,6 @@ export class ResultsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.performSearch();
-      const searchQuery = params['q'] || '';
-      const filters: { [key: string]: string } = {};
-      Object.keys(params).forEach(key => {
-        if (key !== 'q') {
-          filters[key] = params[key];
-        }
-      });
-  
-      this.isLoading = true;
-      this.currentPage = 1;
-      this.searchService.search(searchQuery, filters).then(results => {
-        this.isLoading = false;
-        if (results) {
-          this.items = results;
-          console.log('Items after search:', this.items);
-          this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
-          this.updateDisplayItems();
-          if (this.displayItems.length > 0) {
-            this.selectedCourse = this.displayItems[0];
-          }
-        } else {
-          this.items = [];
-          console.log('No items found');
-        }
-      })
-      .catch(error => {
-        this.isLoading = false;
-        this.errorMessage = 'An error occurred during the search. Please try again.';
-        console.error('Search error:', error);
-      });
-      
     });
   
     this.searchService.onChangeSearchResult.subscribe((newSearchResult: ItemData[]) => {
@@ -100,7 +69,7 @@ export class ResultsComponent implements OnInit {
       })
       .catch(error => {
         this.isLoading = false;
-        this.errorMessage = 'An error occurred. Please try again later.';
+        this.errorMessage = 'An error occurred. Please refresh page and try again.';
         console.error('Search error:', error);
       });
   }
