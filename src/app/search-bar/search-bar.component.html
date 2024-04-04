@@ -3,9 +3,9 @@
   <!-- Search Form -->
   <form class="search-form d-flex" (ngSubmit)="onSearch()">
     <!-- Search Input -->
-    <input type="search" id="search" name="search" (focus)="onInputFocus()" 
-      (blur)="onInputBlur()" [(ngModel)]="inputQuery" 
-      (input)="filterSubjects()" autocomplete="off" placeholder="Search">
+    <input type="search" id="search" name="search" (focus)="onInputFocus()" (blur)="onInputBlur()"
+       [(ngModel)]="inputQuery" (input)="filterSubjects()" (keyup.enter)="onSearch()"
+       autocomplete="off" placeholder="Search">
     <!-- Suggestions List (if any) -->
     <ul *ngIf="isFocused && filteredSubjects.length > 0">
       <li *ngFor="let subject of filteredSubjects" (mousedown)="selectSubject(subject)">

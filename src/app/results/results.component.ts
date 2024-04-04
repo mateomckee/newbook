@@ -19,6 +19,8 @@ export class ResultsComponent implements OnInit {
   isLoading: boolean = false;
   selectedCourse: ItemData | null = null;
 
+  errorMessage: string = '';
+
   constructor(
     private router: Router,
     private searchService: SearchService,
@@ -27,6 +29,7 @@ export class ResultsComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
+      this.performSearch();
       const searchQuery = params['q'] || '';
       const filters: { [key: string]: string } = {};
       Object.keys(params).forEach(key => {
@@ -51,13 +54,55 @@ export class ResultsComponent implements OnInit {
           this.items = [];
           console.log('No items found');
         }
+      })
+      .catch(error => {
+        this.isLoading = false;
+        this.errorMessage = 'An error occurred during the search. Please try again.';
+        console.error('Search error:', error);
       });
+      
     });
   
     this.searchService.onChangeSearchResult.subscribe((newSearchResult: ItemData[]) => {
       this.items = newSearchResult;
       this.updateDisplayItems();
     });
+  }
+
+  private performSearch(): void {
+    const searchQuery = this.activatedRoute.snapshot.queryParams['q'] || '';
+    const filters: { [key: string]: string } = {};
+    Object.keys(this.activatedRoute.snapshot.queryParams).forEach(key => {
+      if (key !== 'q') {
+        filters[key] = this.activatedRoute.snapshot.queryParams[key];
+      }
+    });
+  
+    this.isLoading = true;
+    this.errorMessage = '';
+    this.selectedCourse = null;
+  
+    this.searchService.search(searchQuery, filters)
+      .then(results => {
+        this.isLoading = false;
+        if (results) {
+          this.items = results;
+          console.log('Items after search:', this.items);
+          this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
+          this.updateDisplayItems();
+          if (this.displayItems.length > 0) {
+            this.selectedCourse = this.displayItems[0];
+          }
+        } else {
+          this.items = [];
+          console.log('No items found');
+        }
+      })
+      .catch(error => {
+        this.isLoading = false;
+        this.errorMessage = 'An error occurred. Please try again later.';
+        console.error('Search error:', error);
+      });
   }
 
   private updateDisplayItems(): void {
@@ -106,7 +151,6 @@ export class ResultsComponent implements OnInit {
     this.updateDisplayItems();
     window.scrollTo(0, 0);
 
-    // Select the first course of the new page
     if (this.displayItems.length > 0) {
       this.selectedCourse = this.displayItems[0];
     }
@@ -117,6 +161,8 @@ export class ResultsComponent implements OnInit {
   }
 
   selectCourse(course: ItemData) {
-    this.selectedCourse = course;
+    if (this.selectedCourse !== course) {
+      this.selectedCourse = course;
+    }
   }
 }

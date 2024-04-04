@@ -151,7 +151,7 @@ main {
     border-top: 5px solid #f15a22;
     font-family: Arial, sans-serif;
     letter-spacing: 0.1em;
-    position: relative;
+    position: static;
     margin-top: auto;
     flex-shrink: 0;
 }

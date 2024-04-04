@@ -1,4 +1,4 @@
-<div class="grid-item" (click)="onCourseClick()">
+<div class="grid-item" [class.selected]="isSelected">
   <div class="info-container">
     <div class="title">
       <p><strong>{{ data.coursetitle }} ({{ data.courselabel }}) -- {{ data.instructor }}</strong></p>

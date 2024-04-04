@@ -8,9 +8,5 @@ import { ItemData } from 'src/app/interfaces/item.interface';
 })
 export class ItemComponent {
   @Input() data = {} as ItemData;
-  @Output() courseClick = new EventEmitter<ItemData>();
-
-  onCourseClick() {
-    this.courseClick.emit(this.data);
-  }
+  @Input() isSelected: boolean = false;
 }

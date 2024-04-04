@@ -52,6 +52,12 @@ export class SearchService {
 
   public async search(searchQuery: string, filters: any): Promise<ItemData[] | null> {
     console.log("Beginning search for", searchQuery);
+
+    // Simulating an error for testing purposes
+     if (searchQuery.toLowerCase() === 'error') {
+      throw new Error('Simulated error for testing');
+    }
+
     const url = new URL(`${this.searchAPI_URL}`);
   
     if (searchQuery) {
@@ -90,7 +96,7 @@ export class SearchService {
       }
     } catch (error) {
       console.error("An error occurred during the search.", error);
-      throw new Error('An error occurred during the search.');
+      throw error;
     }
   }
 

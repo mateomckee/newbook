@@ -11,6 +11,10 @@
   background-color: #ddd;
 }
 
+.grid-item.selected {
+  background-color: #ddd;
+}
+
 .info-container {
   width: 100%;
 }

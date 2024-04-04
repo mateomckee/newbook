@@ -207,14 +207,26 @@
     gap: 20px; 
   }
   
-  .course-list {
-    overflow-y: auto;
+  .course-list::-webkit-scrollbar {
+    display: block; 
+    width: 12px; 
+}
+
+.course-list::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 6px; 
+}
+
+.course-list {
+    -ms-overflow-style: auto; 
+    scrollbar-width: auto; 
+    overflow-y: auto; 
     border: 1px solid #ddd;
     border-radius: 8px;
     height: 500px; 
-    width: 100%; 
+    width: 100%;
     background-color: white;
-  }
+}
   
   
   .course-list .active {
@@ -282,4 +294,24 @@
     color: #ccc;
     pointer-events: none;
     cursor: default;
+  }
+
+  /* Error Messages */
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .error-image {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .error-message {
+    font-size: 18px;
+    color: red;
   }
