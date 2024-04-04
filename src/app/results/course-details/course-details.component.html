@@ -1,10 +1,12 @@
 <div *ngIf="course" class="course-details-container">
-  <h2>{{ course.coursetitle }} ({{ course.courselabel }})</h2>
-  <p>Instructor: {{ course.instructor }}</p>
+  <h2>{{ course.coursetitle }}</h2>
+  <h3>({{ course.courselabel }}) {{ course.semester }}</h3>
+  <h4>Professor: {{ course.instructor }}</h4>
   <p>Description: {{ course.description }}</p>
-  <p>Semester: {{ course.semester }}</p>
+  <p>Students Enrolled: {{ course.enrollment }}</p>
   <div class="evaluation-container">
-    <p class="evaluation-label">Instructor Evaluation:</p>
+    <div class="evaluation">
+    <p class="evaluation-label">Instructor Evaluation: </p>      
     <svg width="36" height="36" viewBox="0 0 36 36" class="circular-chart">
       <path class="circle-bg"
         d="M18 2.0845
@@ -22,9 +24,9 @@
           {{ getEvaluationScore(course.inseval) }}
       </text>
     </svg>
+    <p>Reviews: {{ course.insevalstudentnum || 'N/A' }}</p>
   </div>
-  <p>Instructor Evaluation Student Number: {{ course.insevalstudentnum || 'N/A' }}</p>
-  <div class="evaluation-container">
+  <div class="evaluation">
     <p class="evaluation-label">Course Evaluation:</p>
     <svg width="36" height="36" viewBox="0 0 36 36" class="circular-chart">
       <path class="circle-bg"
@@ -43,9 +45,9 @@
           {{ getEvaluationScore(course.creval) }}
       </text>
     </svg>
+    <p>Reviews: {{ course.crevalstudentnum || 'N/A' }}</p>
+    </div>
   </div>
-  <p>Course Evaluation Student Number: {{ course.crevalstudentnum || 'N/A' }}</p>
-  <p>Enrollment: {{ course.enrollment }}</p>
   <p>Timestamp: {{ course.timestamp | date:'MMMM d, y, h:mm a' }}</p>
   <div class="syllabus-button-container">
     <button class="syllabus-button" (click)="openSyllabus(course.syllabusUrl)">Open Syllabus</button>

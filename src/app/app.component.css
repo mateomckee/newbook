@@ -5,38 +5,53 @@ ul {
     margin: 0;
 }
 
+/* Main structure */
 .app-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    background: url('/assets/images/UTSA background.jpg') center fixed no-repeat;
-    background-size: cover;
+    height: 85vh;
+    background: #F5F6FA;
 }
 
+main {
+    background-color: #F5F6FA; 
+}
+
+/* Header styles */
 #header {
-    background-color: #003366; 
-    background: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #051e42; 
     color: white;
     display: flex;
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 7.5vh;
     align-items: center;
     justify-content: space-between;
-    font-family: "Poppins", sans-serif;
+    padding: 0 1rem;
+    font-size: 0.8em;
+    font-family: Arial, sans-serif;
     border-bottom: 5px solid #f15a22; 
-    transition: color 0.3s ease; 
 }
 
-#header-text:hover {
-    color: #f15a22; 
+.logo-container {
+    display: flex; 
+    align-items: flex-end; 
+    text-decoration: none; 
 }
 
-/* Logo styles */
 .logo {
     height: auto;
     width: 80px; 
-    margin-left: 50%;
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-left: 5vh;
+    margin-bottom: 5px;
+}
+
+.logo-text {
+    margin: 0; 
+    color: #FFFFFF; 
 }
 
 /* Navigation styles */
@@ -46,28 +61,19 @@ ul {
 
 .nav-wrapper {
     display: flex;
-    margin-left: -10px; 
+    gap: 10px;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
     padding: 10px;
-    position: relative; 
 }
 
-.nav-item:hover {
-    color: #f15a22;    
-    align-items: center;
-    padding: 10px; 
-    position: relative; 
-}
-
-.nav-link {
+.nav-link, .dropbtn {
     color: white; 
     text-decoration: none;
-    padding: 10px 15px; 
-    display: block;
+    padding: 10px 15px;
     transition: color 0.3s ease; 
 }
 
@@ -110,7 +116,7 @@ ul {
     padding: 8px 15px; 
     text-decoration: none;
     display: block;
-    font-size: 0.9em; 
+    font-size: 0.8em; 
 }
 
 .nav-item.dropdown {
@@ -126,31 +132,25 @@ ul {
     background-color: transparent;
     transition: color 0.3s ease; 
 }
+
+/* Hover styles */
+.nav-item:hover, .dropbtn:hover, .nav-link:hover, .dropdown-content a:hover, .footer-bottom a:hover {
+    color: #f15a22; 
+}
+
+/* Dropdown logic */
 .nav-item.dropdown:hover .dropdown-content {
     display: block;
 }
 
-.nav-link:hover, .nav-item:hover > .dropbtn {
-    color: #f15a22; 
-}
-
-.nav-item:not(.dropdown):hover,
-.nav-item:not(.dropdown) .nav-link:hover {
-    color: #f15a22; 
-    transition: color 0.3s ease; 
-}
-
-
 /* Footer styles */
 #footer-background {
-    background: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png') top no-repeat;
-    color: white;
-    width: 100%;
+    background-color: #051e42;
+    color: #f9f9f9;
     padding: 10px 20px;
     border-top: 5px solid #f15a22;
-    font-family: "Poppins", sans-serif;
+    font-family: Arial, sans-serif;
     letter-spacing: 0.1em;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.192);
     position: relative;
     margin-top: auto;
     flex-shrink: 0;
@@ -163,81 +163,50 @@ ul {
 
 .footer-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
-}
-
-.social-media-links, .footer-contact-info, .footer-report-bug {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-media-links {
-    justify-content: flex-start;
-}
-
-.footer-contact-info {
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    white-space: nowrap; 
-}
-
-.footer-contact-info p {
-    margin: 0 10px; 
-    font-size: 14px; 
-    line-height: 1.6; 
-}
-
-.footer-contact-info p:first-child {
-    margin-right: -1%; 
-}
-
-.footer-report-bug {
-    justify-content: flex-end;
+    font-size: 0.7em;
 }
 
 .footer-bottom {
-    color: #fff;
-    font-size: 0.8rem;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    padding-top: 0px; 
+    margin-top: 0px; 
 }
 
-.footer-bottom a {
-    color: #fff;
+
+.footer-contact-info p:first-child {
+    margin-right: 10px; /* Adjust this value as needed to control the gap */
+}
+
+a {
     text-decoration: none;
-    padding: 0 5px;
-    transition: color 0.3s;
+    color: white;
 }
 
-.footer-bottom a:hover {
-    color: #f15a22;
-    text-decoration: none;
-}
-
+/* Social Media and Report Bug styles */
 .social-media-links {
-    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2px;
 }
 
 .social-link {
     display: inline-block;
-    width: 32.5px;
-    height: 32.5px;
+    width: 20px;
+    height: 20px;
     background-color: transparent;
     border-radius: 50%;
     border: 2px solid #fff;
-    margin: 0 10px;
+    margin: 0 4px;
+    margin-bottom: 2vh;
+    text-align: right;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 55%;
+    background-size: 70%;
     transition: background-image 0.3s, border-color 0.3s;
 }
 
@@ -245,6 +214,29 @@ ul {
     border: 2px solid #f15a22;
     background-color: transparent;
 }
+
+.report-bug {
+    background-image: url('/assets/images/footer logos/bug white.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 15px;
+    color: #fff;
+    border: none;
+    padding: 10px 0px 10px 17.5px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-image 0.3s, color 0.3s;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.report-bug:hover {
+    background-image: url('/assets/images/footer logos/bug orange.svg');
+    color: #f15a22;
+    text-decoration: none;
+}
+
 
 /* Social media styles */
 .social-link.facebook:hover  {
@@ -289,30 +281,6 @@ ul {
     background-size: 60%;
 }
 
-.report-bug {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('/assets/images/footer logos/bug white.svg');
-    background-repeat: no-repeat;
-    background-position: left center;
-    background-size: 20px;
-    color: #fff;
-    border: none;
-    padding: 10px 20px 10px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-image 0.3s, color 0.3s;
-    text-decoration: none;
-}
-
-.report-bug:hover {
-    background-image: url('/assets/images/footer logos/bug orange.svg');
-    color: #f15a22;
-    text-decoration: none;
-}
-
 /* Mobile Formatting */
 @media (max-width: 767px) {
     #header {
@@ -321,65 +289,30 @@ ul {
 
     .logo {
         max-width: 120px;
-        margin-bottom: 10px;
     }
 
-    .nav-wrapper {
-        margin-top: 0;
-    }
-
-    .nav-link {
+    .nav-link, .dropbtn, .footer-bottom a {
         padding: 8px 0;
-    }
-
-    .nav-link .link-text {
-        display: none;
-    }
-
-    .navbar {
-        padding: 0;
-    }
-
-    #footer-background {
-        position: relative;
-        padding: 15px 5px;
-    }
-
-    .footer-container {
-        flex-direction: column;
     }
 
     .footer-top {
         flex-direction: column;
-        align-items: center;
     }
 
-    .footer-bottom a {
-        display: inline-block;
-        margin: 2px;
-    }
-
-    .footer-contact-info {
+    .footer-bottom {
         flex-direction: column;
-        padding-top: 2.5%;
+        align-items: flex-start;
+    }
+
+    .social-media-links {
+        order: -1;
+    }
+
+    .footer-contact-info, .footer-bottom, .social-media-links {
+        justify-content: flex-start;
     }
 
     .footer-contact-info p {
-        margin: 3px 0;
         font-size: 12px;
-        line-height: 1.4;
-        white-space: normal;
-    }
-
-    .social-link {
-        margin: 0 5px;
-    }
-
-    main {
-        padding: 15px;
-    }
-
-    html, body {
-        width: 100%;
     }
 }

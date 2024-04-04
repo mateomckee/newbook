@@ -1,205 +1,96 @@
-/* Rectangles */
-
+/* General styles */
 html, body {
-  min-height: 100vh; 
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
 a {
-  color: #f15a22;
+  color: #fff;
   text-decoration: none;
 }
 
-.bottom-padding {
-  padding-bottom: 20px;
-}
-
+/* Hero section */
 #hero {
-  flex-grow: 1; 
+  background: url('/assets/images/UTSA background.jpg') center fixed no-repeat;
+  flex-grow: 1;
   width: 100%;
   display: flex;
-  flex-direction: column; 
-  margin-top: 7.5vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
   color: #f15a22;
-  padding-bottom: 50px; 
-}
-
-.Title{
-  font-size: 48px;
-  font-weight: 700;
-  color: #f15a22;
-  padding-bottom: 20px;
-  text-decoration: none;
-}
-
-.rectangle.middle {
-  flex-grow: 1;
-  padding: 20px;
-  display: flex; 
-  flex-direction: column; 
-  min-height: 0; 
-}
-
-.rectangle.middle.no-results {
-  min-height: calc(100vh - 150px); 
-}
-.rectangle.bottom {
-  margin-top: auto; 
-  padding-bottom: 20px;
-}
-
-#logo-container {
-  margin-top: -10px;
-  margin-bottom: 10px; 
-}
-
-.container {
-  margin-top: 20px; 
-  margin-bottom: 20px; 
+  height: 80vh;
 }
 
 #hero h1 {
-  margin: 0;
   font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
-  color: var(--main-light-color);
-  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: #f15a22;
+  margin-bottom: 40px;
+  padding: 20px 0; 
+
 }
 
-#hero h2 {
-  color: var(--main-light-color);
-  margin: 10px 0 0 0;
-  font-size: 24px;
+/* About section */
+.about-section {
+  padding: 50px 0;
+  margin: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-  
-  #logo-img {
-    position: relative;
-    height: 100%;
-    min-width: 225px;
-    width: calc(25vw);
-    max-width: 350px;
-    top: -45px;
+
+.container {
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.about-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.about-content h3 {
+  color: #333;
+}
+
+.about-content p,
+.about-content ul li {
+  color: #666;
+  line-height: 1.6;
+}
+
+.about-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-content ul li::before {
+  content: '•';
+  color: #f15a22;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #hero {
+    height: auto;
+    padding: 50px 20px;
   }
 
-  .white-bg {
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
-    padding: 20px;
-    width: 100%;
-    z-index: 1;
-    border-radius: 10px;
+  #hero h1 {
+    font-size: 28px;
   }
 
-  @media (max-width: 768px) {
-    #hero {
-      height: 83vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding-top: 50px; /* Adjust this value to move title */
-    }
-  
-    #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
-      margin-bottom: 80px; 
-    }
-  
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-    }
-  
-    #logo-container {
-      margin-bottom: -30px; 
-    }
-  
-    #logo-img {
-      top: 0;
-      min-width: 260px;
-    }
-  
-    app-search-bar {
-      margin-bottom: 200px; /* Adjust this value to move search bar */
-    }
-  
-    .white-bg {
-      position: static;
-      transform: none;
-      width: 100%;
-      max-width: none;
-      margin-top: -167.5%; /* Adjust this value to move text box */
-    }
-
-    .about .content .learn-more-btn {
-      margin: 0 48px 0 0;
-      padding: 6px 18px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    #hero h1 {
-      margin-top: -22px; /* Adjust this value to move title */
-    }
-  
-    app-search-bar {
-      margin-bottom: 300px; /* Adjust this value to move search bar */
-    }
-
-    .white-bg {
-      margin-top: -55%; /* Adjust this value to move text box */
-    }
-  }
-  
-  /*-------------------------------------------------------------- # About --------------------------------------------------------------*/
-  .about-section {
-    padding: 50px 0;
-    margin: auto;
-    margin-top: -10vh;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-    font-family: 'Poppins', sans-serif;
-  }
-  
   .container {
-    width: 60%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 15px;
-    padding-left: 15px;
+    width: 100%;
   }
-  
-  .about-content {
-    padding: 20px;
-    background-color: #f9f9f9; 
-    border-radius: 8px;
-  }
-  
-  .about-content h3 {
-    color: #333;
-  }
-  
-  .about-content p {
-    color: #666;
-    line-height: 1.6;
-  }
-  
-  .about-content ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .about-content ul li {
-    position: relative;
-    padding-left: 20px;
-  }
-  
-  .about-content ul li::before {
-    color: #f15a22;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+
+}

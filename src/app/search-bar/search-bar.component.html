@@ -1,18 +1,3 @@
-<!-- Advanced Search Options -->
-<div class="advanced-search">
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" id="filterInstructor" [(ngModel)]="filterOptions.instructor">
-    <label class="form-check-label" for="filterInstructor">Instructor</label>
-    <input type="text" *ngIf="filterOptions.instructor" [(ngModel)]="filterValues.instructor" placeholder="Enter instructor name">
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" id="filterCRN" [(ngModel)]="filterOptions.crn">
-    <label class="form-check-label" for="filterCRN">CRN</label>
-    <input type="text" *ngIf="filterOptions.crn" [(ngModel)]="filterValues.crn" placeholder="Enter CRN">
-  </div>
-  <!-- Add more filter options as needed -->
-</div>
-
 <!-- Search Bar Container -->
 <div class="search-container position-relative d-flex justify-content-center">
   <!-- Search Form -->
@@ -50,7 +35,7 @@
   </div>
     <!-- PopUp -->
     <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="infoModalLabel">About This Site</h5>           

@@ -1,3 +1,4 @@
+<div class="background-image">
 <section id="hero">
   <div class="rectangle top bottom-padding">
     <!-- Title -->
@@ -7,6 +8,8 @@
     <!-- Search Bar -->
     <app-search-bar></app-search-bar>
   </div>
+</section>
+</div>
 
   <!-- Loading GIF -->
   <div *ngIf="isLoading" class="loading-container">
@@ -24,7 +27,7 @@
     <div class="course-details">
       <app-course-details *ngIf="selectedCourse" [course]="selectedCourse"></app-course-details>
       <div *ngIf="!selectedCourse" class="no-course-selected">
-        <p>Click on a course to view its details.</p>
+        <p>No Results Found.</p>
       </div>
     </div>
   </div>
@@ -46,5 +49,3 @@
         [class.disabled]="currentPage >= maxPages">&gt;&gt;</a>
     </div>
   </div>
-
-</section>

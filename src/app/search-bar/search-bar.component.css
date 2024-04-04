@@ -5,7 +5,8 @@
 
 body {
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
+    width: 100%;
 }
 
 /* Main search container */
@@ -15,10 +16,9 @@ body {
     align-items: center;
     margin: auto;
     gap: 20px;
-    position: relative;
     padding-left: 15px; 
     padding-right: 15px; 
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
 }
 
 /* Search form and input */
@@ -26,12 +26,14 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    width: 50%;
+    min-width: 300px;
+    width: 80vw;
+    max-width: 600px; /* maximum width */
 }
 
 .search-container input[type="search"] {
     flex-grow: 1; 
-    border-radius: 25px;
+    border-radius: 10px;
     border: 1px solid #ddd;
     padding: 10px 20px;
 }
@@ -40,49 +42,15 @@ body {
     outline: none;
 }
 
-/* Advanced search positioning */
-.advanced-search {
-    position: absolute;
-    color: #000;
-    left: 15px;
-    top: 20%;
-    width: 240px; 
-    padding: 15px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-family: "Poppins", sans-serif;
-    z-index: 2;
-}
-
-.form-check-input:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.advanced-search input[type="text"] {
-    border-radius: 15px;
-    width: 100%;
-    border: 1px solid #ddd; 
-    }
-
-.advanced-search input[type="text"]:focus {
-    outline: none;
-    box-shadow: none; 
-    border: 1px solid #ddd; 
-}
-
 /* Button styles */
 .buttons {
-    position: absolute;
+    position: relative;
     right: 10px;
     top: 50%; 
-    transform: translateY(-50%); 
-    margin-right: 43vh;
 }
 
 .search-button {
-    border-radius: 25px;
+    border-radius: 10px;
     background-color: white;
     border: 1px solid #ddd;
     cursor: pointer;
@@ -116,12 +84,12 @@ body {
 
 /*----------------- Pop Up Styling ---------------------*/
 .modal{
-    margin-top: 4vh;
+    margin: auto;
 }
 
 .modal-header {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
-    color: #f15a22;
+    background-color: #051e42;
+    color: #fff;
     padding: 20px;
     font-weight: bold;
     border-bottom: 5px solid #f15a22;
@@ -136,7 +104,7 @@ body {
     font-weight: bold;
     text-align: center;
     width: 100%;
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
     font-size: 24px; 
     margin: 0;
 }
@@ -146,12 +114,12 @@ body {
     text-align: center; 
     color: #000; 
     font-weight: bold;
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
 }
 
 /* Modal footer styles */
 .modal-footer {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    background-color: #051e42;
     color: white;
     width: 100%;
     border-top: 5px solid #f15a22;
@@ -159,21 +127,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
 }
 
 /* Modal close button */
 .modal-footer .btn-secondary {
     background-color: transparent; 
     border-color: transparent; 
-    color: #f15a22; 
+    color: #fff; 
     border-radius: 25px; 
     font-size: 1rem;
 }
 
 /* Hover */
 .modal-footer .btn-secondary:hover {
-    color: white; 
+    color: #f15a22; 
 }
 
 /*-- Autocomplete suggestions container --*/
@@ -198,7 +166,7 @@ body {
     overflow-x: hidden; 
     scrollbar-width: thin; 
     scrollbar-color: #888 #f0f0f0; 
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
 }
 
   
