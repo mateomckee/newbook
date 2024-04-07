@@ -330,7 +330,7 @@ footer *:last-child {
     background-size: 60%;
   }
   
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     main{
         padding-top: 0vh;
         padding-bottom: 0vh;

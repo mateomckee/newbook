@@ -18,20 +18,12 @@
   }
   
   #hero {
-    flex-grow: 1;
-    width: 100%;
     display: flex;
-    position: relative;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    color: #f15a22;
-    height: 40vh;
-  }
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10vh; 
 
-  .background-image{
-    width: 100%;
-    height: 16vh;
   }
 
   .Title{
@@ -42,26 +34,25 @@
     text-decoration: none;
   }
 
-  app-search-bar {
-    position: absolute;
-    top: 7.5vh;
-    left: 50%;
-    transform: translateX(-50%); 
-    z-index: 12;
+  .search-bar-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  .search-bar {
+    width: calc(100% - 40px); 
+    max-width: 800px; 
   }
 
   .rectangle.middle {
     flex-grow: 1;
-    padding: 20px;
     display: flex; 
     flex-direction: column; 
     min-height: 0; 
   }
 
-  .rectangle.middle.container {
-    padding-bottom: 0;
-    margin-bottom: -2vh; 
-}
 
   .rectangle.middle.no-results {
     min-height: calc(100vh - 150px); 
@@ -80,6 +71,7 @@
   .container {
     margin-top: 20px; 
     margin-bottom: 20px; 
+    max-width: 1200px;
   }
   
   #hero h1 {
@@ -96,70 +88,6 @@
     margin: 10px 0 0 0;
     font-size: 24px;
   }
-  
-  @media (max-width: 768px) {
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 30px; 
-    }
-  
-    .rectangle.top {
-      flex-shrink: 0;
-    }
-  
-    .rectangle.bottom {
-      flex-shrink: 0;
-      margin-top: auto;
-      padding-bottom: 10px; 
-    }
-  
-    #hero h1 {
-      font-size: 24px;
-      line-height: 32px;
-      margin-top: -30px;
-    }
-  
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-    }
-  
-    app-search-bar {
-      position: relative;
-      top: -35px; 
-      margin-bottom: -20px; 
-    }
-  
-    #logo-container {
-      margin-bottom: 8%; 
-    }
-  
-    #logo-img {
-      top: -25px;
-      min-width: 260px;
-    }
-  
-    .container {
-      margin-top: -25px;
-      margin-bottom: 10px; 
-    }
-  
-    .result-card {
-      margin-bottom: 15px; 
-      padding: 15px; 
-    }
-  
-    .pagination {
-      margin-bottom: -1%; 
-    }
-  
-    .pagination a {
-      padding: 6px 12px; 
-    }
-  }
-  
   /* 'Newbook' styles */
   .title {
     color: #f15a22;
@@ -332,3 +260,93 @@
     font-size: 18px;
     color: red;
   }
+
+/* Mobile */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 0vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: 2vh 0;
+    height: auto;
+    margin-top: 6vh; 
+  }
+
+  #hero h1 {
+    font-size: 24px; 
+    line-height: 32px; 
+    margin-top: -30px; 
+    margin-bottom: 1vh;
+    padding-bottom: 0; 
+  }
+
+  .search-bar-wrapper {
+    margin-top: 2vh;
+    margin-bottom: 2vh; 
+  }
+
+  .rectangle.middle.container {
+    padding-top: 2vh; 
+  }
+
+  .result-card {
+    margin-bottom: 2vh; 
+    padding: 15px; 
+  }
+
+  .rectangle.top {
+    flex-shrink: 0;
+  }
+
+  .rectangle.bottom {
+    flex-shrink: 0;
+    margin-top: auto;
+    padding-bottom: 10px;
+  }
+
+  app-search-bar {
+    position: relative;
+    top: -35px; 
+    margin-bottom: -20px; 
+  }
+
+  #logo-container {
+    margin-bottom: 8%; 
+  }
+
+  #logo-img {
+    top: -25px; 
+    min-width: 260px;
+  }
+
+  .container {
+    margin-top: -25px; 
+    margin-bottom: 10px;
+  }
+
+  .pagination {
+    margin-bottom: -1%;
+  }
+
+  .pagination a {
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .results-container {
+    flex-direction: column;
+  }
+
+  .course-list {
+    height: auto;
+    max-height: 100px;
+    transform: none;
+  }
+
+  .course-details {
+    transform: none;
+  }
+}

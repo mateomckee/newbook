@@ -1,11 +1,11 @@
-<div class="background-image">
 <section id="hero">
   <div class="rectangle top bottom-padding">
     <!-- Search Bar -->
-    <app-search-bar></app-search-bar>
+    <div class="search-bar-wrapper">
+      <app-search-bar class="search-bar"></app-search-bar>
+    </div>
   </div>
 </section>
-</div>
 
 <div *ngIf="!errorMessage">
   <!-- Loading GIF -->
