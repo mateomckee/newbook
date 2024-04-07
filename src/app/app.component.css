@@ -134,7 +134,7 @@ footer *:last-child {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    width: 120px;
+    width: 90px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
     top: 100%;
@@ -351,14 +351,18 @@ footer *:last-child {
       max-width: 120px;
       margin: 0;
     }
+
+    .dropdown-content{
+        width: 90px;
+    }
   
     .logo-text {
       text-align: left;
     }
   
     .nav-wrapper {
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row;
+      align-items: row;
     }
   
     .nav-link,
@@ -414,5 +418,23 @@ footer *:last-child {
       }
     .report-bug:hover{
         background-image: none;
+    }
+
+    .logo {
+        margin-top: 2px;
+        margin-right: 1px;
+        margin-left: 2vh;
+        margin-bottom: 2px;
+      }
+    
+      .nav-link,
+      .dropbtn {
+        padding: 0px 5px;
+      }
+  }
+
+  @media (max-width: 350px) {
+    .dropdown-content{
+        width: 75px
     }
   }
