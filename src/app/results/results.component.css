@@ -1,6 +1,6 @@
 /* Rectangles */
   html, body {
-    min-height: 80 vh; 
+    min-height: 80vh; 
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,6 +21,7 @@
     flex-grow: 1;
     width: 100%;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center; 
     align-items: center; 
@@ -29,9 +30,8 @@
   }
 
   .background-image{
-    background: url('/assets/images/UTSA background.jpg') center fixed no-repeat;
     width: 100%;
-    height: 33vh;
+    height: 16vh;
   }
 
   .Title{
@@ -42,6 +42,14 @@
     text-decoration: none;
   }
 
+  app-search-bar {
+    position: absolute;
+    top: 7.5vh;
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 12;
+  }
+
   .rectangle.middle {
     flex-grow: 1;
     padding: 20px;
@@ -49,6 +57,11 @@
     flex-direction: column; 
     min-height: 0; 
   }
+
+  .rectangle.middle.container {
+    padding-bottom: 0;
+    margin-bottom: -2vh; 
+}
 
   .rectangle.middle.no-results {
     min-height: calc(100vh - 150px); 
@@ -223,9 +236,11 @@
     overflow-y: auto; 
     border: 1px solid #ddd;
     border-radius: 8px;
-    height: 500px; 
+    height: 400px; 
     width: 100%;
     background-color: white;
+    z-index: 10;
+    transform: translateY(-6%);
 }
   
   
@@ -237,9 +252,11 @@
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
-    min-height: 500px; 
+    min-height: 350px; 
     overflow-y: auto; 
-    width: 100%
+    width: 100%;
+    transform: translateY(-6%);
+    z-index: 10;
   }
   
   

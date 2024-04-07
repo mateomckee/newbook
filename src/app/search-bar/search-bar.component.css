@@ -26,17 +26,16 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    min-width: 300px;
-    width: 80vw;
-    max-width: 600px; 
+    width: 60vw;
 }
 
 .search-container input[type="search"] {
     flex-grow: 1; 
     border-radius: 10px;
     border: 1px solid #ddd;
-    padding: 10px 20px;
     height: 40px;
+    padding-left: 15px; 
+    padding-right: 15px; 
 }
 
 .search-container input[type="search"]:focus {
@@ -151,7 +150,7 @@ body {
     top: 100%; 
     left: 50%; 
     width: 100%;
-    max-width: 90%; 
+    max-width: 97.5%; 
     transform: translateX(-50%);
     background-color: #fff;
     color: #888;
@@ -162,7 +161,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 25px 25px;
     overflow: hidden; 
-    max-height: 480px; 
+    max-height: 300px; 
     overflow-y: auto; 
     overflow-x: hidden; 
     scrollbar-width: thin; 
@@ -207,29 +206,20 @@ body {
   
 
 /*----------------- Pop Up Styling Mobile ---------------------*/
-@media (max-width: 767px) {
+@media (max-width: 480px) {
     .search-container {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 15px;
+        padding: 0 3vw; 
     }
     
-    .search-form {
-    width: 100%;
-    margin-bottom: 10px;
+    .search-container input[type="search"] {
+        padding: 5px 3vw; 
+        min-width: 50px; 
     }
-    
-    .buttons {
-    position: static;
-    transform: none;
-    margin-right: 0;
-    display: flex;
-    justify-content: center;
+
+    .search-button {
+        padding: 5px; 
+        min-width: 30px; 
+        max-width: 60px; 
     }
-    
-    .advanced-search {
-    position: static;
-    width: 100%;
-    margin-top: 15px;
-    }
-    }
+}
+
