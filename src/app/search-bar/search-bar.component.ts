@@ -22,6 +22,8 @@ interface FilterValues {
 })
 export class SearchBarComponent implements OnInit {
   inputQuery: string = '';
+  placeholder: string = 'Search; e.g. CS 1714 Fall 2023 Samuel Ang';
+
   filteredSubjects: string[] = [];
   isFocused: boolean = false;
 
@@ -69,15 +71,15 @@ export class SearchBarComponent implements OnInit {
         filters[key] = this.filterValues[key];
       }
     });
-  
+
     this.router.navigate(['/results'], {
       queryParams: { q: this.inputQuery.trim(), ...filters }
     });
-  
+
     this.isFocused = false;
     this.filteredSubjects = [];
   }
-  
+
 
   filterSubjects(): void {
     this.isFocused = !!this.inputQuery;

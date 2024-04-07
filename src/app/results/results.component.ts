@@ -56,7 +56,6 @@ export class ResultsComponent implements OnInit {
         this.isLoading = false;
         if (results) {
           this.items = results;
-          console.log('Items after search:', this.items);
           this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
           this.updateDisplayItems();
           if (this.displayItems.length > 0) {

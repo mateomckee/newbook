@@ -5,7 +5,7 @@
     <!-- Search Input -->
     <input type="search" id="search" name="search" (focus)="onInputFocus()" (blur)="onInputBlur()"
        [(ngModel)]="inputQuery" (input)="filterSubjects()" (keyup.enter)="onSearch()"
-       autocomplete="off" placeholder="Search">
+       autocomplete="off" placeholder="{{placeholder}}">
     <!-- Suggestions List (if any) -->
     <ul *ngIf="isFocused && filteredSubjects.length > 0">
       <li *ngFor="let subject of filteredSubjects" (mousedown)="selectSubject(subject)">
