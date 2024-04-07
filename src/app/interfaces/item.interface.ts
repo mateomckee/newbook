@@ -2,9 +2,10 @@ export interface ItemData {
   key: number;
   crn: number;
   semester: string;
+  section: string;
   courselabel: string;
-  instructor: string;
   coursetitle: string;
+  instructor: string;
   inseval: number | null;
   insevalstudentnum: number | null;
   creval: number | null;

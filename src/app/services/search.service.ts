@@ -86,9 +86,10 @@ public async search(searchQuery: string, filters: any): Promise<ItemData[] | nul
       const itemData: ItemData[] = response.data.map((item: any) => ({
         crn: item.crn,
         semester: item.semester,
+        section: item.section,
         courselabel: item.courselabel,
-        instructor: item.instructor,
         coursetitle: item.coursetitle,
+        instructor: item.instructor,
         inseval: item.inseval,
         insevalstudentnum: item.insevalstudentnum,
         creval: item.creval,

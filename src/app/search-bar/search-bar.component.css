@@ -27,6 +27,7 @@ body {
     align-items: center;
     position: relative;
     width: 60vw;
+    max-width: 750px;
 }
 
 .search-container input[type="search"] {

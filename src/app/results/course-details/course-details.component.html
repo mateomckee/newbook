@@ -1,6 +1,6 @@
 <div *ngIf="course" class="course-details-container">
   <h2>{{ course.coursetitle }}</h2>
-  <h3>({{ course.courselabel }}) {{ course.semester }}</h3>
+  <h3>({{ course.courselabel }}.{{course.section}}) {{ course.semester }}</h3>
   <h4>Professor: {{ course.instructor }}</h4>
   <p>{{ course.description }}</p>
   <p>Students Enrolled: {{ course.enrollment }}</p>
