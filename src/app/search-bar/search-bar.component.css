@@ -217,8 +217,9 @@ body {
 
     .search-button {
         padding: 5px; 
-        min-width: 30px; 
+        min-width: 40px; 
         max-width: 60px; 
+        padding-top: 1vh;
     }
 }
 
