@@ -19,11 +19,11 @@
 }
 
 .grid-item:hover {
-  background-color: #ddd;
+  background-color: #e8e9ed;
 }
 
 .grid-item.selected {
-  background-color: #ddd;
+  background-color: #dadbe1;
 }
 
 .info-container {
