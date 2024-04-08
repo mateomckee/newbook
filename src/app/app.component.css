@@ -340,7 +340,6 @@ footer *:last-child {
       padding: 10px 5px;
       align-items: center;
       position: static;
-      height: 20vh;
     }
   
     .logo {
@@ -429,20 +428,28 @@ footer *:last-child {
       }
   }
 
+  @media (max-width: 640px) {
+    .logo-text {
+      display: none;
+    }
+  }
+
   @media (max-width: 450px) {
     #header {
       padding: 10px 5px;
       flex-direction: column;
       align-items: center;
       position: static;
-      height: 20vh;
     }
 
     .logo-container {
       flex-direction: column;
       align-items: center;
-      
+      margin: 0;
+      padding: 0;
     }
+
+    
   }
 
   @media (max-width: 350px) {
