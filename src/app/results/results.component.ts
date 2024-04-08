@@ -40,18 +40,10 @@ export class ResultsComponent implements OnInit {
 
   private performSearch(): void {
     const searchQuery = this.activatedRoute.snapshot.queryParams['q'] || '';
-    const filters: { [key: string]: string } = {};
-    Object.keys(this.activatedRoute.snapshot.queryParams).forEach(key => {
-      if (key !== 'q') {
-        filters[key] = this.activatedRoute.snapshot.queryParams[key];
-      }
-    });
-  
     this.isLoading = true;
     this.errorMessage = '';
     this.selectedCourse = null;
-  
-    this.searchService.search(searchQuery, filters)
+    this.searchService.search(searchQuery)
       .then(results => {
         this.isLoading = false;
         if (results) {
@@ -59,7 +51,7 @@ export class ResultsComponent implements OnInit {
           this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
           this.updateDisplayItems();
           if (this.displayItems.length > 0) {
-            this.selectedCourse = this.displayItems[0];
+            this.selectedCourse = this.displayItems[1-1];
           }
         } else {
           this.items = [];
@@ -84,6 +76,10 @@ export class ResultsComponent implements OnInit {
     const endIndex = startIndex + this.itemsPerPage;
     this.displayItems = this.items.slice(startIndex, endIndex);
     console.log('Display items:', this.displayItems);
+  
+    if (this.displayItems.length > 0) {
+      this.selectCourse(this.displayItems[0]);
+    }
   }
   
 

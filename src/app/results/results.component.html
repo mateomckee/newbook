@@ -17,7 +17,7 @@
   <div *ngIf="!isLoading" class="rectangle middle container" [class.no-results]="displayItems.length === 0">
     <div class="results-container">
       <div class="course-list">
-        <div *ngFor="let item of displayItems" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
+        <div *ngFor="let item of displayItems; let i = index" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
           <app-item [data]="item" [isSelected]="item === selectedCourse"></app-item>
         </div>
       </div>
