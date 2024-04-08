@@ -5,7 +5,7 @@
   transition: background-color 0.3s ease;
   color: black;
   padding: 15px; 
-  min-height: 80px; 
+  min-height: 40px; 
   overflow: hidden;
 }
 
@@ -36,19 +36,32 @@
 }
 
 @media (max-width: 450px) {
-  .grid-item{
+  .grid-item {
     min-height: 0;
-    padding: 10px; 
-    height: 40px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px;
+    border-bottom: 1px solid #ddd; 
+    height: 60px;
+  }
+
+  .title, .instructor {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    font-size: 12px; 
+    margin: 0; 
+    padding: 0; 
   }
 
   .title {
-    font-size: 10px; 
+    flex: 1;
+    text-align: left; 
   }
-  
+
   .instructor {
-    font-size: 8px; 
-    color: #666; 
-    text-align: right;
+    text-align: left; 
+    flex-shrink: 0; 
   }
 }

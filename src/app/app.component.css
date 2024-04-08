@@ -335,16 +335,12 @@ footer *:last-child {
         padding-top: 0vh;
         padding-bottom: 0vh;
     }
+
     #header {
       padding: 10px 5px;
-      flex-direction: column;
       align-items: center;
       position: static;
-    }
-  
-    .logo-container {
-      flex-direction: column;
-      align-items: center;
+      height: 20vh;
     }
   
     .logo {
@@ -431,6 +427,22 @@ footer *:last-child {
       .dropbtn {
         padding: 0px 5px;
       }
+  }
+
+  @media (max-width: 450px) {
+    #header {
+      padding: 10px 5px;
+      flex-direction: column;
+      align-items: center;
+      position: static;
+      height: 20vh;
+    }
+
+    .logo-container {
+      flex-direction: column;
+      align-items: center;
+      
+    }
   }
 
   @media (max-width: 350px) {

@@ -20,10 +20,10 @@
   #hero {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    margin-top: 10vh; 
-
+    justify-content: center; 
+    text-align: center; 
+    padding-top: 6vh;
   }
 
   .Title{
@@ -36,14 +36,12 @@
 
   .search-bar-wrapper {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    z-index: 1;
+    max-width: 800px; 
   }
   
   .search-bar {
-    width: calc(100% - 40px); 
     max-width: 800px; 
+    z-index: 12;
   }
 
   .rectangle.middle {
@@ -53,6 +51,11 @@
     min-height: 0; 
   }
 
+  .rectangle.middle.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   .rectangle.middle.no-results {
     min-height: calc(100vh - 150px); 
@@ -187,7 +190,6 @@
     z-index: 10;
   }
   
-  
   .no-course-selected {
     display: flex;
     justify-content: center;
@@ -262,33 +264,26 @@
   }
 
 /* Mobile */
+@media (min-width: 768){
+  .search-bar-wrapper {
+    margin-top: 2vh;
+  }
+
+  .rectangle.middle.container {
+    margin-top: 5vh; 
+  }
+}
+
 @media (max-width: 768px) {
   #hero {
     min-height: 0vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: flex-start; 
     padding: 2vh 0;
-    height: auto;
-    margin-top: 6vh; 
   }
 
   #hero h1 {
     font-size: 24px; 
     line-height: 32px; 
-    margin-top: -30px; 
-    margin-bottom: 1vh;
     padding-bottom: 0; 
-  }
-
-  .search-bar-wrapper {
-    margin-top: 2vh;
-    margin-bottom: 2vh; 
-  }
-
-  .rectangle.middle.container {
-    padding-top: 2vh; 
   }
 
   .result-card {
@@ -298,18 +293,20 @@
 
   .rectangle.top {
     flex-shrink: 0;
+  } 
+
+  .search-bar-wrapper {
+    margin-top: 1vh;
+  }
+
+  .rectangle.middle.container {
+    margin-top: 5vh; 
   }
 
   .rectangle.bottom {
     flex-shrink: 0;
     margin-top: auto;
     padding-bottom: 10px;
-  }
-
-  app-search-bar {
-    position: relative;
-    top: -35px; 
-    margin-bottom: -20px; 
   }
 
   #logo-container {
@@ -327,7 +324,7 @@
   }
 
   .pagination {
-    margin-bottom: -1%;
+    transform: translateY(-60%);
   }
 
   .pagination a {
@@ -341,12 +338,37 @@
   }
 
   .course-list {
-    height: auto;
     max-height: 100px;
-    transform: none;
   }
 
-  .course-details {
-    transform: none;
+  .search-bar-wrapper {
+    margin-top: 4vh;
+  }
+
+  .rectangle.middle.container {
+    margin-top: -5vh; 
+  }
+
+  .results-container {
+    gap: 40px; 
+  }
+}
+
+
+@media (max-width: 376px) {
+  .results-container {
+    flex-direction: column;
+  }
+
+  .course-list {
+    max-height: 100px;
+  }
+
+  .search-bar-wrapper {
+    margin-top: 7vh;
+  }
+
+  .rectangle.middle.container {
+    margin-top: -5vh; 
   }
 }
