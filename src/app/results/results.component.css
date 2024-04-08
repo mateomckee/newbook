@@ -24,6 +24,7 @@
     justify-content: center; 
     text-align: center; 
     padding-top: 6vh;
+    padding-bottom: 1vh;
   }
 
   .Title{
@@ -37,6 +38,8 @@
   .search-bar-wrapper {
     width: 100%;
     max-width: 800px; 
+    margin-top: 2vh;
+    z-index: 12;
   }
   
   .search-bar {
@@ -167,7 +170,7 @@
     overflow-y: auto; 
     border: 1px solid #ddd;
     border-radius: 8px;
-    height: 600px; 
+    height: 500px; 
     width: 100%;
     background-color: white;
     z-index: 10;
@@ -185,6 +188,7 @@
     flex-direction: column;
     min-height: 350px; 
     overflow-y: auto; 
+    height: 500px;
     width: 100%;
     transform: translateY(-6%);
     z-index: 10;
@@ -214,6 +218,7 @@
   .pagination {
     display: flex;
     justify-content: center;
+    transform: translateY(-40%);
   }
   
   .pagination a {
@@ -264,26 +269,21 @@
   }
 
 /* Mobile */
-@media (min-width: 768){
-  .search-bar-wrapper {
-    margin-top: 2vh;
-  }
-
-  .rectangle.middle.container {
-    margin-top: 5vh; 
-  }
-}
-
 @media (max-width: 768px) {
   #hero {
     min-height: 0vh;
-    padding: 2vh 0;
+    padding-top: 2vh;
+    margin-bottom: 1vh;
   }
 
   #hero h1 {
     font-size: 24px; 
     line-height: 32px; 
-    padding-bottom: 0; 
+  }
+
+  .search-bar-wrapper{
+    margin-top: 0vh;
+    margin-bottom: 8vh;
   }
 
   .result-card {
@@ -294,14 +294,6 @@
   .rectangle.top {
     flex-shrink: 0;
   } 
-
-  .search-bar-wrapper {
-    margin-top: 1vh;
-  }
-
-  .rectangle.middle.container {
-    margin-top: 5vh; 
-  }
 
   .rectangle.bottom {
     flex-shrink: 0;
@@ -338,37 +330,14 @@
   }
 
   .course-list {
-    max-height: 100px;
-  }
-
-  .search-bar-wrapper {
-    margin-top: 4vh;
+    max-height: 200px;
   }
 
   .rectangle.middle.container {
-    margin-top: -5vh; 
+    margin-top: -9vh; 
   }
 
   .results-container {
     gap: 40px; 
-  }
-}
-
-
-@media (max-width: 376px) {
-  .results-container {
-    flex-direction: column;
-  }
-
-  .course-list {
-    max-height: 100px;
-  }
-
-  .search-bar-wrapper {
-    margin-top: 7vh;
-  }
-
-  .rectangle.middle.container {
-    margin-top: -5vh; 
   }
 }
