@@ -448,12 +448,22 @@ footer *:last-child {
       margin: 0;
       padding: 0;
     }
-
-    
   }
 
   @media (max-width: 350px) {
     .dropdown-content{
         width: 75px
+    }
+  }
+
+  @media (min-height: 1000px) {
+    main {
+      padding-top: 0vh;
+    }
+  }
+  
+  @media (min-width: 1300px) {
+    main {
+      padding-top: 0vh;
     }
   }

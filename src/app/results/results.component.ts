@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemData } from '../interfaces/item.interface';
 import { SearchService } from '../services/search.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-results',
@@ -24,46 +25,64 @@ export class ResultsComponent implements OnInit {
   constructor(
     private router: Router,
     private searchService: SearchService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.performSearch();
-    });
-  
-    this.searchService.onChangeSearchResult.subscribe((newSearchResult: ItemData[]) => {
-      this.items = newSearchResult;
-      this.updateDisplayItems();
-    });
+    this.activatedRoute.queryParams.pipe(
+      switchMap(params => {
+        const searchQuery = params['q'] || '';
+        this.isLoading = true;
+        this.errorMessage = '';
+        this.selectedCourse = null;
+        return this.searchService.search(searchQuery);
+      })
+    ).subscribe(
+      results => {
+        this.isLoading = false;
+        this.items = results || [];
+        this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
+        this.updateDisplayItems();
+        if (this.displayItems.length > 0) {
+          this.selectedCourse = this.displayItems[0];
+        }
+        this.changeDetectorRef.detectChanges();
+      },
+      error => {
+        this.isLoading = false;
+        this.errorMessage = 'An error occurred. Please refresh the page and try again.';
+        console.error('Search error:', error);
+      }
+    );
   }
-
+  
   private performSearch(): void {
     const searchQuery = this.activatedRoute.snapshot.queryParams['q'] || '';
     this.isLoading = true;
     this.errorMessage = '';
     this.selectedCourse = null;
-    this.searchService.search(searchQuery)
-      .then(results => {
+    this.searchService.search(searchQuery).subscribe(
+      results => {
         this.isLoading = false;
-        if (results) {
-          this.items = results;
-          this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
-          this.updateDisplayItems();
-          if (this.displayItems.length > 0) {
-            this.selectedCourse = this.displayItems[1-1];
-          }
-        } else {
-          this.items = [];
-          console.log('No items found');
+        this.items = results || [];
+        this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
+        this.updateDisplayItems();
+        if (this.displayItems.length > 0) {
+          this.selectedCourse = this.displayItems[0];
         }
-      })
-      .catch(error => {
+        this.changeDetectorRef.detectChanges();
+      },
+      error => {
         this.isLoading = false;
-        this.errorMessage = 'An error occurred. Please refresh page and try again.';
+        this.errorMessage = 'An error occurred. Please refresh the page and try again.';
         console.error('Search error:', error);
-      });
+        this.changeDetectorRef.detectChanges();
+      }
+    );
   }
+
 
   private updateDisplayItems(): void {
     if (!this.items || this.items.length === 0) {
@@ -91,6 +110,7 @@ export class ResultsComponent implements OnInit {
     for (let i = paginationStart; i <= paginationEnd; i++) {
       paginationArray.push(i);
     }
+    console.log('Pagination array:', paginationArray); // Add this line
     return paginationArray;
   }
 

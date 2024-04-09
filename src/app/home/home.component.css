@@ -29,9 +29,7 @@ a {
   font-size: 48px;
   font-weight: 400;
   color: #f15a22;
-  margin-bottom: 40px;
-  padding: 20px 0; 
-
+  margin-bottom: 20px;
 }
 
 /* About section */
@@ -78,42 +76,36 @@ a {
 }
 
 /* Mobile */
-@media (max-width: 765px) {
-  #hero,
-  .about-section,
-  .container,
-  .about-content,
-  footer,
-  body,
-  html {
+@media (max-width: 768px) {
+  #hero, .about-section, .container, .about-content, footer, body, html {
     margin: 0;
     padding: 0;
   }
-
+  
   html, body {
-    min-height: auto; 
+    min-height: auto;
   }
 
   #hero {
-    padding: 20px;
-    flex-grow: 0;
-    max-height: 30vh;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-size: cover;
+    padding: 10vh 0; 
+    margin-bottom: 5vh; 
+
   }
 
   #hero h1 {
-    font-size: 24px; 
-    margin: 0; 
-    padding: 0;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 7vw; 
+    line-height: 1.2;
+    margin-bottom: 3vh;
+  }
+
+  .search-bar-wrapper {
+    width: 90%;
+    max-width: 800px; 
+    margin-top: 2vh; 
   }
 
   .search-bar {
-    margin-top: 20px;
+    max-width: 800px;
   }
 
   .container {
@@ -123,30 +115,48 @@ a {
 
   .about-content {
     padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 5vh; 
   }
 
   .about-content h3 {
-    font-size: 20px; 
+    font-size: 5vw; 
   }
 
-  .about-content p,
-  .about-content ul li {
-    font-size: 14px; 
+  .about-content p, .about-content ul li {
+    font-size: 3.5vw; 
   }
 
   .search-bar {
-    margin-top: -20px; 
+    margin-top: 0;
   }
 
   .about-content ul li::before {
     position: static;
     display: inline-block;
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 4vw; 
     vertical-align: middle;
   }
-  .search-bar-wrapper {
-    margin-top: -4vh; 
+}
+
+@media (max-width: 450px) {
+  #hero{
+    height: 20vh;
+  }
+  
+  .search-bar-wrapper{
+    transform: translateY(-65%);
+  }
+}
+
+@media (min-height: 1000px) {
+  #hero {
+    background-size: 100% 100%;
+  }
+}
+
+@media (min-width: 1300px) {
+  #hero {
+    background-size: 100% 100%; 
   }
 }

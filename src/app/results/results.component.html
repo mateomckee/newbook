@@ -14,7 +14,7 @@
   </div>
 
   <!-- Results Boxes -->
-  <div *ngIf="!isLoading" class="rectangle middle container" [class.no-results]="displayItems.length === 0">
+  <div *ngIf="!isLoading && displayItems && displayItems.length > 0" class="rectangle middle container">
     <div class="results-container">
       <div class="course-list">
         <div *ngFor="let item of displayItems; let i = index" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
@@ -22,17 +22,20 @@
         </div>
       </div>
       <div class="course-details">
-        <app-course-details *ngIf="selectedCourse && displayItems.length > 0" [course]="selectedCourse"></app-course-details>
-        <div *ngIf="displayItems.length === 0" class="no-course-selected">
-          <p>No Results Found.</p>
-        </div>
+        <app-course-details *ngIf="selectedCourse" [course]="selectedCourse"></app-course-details>
       </div>
     </div>
   </div>
 
+  <!-- No Results Found -->
+  <div *ngIf="!isLoading && (!displayItems || displayItems.length === 0)" class="error-container">
+    <img src="/assets/images/No Results.png" alt="Error Image" class="error-image">
+    <p class="no-results-message">No results found.</p>
+  </div>
+
   <div class="rectangle bottom">
     <!-- Pagination -->
-    <div *ngIf="items.length > 0" class="pagination bold-text">
+    <div *ngIf="items && items.length > 0" class="pagination bold-text">
       <a href="#" (click)="navigateToFirstPage(); $event.preventDefault()"
         [class.disabled]="currentPage === 1">&lt;&lt;</a>
       <a href="#" (click)="navigateToPreviousPage(); $event.preventDefault()"
@@ -48,8 +51,8 @@
   </div>
 </div>
 
-  <!-- Error Message -->
-  <div *ngIf="errorMessage" class="error-container">
-    <img src="/assets/images/error.png" alt="Error Image" class="error-image">
-    <p class="error-message">{{ errorMessage }}</p>
-  </div>
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="error-container">
+  <img src="/assets/images/error.png" alt="Error Image" class="error-image">
+  <p class="error-message">{{ errorMessage }}</p>
+</div>

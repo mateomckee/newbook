@@ -21,8 +21,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
-    text-align: center; 
     padding-top: 6vh;
     padding-bottom: 1vh;
   }
@@ -173,7 +171,6 @@
     height: 500px; 
     width: 100%;
     background-color: white;
-    z-index: 10;
     transform: translateY(-6%);
 }
   
@@ -191,7 +188,6 @@
     height: 500px;
     width: 100%;
     transform: translateY(-6%);
-    z-index: 10;
   }
   
   .no-course-selected {
@@ -268,6 +264,10 @@
     color: red;
   }
 
+  .no-results-message{
+    color: #000;
+  }
+
 /* Mobile */
 @media (max-width: 768px) {
   #hero {
@@ -282,6 +282,7 @@
   }
 
   .search-bar-wrapper{
+    width: 90%;
     margin-top: 0vh;
     margin-bottom: 8vh;
   }
@@ -322,6 +323,10 @@
   .pagination a {
     padding: 6px 12px;
   }
+
+  .error-image {
+    transform: translateY(-20%)
+  }
 }
 
 @media (max-width: 450px) {
@@ -339,5 +344,9 @@
 
   .results-container {
     gap: 40px; 
+  }
+
+  .error-image {
+    transform: translateY(-25%)
   }
 }
