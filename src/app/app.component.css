@@ -272,7 +272,7 @@ footer *:last-child {
     background-size: 15px;
     color: #fff;
     border: none;
-    padding: 0px 0px 10px 20px; /* Adjust the left padding to create space for the SVG */
+    padding: 0px 0px 10px 20px; 
     cursor: pointer;
     font-size: 1rem;
     border-radius: 5px;

@@ -15,6 +15,7 @@ a {
 /* Hero section */
 #hero {
   background: url('/assets/images/UTSA background.jpg') center fixed no-repeat;
+  background-position: top;
   flex-grow: 1;
   width: 100%;
   display: flex;
@@ -23,6 +24,7 @@ a {
   align-items: center; 
   color: #f15a22;
   height: 80vh;
+  max-height: 900px;
 }
 
 #hero h1 {
@@ -89,7 +91,7 @@ a {
   #hero {
     padding: 10vh 0; 
     margin-bottom: 5vh; 
-
+    height: 40vh;
   }
 
   #hero h1 {
@@ -141,22 +143,11 @@ a {
 
 @media (max-width: 450px) {
   #hero{
-    height: 20vh;
+    height: 40vh;
   }
   
   .search-bar-wrapper{
     transform: translateY(-65%);
   }
 }
-
-@media (min-height: 1000px) {
-  #hero {
-    background-size: 100% 100%;
-  }
-}
-
-@media (min-width: 1300px) {
-  #hero {
-    background-size: 100% 100%; 
-  }
-}
+ 

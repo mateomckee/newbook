@@ -15,9 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: auto;
-    gap: 20px;
-    padding-left: 15px; 
-    padding-right: 15px; 
+    gap: 10px;
     font-family:  Arial, Helvetica, sans-serif;
 }
 
@@ -36,7 +34,6 @@ body {
     border: 1px solid #ddd;
     height: 40px;
     padding-left: 15px; 
-    padding-right: 15px; 
 }
 
 .search-container input[type="search"]:focus {
@@ -46,7 +43,6 @@ body {
 /* Button styles */
 .buttons {
     position: relative;
-    right: 10px;
     top: 50%; 
 }
 
@@ -223,3 +219,8 @@ body {
     }
 }
 
+@media (min-height: 700px) {
+    .search-button svg{
+        margin-top: .5vh;
+    }
+}
