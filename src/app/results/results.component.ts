@@ -110,7 +110,6 @@ export class ResultsComponent implements OnInit {
     for (let i = paginationStart; i <= paginationEnd; i++) {
       paginationArray.push(i);
     }
-    console.log('Pagination array:', paginationArray); // Add this line
     return paginationArray;
   }
 

@@ -1,9 +1,9 @@
-<div *ngIf="course" class="course-details-container">
-  <h2 class="course-title">{{ course.coursetitle }}</h2>
-  <h3 class="course-label">({{ course.courselabel }}) {{ course.semester }}</h3>
-  <h4 class="course-instructor">Professor: {{ course.instructor }}</h4>
-  <p class="course-description">{{ course.description }}</p>
-  <p class="course-enrollment">Students Enrolled: {{ course.enrollment }}</p>
+<div *ngIf="data" class="data-details-container">
+  <h2 class="data-title">{{ data.coursetitle }}</h2>
+  <h3 class="data-label">({{ data.courselabel }}.{{data.section}}) {{ data.semester }}</h3>
+  <h4 class="data-instructor">Professor: {{ data.instructor }}</h4>
+  <p class="data-description">{{ data.description }}</p>
+  <p class="data-enrollment">Students Enrolled: {{ data.enrollment }}</p>
   <div class="evaluation-container">
     <div class="evaluation">
     <p class="evaluation-label">Instructor Evaluation: </p>      
@@ -18,13 +18,13 @@
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
         fill="none" stroke="navy" stroke-width="3.8"
-        [attr.stroke-dasharray]="getStrokeDashArray(course.inseval)"
-        [attr.stroke-dashoffset]="getStrokeDashOffset(course.inseval)"></path>
+        [attr.stroke-dasharray]="getStrokeDashArray(data.inseval)"
+        [attr.stroke-dashoffset]="getStrokeDashOffset(data.inseval)"></path>
         <text x="37" y="37" class="evaluation-score" text-anchor="middle" dominant-baseline="middle" fill="navy">
-          {{ getEvaluationScore(course.inseval) }}
+          {{ getEvaluationScore(data.inseval) }}
       </text>
     </svg>
-    <p>Reviews: {{ course.insevalstudentnum || 'N/A' }}</p>
+    <p>Reviews: {{ data.insevalstudentnum || 'N/A' }}</p>
   </div>
   <div class="evaluation">
     <p class="evaluation-label">Course Evaluation:</p>
@@ -39,17 +39,17 @@
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
         fill="none" stroke="navy" stroke-width="3.8"
-        [attr.stroke-dasharray]="getStrokeDashArray(course.creval)"
-        [attr.stroke-dashoffset]="getStrokeDashOffset(course.creval)"></path>
+        [attr.stroke-dasharray]="getStrokeDashArray(data.creval)"
+        [attr.stroke-dashoffset]="getStrokeDashOffset(data.creval)"></path>
         <text x="37" y="37" class="evaluation-score" text-anchor="middle" dominant-baseline="middle" fill="navy">
-          {{ getEvaluationScore(course.creval) }}
+          {{ getEvaluationScore(data.creval) }}
       </text>
     </svg>
-    <p>Reviews: {{ course.crevalstudentnum || 'N/A' }}</p>
+    <p>Reviews: {{ data.crevalstudentnum || 'N/A' }}</p>
     </div>
   </div>
-  <p class="course-timestamp">Timestamp: {{ course.timestamp | date:'MMMM d, y, h:mm a' }}</p>
+  <p class="data-timestamp">Timestamp: {{ data.timestamp | date:'MMMM d, y, h:mm a' }}</p>
   <div class="syllabus-button-container">
-    <button class="syllabus-button" (click)="openSyllabus(course.syllabusUrl)">Open Syllabus</button>
+    <button class="syllabus-button" (click)="tryGetSyllabus()">Download Syllabus</button>
   </div>
 </div>
