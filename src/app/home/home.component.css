@@ -1,157 +1,173 @@
+/* General styles */
+html, body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #F5F6FA;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Hero section */
 #hero {
-    width: 100%;
-    height: calc(80vh);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #f15a22;
-    padding-top: -15%;
+  background: url('/assets/images/UTSA background.jpg') center bottom no-repeat;
+  background-size: cover;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #f15a22;
+  min-height: 80vh;
+  padding-bottom: 20px;
+}
+
+#hero h1 {
+  font-size: 48px;
+  font-weight: 400;
+  color: #f15a22;
+  margin-bottom: 20px;
+}
+
+/* About section */
+.about-section {
+  margin: auto;
+}
+
+.container {
+  width: 60%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.about-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.about-content h3 {
+  color: #333;
+}
+
+.about-content p,
+.about-content ul li {
+  color: #666;
+  line-height: 1.6;
+}
+
+.about-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-content ul li::before {
+  content: '•';
+  color: #f15a22;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Rectangle styles */
+.rectangle {
+  width: 100%;
+}
+
+.rectangle.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.rectangle.middle {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Search bar styles */
+.search-bar-wrapper {
+  width: 90%;
+  max-width: 800px;
+}
+
+.search-bar {
+  max-width: 800px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #hero {
+    padding: 10vh 0;
+    min-height: 60vh;
   }
-  
-  #hero .container {
-    padding-top: 72px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
+
   #hero h1 {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    color: var(--main-light-color);
-    font-family: "Poppins", sans-serif;
-  }
-  
-  #hero h2 {
-    color: var(--main-light-color);
-    margin: 10px 0 0 0;
-    font-size: 24px;
-  }
-  
-  #logo-img {
-    position: relative;
-    height: 100%;
-    min-width: 225px;
-    width: calc(25vw);
-    max-width: 350px;
-    top: -45px;
+    font-size: 7vw;
+    line-height: 1.2;
+    margin-bottom: 3vh;
   }
 
-  .white-bg {
-    background-color: white;
-    font-family: 'Poppins', sans-serif;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 600px;
-    z-index: 1;
-    margin: -27.5% auto 20px; 
-    position: relative;
-    transform: translateX(-50%); 
-    left: 90%; 
-  }
-
-  @media (max-width: 768px) {
-    #hero {
-      height: 83vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding-top: 50px; /* Adjust this value to move title */
-    }
-  
-    #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
-      margin-bottom: 80px; 
-    }
-  
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-    }
-  
-    #logo-container {
-      margin-bottom: -30px; 
-    }
-  
-    #logo-img {
-      top: 0;
-      min-width: 260px;
-    }
-  
-    app-search-bar {
-      margin-bottom: 200px; /* Adjust this value to move search bar */
-    }
-  
-    .white-bg {
-      position: static;
-      transform: none;
-      width: 100%;
-      max-width: none;
-      margin-top: -167.5%; /* Adjust this value to move text box */
-    }
-
-    .about .content .learn-more-btn {
-      margin: 0 48px 0 0;
-      padding: 6px 18px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    #hero h1 {
-      margin-top: -22px; /* Adjust this value to move title */
-    }
-  
-    app-search-bar {
-      margin-bottom: 300px; /* Adjust this value to move search bar */
-    }
-
-    .white-bg {
-      margin-top: -55%; /* Adjust this value to move text box */
-    }
-  }
-  
-  /*-------------------------------------------------------------- # About --------------------------------------------------------------*/
-  .about .content h3 {
-    font-weight: 600;
-    font-size: 26px;
-  }
-  
-  .about .content ul {
-    list-style: none;
+  .rectangle.middle {
     padding: 0;
   }
-  
-  .about .content ul li {
-    padding-bottom: 10px;
+
+  .container {
+    width: 100%;
+    padding: 15px;
   }
-  
-  /* Check mark */
-  .about .content ul i {
-    font-size: 20px;
-    padding-right: 4px;
-    color: green;
+
+  .about-content {
+    padding: 15px;
   }
-  
-  .about .content .learn-more-btn {
-    background: var(--accent-default-color);
-    color: var(--main-light-color);
-    border-radius: 50px;
-    padding: 8px 25px 9px 25px;
-    white-space: nowrap;
-    transition: 0.3s;
-    font-size: 14px;
+
+  .about-content h3 {
+    font-size: 5vw;
+  }
+
+  .about-content p,
+  .about-content ul li {
+    font-size: 3.5vw;
+  }
+
+  .about-content ul li::before {
+    position: static;
     display: inline-block;
+    margin-right: 10px;
+    font-size: 4vw;
+    vertical-align: middle;
   }
-  
-  .about .content .learn-more-btn:hover {
-    background: var(--accent-default-color);
-    color: var(--main-light-color);
+}
+
+@media (max-width: 450px) {
+  #hero {
+    min-height: 40vh;
   }
+
+  .search-bar-wrapper {
+    transform: translateX(-6%);
+  }
+}
+
+@media (min-width: 1900px) {
+  #hero {
+    background-size: 100% 100%;
+  }
+}
+
+@media (min-height: 1100px) {
+  #hero {
+    background-size: 100% 100%;
+  }
+}

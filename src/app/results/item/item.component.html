@@ -1,19 +1,25 @@
-<div class="grid-item">
-    <div class="info-container">
-      <div class="title">
-        <p><strong>{{ data.coursetitle }} ({{ data.courselabel }}) -- {{ data.instructor }}</strong></p>
-      </div>
-      <div class="small-information">
-        <div class="content-information">
-          <p>{{ data.description }}</p>
-          <p>Semester: {{ data.semester }}</p>
-          <p>Instructor Evaluation: {{ data.inseval || 'N/A' }}</p>
-          <p>Instructor Evaluation Student Number: {{ data.insevalstudentnum || 'N/A' }}</p>
-          <p>Course Evaluation: {{ data.creval || 'N/A' }}</p>
-          <p>Course Evaluation Student Number: {{ data.crevalstudentnum || 'N/A' }}</p>
-          <p>Enrollment: {{ data.enrollment }}</p>
-          <p>Timestamp: {{ data.timestamp }}</p>
+<div class="grid-item" [class.selected]="isSelected">
+  <div class="info-container">
+    <div class="title-instructor-container">
+      <p class="title">
+        <strong>
+          {{ data.index }}. {{ data.coursetitle }} ({{ data.courselabel }}.{{ data.section }})
+          <span *ngIf="showInstructor" class="instructor-name">— {{ data.instructor }}</span>
+        </strong>
+      </p>
+      <div class="instructor-evaluation-container">
+        <p class="instructor">{{ data.semester }}</p>
+        <div class="evaluation-icon" *ngIf="data.inseval || data.creval">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+            <circle cx="12" cy="12" r="8" />
+          </svg>
+        </div>
+        <div class="no-evaluation-icon" *ngIf="!data.inseval && !data.creval">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="transparent" width="18" height="18">
+            <circle cx="12" cy="12" r="8" />
+          </svg>
         </div>
       </div>
     </div>
   </div>
+</div>

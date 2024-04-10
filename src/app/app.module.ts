@@ -12,6 +12,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchService } from './services/search.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './results/item/item.component';
+import { CourseDetailsComponent } from './results/course-details/course-details.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ItemComponent } from './results/item/item.component';
     SearchBarComponent,
     ItemComponent,
     AboutUsComponent,
+    CourseDetailsComponent,
   ],
 
   imports: [

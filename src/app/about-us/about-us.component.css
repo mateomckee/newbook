@@ -1,8 +1,20 @@
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
+  flex-direction: column;
+}
+.small-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
 }
 
 h1 {
@@ -40,34 +52,46 @@ h1 {
   font-weight: bold; 
   font-size: 24px;
   margin-top: 0;
-  margin-bottom: -2%;
 }
 
 .section-title{
-  text-align: center;
   color: #f15a22; 
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .team-section {
+  justify-content: flex-start;
+  min-width: 450px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap;
   justify-content: center;
+  overflow-x: auto; 
+  margin-bottom: 100px;
+}
+
+.small-team-section {
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  overflow-x: auto; 
   margin-bottom: 30px;
 }
 
+.smaller {
+  width: 40%;
+}
+
 .team-member {
+  align-self: flex-start;
+  margin: auto 20px; /* Auto margin for top and bottom */
   width: 200px;
-  margin: 20px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.team-member:hover {
-  transform: translateY(-5px);
 }
 
 .profile-image {
@@ -79,7 +103,7 @@ h1 {
 }
 
 .team-member h3, .team-member p {
-  color: #333; 
+  color: #333;
 }
 
 .team-member p {
@@ -100,6 +124,26 @@ h1 {
 .profile-details a:hover {
   text-decoration: underline;
 }
+
+
+.social-link.linkedin {
+  background-image: url('/assets/images/footer logos/blue linkedin.svg');
+}
+
+.social-link {
+  display: inline-block;
+  width: 32.5px;
+  height: 32.5px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid #007bff ;
+  margin: 0 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 55%;
+  transition: background-image 0.3s, border-color 0.3s;
+}
+
 
 @media (max-width: 768px) { 
   .our-team-box {

@@ -1,34 +1,32 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable, throwError, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { ItemData } from '../interfaces/item.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-
-  //API info
   private searchAPI_URL = 'https://newbook-functions.vercel.app/api/search';
-
-  //input info
+  
   inputQuery = '';
 
-  //result info
-  private searchResult: any;
   public onChangeSearchResult: EventEmitter<any> = new EventEmitter<any>();
 
-  //control info
   public isLoading: boolean = false;
+
   private isSearchOnCooldown = false;
-  private cooldownTimeMS = 5000;
+  private cooldownTimeMS = 2000;
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  public onSearch(): void {
-    if (this.inputQuery == '') return;
-    if (this.isSearchOnCooldown) return
+  public onSearch(query: string): void {
+    if (query == "" || !query) return;
+    if(this.isSearchOnCooldown) return;
 
+    //navigate if necessary
     if (this.router.url != '/results') {
       this.router.navigate(['/results']);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -37,38 +35,45 @@ export class SearchService {
     this.setSearchCooldown();
     this.isLoading = true;
 
-    const searchQuery = this.inputQuery;
-
-    this.search(searchQuery)
-      .then(searchResult => {
+    //begin search
+    this.search(query).subscribe(
+      searchResult => {
+        if (!searchResult) searchResult = [];
+        this.onChangeSearchResult.emit(searchResult);
         this.isLoading = false;
-
-        this.searchResult = searchResult;
-        this.onChangeSearchResult.emit(this.searchResult);
-
-        console.log(this.searchResult);
-      })
-      .catch(error => {
-        this.isLoading = false;
+      },
+      error => {
         console.error('An error occurred during the search:', error);
-        throw new Error('An error occurred during the search.');
-      });
+        this.isLoading = false;
+      }
+    );
   }
 
-  public async search(searchQuery: string): Promise<ItemData[] | null> {
-      console.log("Beginning search for", searchQuery);
-      const url = `${this.searchAPI_URL}?q=${searchQuery}`;
-      const headers = new HttpHeaders({ 'q': searchQuery });
-      try {
-        const response: any = await this.http.get<any>(url, { headers }).toPromise();
-    
+  public search(searchQuery: string): Observable<ItemData[]> {
+    if (!searchQuery) {
+      return of([]);
+    }
+    //temp
+    if (searchQuery.toLowerCase() === 'error') {
+      return throwError('Simulated error for testing');
+    }
+
+    console.log("Beginning search for", searchQuery);
+
+    const url = `${this.searchAPI_URL}?q=${encodeURIComponent(searchQuery)}`;
+    const headers = new HttpHeaders();
+
+    return this.http.get<any>(url, { headers }).pipe(
+      map(response => {
         if (response && response.data && Array.isArray(response.data)) {
-          const itemData: ItemData[] = response.data.map((item: any) => ({
+          return response.data.map((item: any, index: number) => ({
+            index: index + 1,
             crn: item.crn,
             semester: item.semester,
+            section: item.section,
             courselabel: item.courselabel,
-            instructor: item.instructor,
             coursetitle: item.coursetitle,
+            instructor: item.instructor,
             inseval: item.inseval,
             insevalstudentnum: item.insevalstudentnum,
             creval: item.creval,
@@ -77,21 +82,25 @@ export class SearchService {
             description: item.description,
             timestamp: item.timestamp
           }));
-          return itemData;
-        } else {
-          console.error('Unexpected response format:', response);
-          return null;
-        }
-      } catch (error) {
-        console.error("An error occurred during the search.", error);
-        throw new Error('An error occurred during the search.');
-      }
-    }
+        } else { throw new Error('Invalid response data'); }
+      }),
+      catchError(error => {
+        console.error('An error occurred during the search:', error);
+        return throwError(error);
+      }),
+      map((items: ItemData[]) => {
+        return items;
+      }),
+      catchError(error => {
+        return throwError(error);
+      })
+    );
+  }
 
   private setSearchCooldown() {
     this.isSearchOnCooldown = true;
     setTimeout(() => {
       this.isSearchOnCooldown = false;
-    }, this.cooldownTimeMS); 
+    }, this.cooldownTimeMS);
   }
 }

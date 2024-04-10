@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { subjects } from 'src/app/interfaces/auto-complete';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,28 +8,39 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  @Input() isHomePage: boolean = true;
-  @Input() searchPrompt: string = 'Get Started By Searching...';
+  inputQuery: string = '';
+  placeholder: string = 'Search; e.g. CS 1714 Fall 2023 Samuel Ang';
+  filteredSubjects: string[] = [];
+  isFocused: boolean = false;
 
-  constructor(
-    public searchService: SearchService, 
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) { }
+  constructor(public searchService: SearchService) { }
 
-  ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      const searchQuery = params['q'];
-      if (searchQuery) {
-        this.searchService.inputQuery = searchQuery;
-        this.searchService.onSearch();
-      }
-    });
+  ngOnInit() { }
+
+  onInputFocus(): void {
+    this.isFocused = true;
+  }
+
+  onInputBlur(): void {
+    this.isFocused = false;
   }
 
   onSearch(): void {
-    if (this.searchService.inputQuery) {
-      this.router.navigate(['/results'], { queryParams: { q: this.searchService.inputQuery } });
-    }
+    this.searchService.onSearch(this.inputQuery.trim());
+    this.isFocused = false;
+    this.filteredSubjects = [];
+  }
+
+  filterSubjects(): void {
+    this.isFocused = !!this.inputQuery;
+    this.filteredSubjects = this.inputQuery ? subjects.filter(subject =>
+      subject.toLowerCase().includes(this.inputQuery.toLowerCase())
+    ) : [];
+  }
+
+  selectSubject(subject: string): void {
+    this.inputQuery = subject;
+    this.isFocused = false;
+    this.filteredSubjects = [];
   }
 }

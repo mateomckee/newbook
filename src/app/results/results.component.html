@@ -1,29 +1,41 @@
 <section id="hero">
-
   <div class="rectangle top bottom-padding">
-    <!-- Title -->
-    <div id="logo-container">
-      <h1 class="mb-4text-uppercase"><strong>NEWBOOK</strong></h1>
-    </div>
     <!-- Search Bar -->
-    <app-search-bar></app-search-bar>
+    <div class="search-bar-wrapper">
+      <app-search-bar class="search-bar"></app-search-bar>
+    </div>
   </div>
+</section>
 
+<div *ngIf="!errorMessage">
   <!-- Loading GIF -->
-<div *ngIf="isLoading" class="loading-container">
-  <img src="/assets/images/Loading.gif" alt="Loading...">
-</div>
-
-<!-- Results Boxes -->
-<div *ngIf="!isLoading" class="rectangle middle container" [class.no-results]="displayItems.length === 0">
-  <div class="item-grid">
-    <app-item *ngFor="let item of displayItems" [data]="item"></app-item>
+  <div *ngIf="searchService.isLoading" class="loading-container">
+    <img src="/assets/images/Loading.gif" alt="Loading...">
   </div>
-</div>
+
+  <!-- Results Boxes -->
+  <div *ngIf="!searchService.isLoading && displayItems && displayItems.length > 0" class="rectangle middle container">
+    <div class="results-container">
+      <div class="course-list">
+        <div *ngFor="let item of displayItems; let i = index" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
+          <app-item [data]="item" [isSelected]="item === selectedCourse"></app-item>
+        </div>
+      </div>
+      <div class="course-details">
+        <app-course-details *ngIf="selectedCourse" [data]="selectedCourse"></app-course-details>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Results Found -->
+  <div *ngIf="!searchService.isLoading && (!displayItems || displayItems.length === 0)" class="error-container">
+    <img src="/assets/images/No Results.png" alt="Error Image" class="error-image">
+    <p class="no-results-message">No results found.</p>
+  </div>
 
   <div class="rectangle bottom">
     <!-- Pagination -->
-    <div *ngIf="items.length > 0" class="pagination bold-text">
+    <div *ngIf="items && items.length > 0" class="pagination bold-text">
       <a href="#" (click)="navigateToFirstPage(); $event.preventDefault()"
         [class.disabled]="currentPage === 1">&lt;&lt;</a>
       <a href="#" (click)="navigateToPreviousPage(); $event.preventDefault()"
@@ -37,5 +49,10 @@
         [class.disabled]="currentPage >= maxPages">&gt;&gt;</a>
     </div>
   </div>
+</div>
 
-</section>
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="error-container rectangle middle container">
+  <img src="/assets/images/error.png" alt="Error Image" class="error-image">
+  <p class="error-message">{{ errorMessage }}</p>
+</div>

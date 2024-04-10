@@ -1,44 +1,93 @@
 .grid-item {
-    background-color: white;
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    line-height: 1.6;
-    font-family: 'Poppins', sans-serif;
-    color: #000;
-  }
-  
-  .grid-item:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    background-color: #f9f9f9;
-    transform: translateY(-3px);
-  }
-  
-  .grid-item a {
-    text-decoration: none;
-    color: var(--text-default-color);
-  }
-  
-  .info-container {
-    width: 100%;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+  color: black;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.title-instructor-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 14px;
+  margin: 0;
+}
+
+.instructor-evaluation-container {
+  display: flex;
+  align-items: center;
+}
+
+.instructor-name {
+  color: #666;
+}
+
+.instructor {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+  margin-right: 5px;
+}
+
+.dash {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.evaluation-icon,
+.no-evaluation-icon {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.evaluation-icon svg {
+  color: #0C2340;
+}
+
+.grid-item:hover {
+  background-color: transparent;
+}
+
+.grid-item.selected {
+  background-color: #dadbe1;
+}
+
+.info-container {
+  width: 100%;
+}
+
+
+.title,
+.instructor {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 450px) {
+  .grid-item {
     padding: 10px;
+    border-bottom: 1px solid #ddd;
   }
-  
-  .title {
-    font-size: 15px;
-    color: var(--text-default-color);
+
+  .title,
+  .instructor {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
   }
-  
-  .small-information {
-    font-size: 13px;
-  }
-  
-  .content-information p {
-    margin-bottom: 5px;
-  }
+}

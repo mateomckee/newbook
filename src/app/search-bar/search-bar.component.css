@@ -1,91 +1,98 @@
-.search-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    max-width: 700px;
-    width: 90vw;
-    height: 40px;
-    margin: auto;
-    padding-top: var(--search-bar-padding-top, 0%); /* Edit the padding on your own css file */
-    padding-bottom: var(--search-bar-padding-bottom, 0%); 
-    letter-spacing: 0.1em;
-    font-family: "Poppins", sans-serif;
-    color: #f15a22;
-}
-
-.search-container input {
-    width: 100%;
-    border-radius: 25px;
-    border: #ffffff 1px solid;
-    padding: 10px;
-    padding-left: 20px;
+/* Base styles */
+* {
     box-sizing: border-box;
 }
 
-.search-container input:focus {
+body {
+    margin: 0;
+    font-family:  Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+/* Main search container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 10px;
+    font-family:  Arial, Helvetica, sans-serif;
+}
+
+/* Search form and input */
+.search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 60vw;
+    max-width: 750px;
+}
+
+.search-container input[type="search"] {
+    flex-grow: 1; 
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    height: 40px;
+    padding-left: 15px; 
+    padding-right: 15px;
+}
+
+.search-container input[type="search"]:focus {
     outline: none;
 }
 
+/* Button styles */
 .buttons {
-    max-width: 90px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-/*-- inner container --*/
-.search-form {
     position: relative;
-    width: 100%;
+    top: 50%; 
 }
 
-/*-- buttons --*/
 .search-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 100%;
-    border: #ffffff 1px solid;
+    border-radius: 10px;
     background-color: white;
-    border-radius: 25px;
-
+    border: 1px solid #ddd;
+    cursor: pointer;
+    height: 40px; 
+    line-height: 40px; 
+    margin-right: 10px; 
+    text-align: center; 
 }
 
-/*-- search button specific styles --*/
-.btn-outline-success {
-    right: 45px;
+
+.search-button svg {
+    fill: #000;
+    margin: auto;
+    vertical-align: middle;
+    margin-bottom: 2.5vh;
 }
 
-/*-- question mark button specific styles --*/
-.btn-outline-primary {
-    right: 0;
-}
-
-/*-- hover and focus styles for buttons --*/
-.btn-outline-success:hover,
-.btn-outline-primary:hover {
+.search-button:hover {
     background-color: #ddd;
-    color: white;
     border-color: #ddd;
 }
 
-/*-- SVG icon fill colors --*/
-.btn-outline-success svg, .btn-outline-primary svg {
+.search-button:hover svg {
     fill: #000;
 }
 
-/*-- SVG icon fill colors on hover --*/
-.btn-outline-success:hover svg, .btn-outline-primary:hover svg {
-    fill: #000;
+.form-check-input:checked {
+    background-color: navy;
+    border-color: navy;
 }
 
 /*----------------- Pop Up Styling ---------------------*/
+.modal {
+    margin: auto;
+    z-index: 1050 !important;
+}
+
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
 .modal-header {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
-    color: #f15a22;
+    background-color: #051e42;
+    color: #fff;
     padding: 20px;
     font-weight: bold;
     border-bottom: 5px solid #f15a22;
@@ -100,7 +107,7 @@
     font-weight: bold;
     text-align: center;
     width: 100%;
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
     font-size: 24px; 
     margin: 0;
 }
@@ -110,12 +117,12 @@
     text-align: center; 
     color: #000; 
     font-weight: bold;
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
 }
 
 /* Modal footer styles */
 .modal-footer {
-    background-image: url('https://www.utsa.edu/enrollment/img/_myUTSA/myUTSAaccount_bkg_short.png');
+    background-color: #051e42;
     color: white;
     width: 100%;
     border-top: 5px solid #f15a22;
@@ -123,29 +130,109 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Poppins", sans-serif;
+    font-family:  Arial, Helvetica, sans-serif;
 }
 
 /* Modal close button */
 .modal-footer .btn-secondary {
     background-color: transparent; 
     border-color: transparent; 
-    color: #f15a22; 
+    color: #fff; 
     border-radius: 25px; 
     font-size: 1rem;
 }
 
 /* Hover */
 .modal-footer .btn-secondary:hover {
-    color: white; 
+    color: #f15a22; 
 }
 
-/*----------------- Pop Up Styling Mobile ---------------------*/
-@media (max-width: 767px) {
-  .modal-dialog {
-    margin-top: 25vh; /* Center vertically in the viewport */
-    position: fixed; /* Position fixed to stay in place on scroll */   
-    width: 80%;
-    translate: 10%;
+/*-- Autocomplete suggestions container --*/
+.search-form ul {
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    width: 100%;
+    max-width: 98%; 
+    transform: translateX(-50%);
+    background-color: #fff;
+    color: #888;
+    border-top: none;
+    z-index: 10; 
+    margin-top: -1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 25px 25px;
+    overflow: hidden; 
+    max-height: 200px; 
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #f0f0f0; 
+    font-family:  Arial, Helvetica, sans-serif;
+}
+
+  
+/*-- Style for each suggestion --*/
+.search-form li {
+    padding: 10px;
+    list-style-type: none;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+}
+  
+.search-form li:last-child {
+    border-bottom: none;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px; 
+}
+  
+.search-form li:hover {
+    color: #333; 
+}
+
+.search-form ul {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    padding-left: 0;
+}
+
+.search-form ul::-webkit-scrollbar {
+    display: none; 
+}
+
+.search-form li.highlighted {
+    background-color: #e9ecef; 
+    color: #495057; 
   }
+  
+
+/*----------------- Pop Up Styling Mobile ---------------------*/
+@media (max-width: 450px) {
+    .search-container {
+        padding: 0 3vw; 
+    }
+    
+    .search-container input[type="search"] {
+        padding: 5px 3vw; 
+        min-width: 50px; 
+    }
+
+    .search-button {
+        padding: 5px; 
+        min-width: 40px; 
+        max-width: 60px; 
+        padding-top: 0.8vh;
+    }
+}
+
+@media (min-height: 700px) {
+    .search-button svg{
+        margin-top: .5vh;
+    }
+}
+
+@media (min-height: 1000px) {
+    .search-button svg{
+        margin-top: .15vh;
+    }
 }

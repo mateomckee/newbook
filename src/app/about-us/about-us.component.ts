@@ -10,7 +10,7 @@ export class AboutUsComponent implements OnInit {
   profiles: Profile[] = [
     {
       id: 1,
-      name: 'Mateo KcKee',
+      name: 'Mateo McKee',
       bio: 'Bio here',
       role: 'Web Developer Team Lead',
       linkedInUrl: 'https://www.linkedin.com/in/mateo-mckee/',
@@ -60,7 +60,7 @@ export class AboutUsComponent implements OnInit {
       id: 7,
       name: 'Braulio Hurtado',
       bio: 'Bio here',
-      role: 'Data Scientist',
+      role: 'Web Developer',
       linkedInUrl: 'https://www.linkedin.com/in/braulio-h/',
       imageUrl: '/assets/images/Profile Images/Braulio.jpg',
       },
@@ -74,11 +74,11 @@ export class AboutUsComponent implements OnInit {
       },
       {
       id: 9,
-      name: 'Reese',
+      name: 'Reese Sylvester',
       bio: 'Bio here',
       role: 'Manager',
-      linkedInUrl: 'https://www.linkedin.com/',
-      imageUrl: '/assets/images/Profile Images/Default.jpg',
+      linkedInUrl: 'https://www.linkedin.com/in/reese-sylvester-234490242/',
+      imageUrl: '/assets/images/Profile Images/Reese.jpg',
       },
   ];
   selectedProfile: Profile | null = null;
