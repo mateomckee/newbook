@@ -107,4 +107,6 @@ export class ResultsComponent implements OnInit {
   ngOnDestroy() {
     this.searchService.onChangeSearchResult.unsubscribe();
   }
+
+  
 }

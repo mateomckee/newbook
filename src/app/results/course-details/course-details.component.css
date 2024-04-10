@@ -88,11 +88,8 @@ h4 {
 }
 
 .evaluation-score {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.65em; 
+  font-size: 1vw; /* This will scale the font size based on the width of the viewport */
+  text-anchor: middle;
 }
 
 .evaluation-label {
