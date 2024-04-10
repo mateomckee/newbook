@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemData } from '../interfaces/item.interface';
 import { SearchService } from '../services/search.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -19,16 +20,24 @@ export class ResultsComponent implements OnInit {
 
   errorMessage: string = '';
 
-  constructor(public searchService: SearchService) { }
+  constructor(
+    public searchService: SearchService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.searchService.onChangeSearchResult.subscribe((newItems) => {
-      this.onChangeSearchResultEvent(newItems);
+    this.activatedRoute.queryParams.subscribe(params => {
+      const query = params['q'];
+      if (query) {
+        this.searchService.onSearch(query);
+      }
     });
-  }
-  onChangeSearchResultEvent(newItems: ItemData[]) {
-    this.items = newItems;
-    this.updateDisplayItems();
+  
+    this.searchService.onChangeSearchResult.subscribe((newItems: ItemData[]) => {
+      this.items = newItems;
+      this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
+      this.updateDisplayItems();
+    });
   }
 
   private updateDisplayItems(): void {
@@ -50,7 +59,7 @@ export class ResultsComponent implements OnInit {
   get paginationArray(): number[] {
     const paginationStart = Math.max(1, this.currentPage - Math.floor(this.pagesToShow / 2));
     const paginationEnd = Math.min(paginationStart + this.pagesToShow - 1, this.maxPages);
-
+  
     const paginationArray: number[] = [];
     for (let i = paginationStart; i <= paginationEnd; i++) {
       paginationArray.push(i);
@@ -69,7 +78,7 @@ export class ResultsComponent implements OnInit {
   navigateToNextPage(): void {
     this.navigateToPage(Math.min(this.maxPages, this.currentPage + 1));
   }
-
+  
   navigateToLastPage(): void {
     this.navigateToPage(this.maxPages);
   }

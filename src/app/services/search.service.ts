@@ -24,18 +24,18 @@ export class SearchService {
 
   public onSearch(query: string): void {
     if (query == "" || !query) return;
-    if(this.isSearchOnCooldown) return;
-
-    //navigate if necessary
-    if (this.router.url != '/results') {
-      this.router.navigate(['/results']);
+    if (this.isSearchOnCooldown) return;
+  
+    this.router.navigate(['/results'], { queryParams: { q: query } });
+  
+    if (this.router.url === '/results') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+  
     this.setSearchCooldown();
     this.isLoading = true;
-
-    //begin search
+  
+    // Begin search
     this.search(query).subscribe(
       searchResult => {
         if (!searchResult) searchResult = [];
