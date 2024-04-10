@@ -17,7 +17,6 @@ body {
     margin: auto;
     gap: 10px;
     font-family:  Arial, Helvetica, sans-serif;
-    z-index: 1000;
 }
 
 /* Search form and input */
