@@ -18,7 +18,7 @@ export class SearchService {
   public isLoading: boolean = false;
 
   private isSearchOnCooldown = false;
-  private cooldownTimeMS = 5000;
+  private cooldownTimeMS = 2000;
 
   constructor(private http: HttpClient, private router: Router) { }
 
