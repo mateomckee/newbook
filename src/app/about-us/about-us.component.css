@@ -1,11 +1,16 @@
-#hero{
+#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: url('/assets/images/UTSA background.jpg') center bottom no-repeat;
   background-size: cover;
+  min-height: 100vh; 
+  padding: 20px;
+  box-sizing: border-box;
+  flex-direction: column; 
 }
 
 .container {
-  background: url('/assets/images/UTSA background.jpg') center bottom no-repeat;
-  background-size: cover;
   width: 100%;
   padding: 20px;
   padding-top: 10px;
