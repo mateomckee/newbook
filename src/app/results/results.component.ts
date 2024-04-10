@@ -34,6 +34,7 @@ export class ResultsComponent implements OnInit {
     });
   
     this.searchService.onChangeSearchResult.subscribe((newItems: ItemData[]) => {
+      this.currentPage = 1;
       this.items = newItems;
       this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
       this.updateDisplayItems();
