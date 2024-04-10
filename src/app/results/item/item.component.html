@@ -1,7 +1,12 @@
 <div class="grid-item" [class.selected]="isSelected">
   <div class="info-container">
     <div class="title-instructor-container">
-      <p class="title"><strong>{{data.index}}. {{ data.coursetitle }} ({{ data.courselabel }}.{{data.section}}) — {{data.instructor}}</strong></p>
+      <p class="title">
+        <strong>
+          {{ data.index }}. {{ data.coursetitle }} ({{ data.courselabel }}.{{ data.section }})
+          <span *ngIf="showInstructor" class="instructor-name">— {{ data.instructor }}</span>
+        </strong>
+      </p>
       <div class="instructor-evaluation-container">
         <p class="instructor">{{ data.semester }}</p>
         <div class="evaluation-icon" *ngIf="data.inseval || data.creval">

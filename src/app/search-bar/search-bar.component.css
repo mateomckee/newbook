@@ -17,6 +17,7 @@ body {
     margin: auto;
     gap: 10px;
     font-family:  Arial, Helvetica, sans-serif;
+    z-index: 1000;
 }
 
 /* Search form and input */
@@ -34,6 +35,7 @@ body {
     border: 1px solid #ddd;
     height: 40px;
     padding-left: 15px; 
+    padding-right: 15px;
 }
 
 .search-container input[type="search"]:focus {
@@ -80,8 +82,13 @@ body {
 }
 
 /*----------------- Pop Up Styling ---------------------*/
-.modal{
+.modal {
     margin: auto;
+    z-index: 1050 !important;
+}
+
+.modal-backdrop {
+    z-index: 1040 !important;
 }
 
 .modal-header {
@@ -201,7 +208,7 @@ body {
   
 
 /*----------------- Pop Up Styling Mobile ---------------------*/
-@media (max-width: 480px) {
+@media (max-width: 450px) {
     .search-container {
         padding: 0 3vw; 
     }
@@ -215,12 +222,18 @@ body {
         padding: 5px; 
         min-width: 40px; 
         max-width: 60px; 
-        padding-top: 1vh;
+        padding-top: 0.8vh;
     }
 }
 
 @media (min-height: 700px) {
     .search-button svg{
         margin-top: .5vh;
+    }
+}
+
+@media (min-height: 1000px) {
+    .search-button svg{
+        margin-top: .15vh;
     }
 }

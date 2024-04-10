@@ -15,8 +15,8 @@ a {
 
 /* Hero section */
 #hero {
-  background: url('/assets/images/UTSA background.jpg') center fixed no-repeat;
-  background-position: top;
+  background: url('/assets/images/UTSA background.jpg') center bottom no-repeat;
+  background-size: cover;
   flex-grow: 1;
   width: 100%;
   display: flex;
@@ -24,8 +24,8 @@ a {
   justify-content: center;
   align-items: center;
   color: #f15a22;
-  height: 80vh;
-  max-height: 900px;
+  min-height: 80vh;
+  padding-bottom: 20px;
 }
 
 #hero h1 {
@@ -111,7 +111,7 @@ a {
 @media (max-width: 768px) {
   #hero {
     padding: 10vh 0;
-    height: 60vh;
+    min-height: 60vh;
   }
 
   #hero h1 {
@@ -120,12 +120,7 @@ a {
     margin-bottom: 3vh;
   }
 
-  .search-bar-wrapper {
-    width: 90%;
-    max-width: 100%;
-  }
-
-  .rectangle.middle{
+  .rectangle.middle {
     padding: 0;
   }
 
@@ -158,16 +153,22 @@ a {
 
 @media (max-width: 450px) {
   #hero {
-    height: 40vh;
+    min-height: 40vh;
   }
 
-  .search-bar-wrapper{
-    transform: translateX(-6%)
+  .search-bar-wrapper {
+    transform: translateX(-6%);
   }
 }
 
 @media (min-width: 1900px) {
   #hero {
-    background-size: 100% auto;
+    background-size: 100% 100%;
+  }
+}
+
+@media (min-height: 1100px) {
+  #hero {
+    background-size: 100% 100%;
   }
 }
