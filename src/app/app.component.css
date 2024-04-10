@@ -40,6 +40,7 @@ footer {
   margin-top: auto;
   background-color: #0C2340;
   flex-shrink: 0;
+  margin-bottom: -1px;
 }
 
 footer,
@@ -86,6 +87,7 @@ ul {
   margin-right: 10px;
   margin-left: 15px;
   margin-bottom: 5px;
+  padding: 0 10px;
 }
 
 .logo-text {
@@ -371,6 +373,10 @@ a {
   .nav-link,
   .dropbtn{
     padding: 8px 0;
+  }
+
+  #footer-background {
+    padding: 0px 0px;
   }
 
   .footer-top {
