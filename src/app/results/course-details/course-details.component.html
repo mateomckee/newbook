@@ -7,7 +7,7 @@
   <div class="evaluation-container">
     <div class="evaluation">
     <p class="evaluation-label">Instructor Evaluation: </p>      
-    <svg width="72" height="72" viewBox="0 0 36 36" class="circular-chart">
+    <svg #instructorCircularChart width="72" height="72" viewBox="0 0 36 36" class="circular-chart">
       <path class="circle-bg"
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
@@ -17,10 +17,10 @@
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
-        fill="none" stroke="navy" stroke-width="3.8"
+        fill="none" stroke="#0C2340" stroke-width="3.8"
         [attr.stroke-dasharray]="getStrokeDashArray(data.inseval)"
         [attr.stroke-dashoffset]="getStrokeDashOffset(data.inseval)"></path>
-        <text x="37" y="37" class="evaluation-score" text-anchor="middle" dominant-baseline="middle" fill="navy">
+        <text #instructorEvaluationScoreText x="18" y="18" class="evaluation-score" text-anchor="middle" alignment-baseline="middle" fill="#0C2340">          
           {{ getEvaluationScore(data.inseval) }}
       </text>
     </svg>
@@ -28,7 +28,7 @@
   </div>
   <div class="evaluation">
     <p class="evaluation-label">Course Evaluation:</p>
-    <svg width="36" height="36" viewBox="0 0 36 36" class="circular-chart">
+    <svg #courseCircularChart width="72" height="72" viewBox="0 0 36 36" class="circular-chart">
       <path class="circle-bg"
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
@@ -38,10 +38,10 @@
         d="M18 2.0845
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
-        fill="none" stroke="navy" stroke-width="3.8"
+        fill="none" stroke="#0C2340" stroke-width="3.8"
         [attr.stroke-dasharray]="getStrokeDashArray(data.creval)"
         [attr.stroke-dashoffset]="getStrokeDashOffset(data.creval)"></path>
-        <text x="37" y="37" class="evaluation-score" text-anchor="middle" dominant-baseline="middle" fill="navy">
+        <text #courseEvaluationScoreText x="18" y="18" class="evaluation-score" text-anchor="middle" alignment-baseline="middle" fill="#0C2340">
           {{ getEvaluationScore(data.creval) }}
       </text>
     </svg>

@@ -1,5 +1,5 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { ItemData } from 'src/app/interfaces/item.interface';
 
 @Component({
@@ -9,12 +9,48 @@ import { ItemData } from 'src/app/interfaces/item.interface';
 })
 export class CourseDetailsComponent {
   @Input() data: ItemData | null = null;
+  @ViewChild('instructorCircularChart') instructorCircularChart!: ElementRef<SVGSVGElement>;
+  @ViewChild('instructorEvaluationScoreText') instructorEvaluationScoreText!: ElementRef<SVGTextElement>;
+  @ViewChild('courseCircularChart') courseCircularChart!: ElementRef<SVGSVGElement>;
+  @ViewChild('courseEvaluationScoreText') courseEvaluationScoreText!: ElementRef<SVGTextElement>;
+  
+
 
   private syllabusFileName: string = "";
 
   private syllabiAPI_URL = 'https://newbook-functions.vercel.app/api/syllabi';
 
   constructor(private http: HttpClient) { }
+
+  resizeListener = () => this.adjustTextSize();
+
+  ngAfterViewInit() {
+    this.adjustTextSize();
+    window.addEventListener('resize', this.resizeListener);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.resizeListener);
+  }
+  
+  private adjustTextSize(): void {
+    requestAnimationFrame(() => {
+      this.adjustSingleTextSize(this.instructorCircularChart, this.instructorEvaluationScoreText);
+      this.adjustSingleTextSize(this.courseCircularChart, this.courseEvaluationScoreText);
+    });
+  }
+  
+  private adjustSingleTextSize(chartElementRef: ElementRef<SVGSVGElement>, textElementRef: ElementRef<SVGTextElement>): void {
+    if (chartElementRef && textElementRef) {
+      const svgBox = chartElementRef.nativeElement.viewBox.baseVal;
+      const svgHeight = svgBox.height;
+      const fontSize = svgHeight / 3; // Adjust ratio as needed for your design
+      const textYPosition = svgHeight / 2 + svgHeight * 0.05; // Adjust centering as needed
+      textElementRef.nativeElement.setAttribute('y', textYPosition.toString());
+      textElementRef.nativeElement.style.fontSize = `${fontSize}px`;
+    }
+  }
+  
 
   getStrokeDashArray(score: number | null | undefined): number {
     const circleCircumference = 2 * Math.PI * 15.9155;
@@ -39,9 +75,6 @@ export class CourseDetailsComponent {
   async tryGetSyllabus() {
     const result = await this.getSyllabus();
 
-    //display result on UI here
-
-    //if no syllabus exists
     if (result == 0) {
       console.log(`No syllabus exists for ${this.data?.courselabel}.${this.data?.section}`);
     }
@@ -100,5 +133,11 @@ export class CourseDetailsComponent {
     //clean up
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
+  }
+
+  //Drop down menu
+  showDescription = false;
+  toggleDescription(): void {
+    this.showDescription = !this.showDescription;
   }
 }
