@@ -5,6 +5,7 @@ html, body {
   padding: 0;
   display: flex;
   flex-direction: column;
+  background-color: #F5F6FA;
 }
 
 a {
@@ -21,7 +22,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   color: #f15a22;
   height: 80vh;
   max-height: 900px;
@@ -36,7 +37,6 @@ a {
 
 /* About section */
 .about-section {
-  padding: 50px 0;
   margin: auto;
 }
 
@@ -77,37 +77,56 @@ a {
   top: 0;
 }
 
+/* Rectangle styles */
+.rectangle {
+  width: 100%;
+}
+
+.rectangle.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.rectangle.middle {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Search bar styles */
+.search-bar-wrapper {
+  width: 90%;
+  max-width: 800px;
+}
+
+.search-bar {
+  max-width: 800px;
+  z-index: 12;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
-  #hero, .about-section, .container, .about-content, footer, body, html {
-    margin: 0;
-    padding: 0;
-  }
-  
-  html, body {
-    min-height: auto;
-  }
-
   #hero {
-    padding: 10vh 0; 
-    margin-bottom: 5vh; 
-    height: 40vh;
+    padding: 10vh 0;
+    height: 60vh;
   }
 
   #hero h1 {
-    font-size: 7vw; 
+    font-size: 7vw;
     line-height: 1.2;
     margin-bottom: 3vh;
   }
 
   .search-bar-wrapper {
     width: 90%;
-    max-width: 800px; 
-    margin-top: 2vh; 
+    max-width: 100%;
   }
 
-  .search-bar {
-    max-width: 800px;
+  .rectangle.middle{
+    padding: 0;
   }
 
   .container {
@@ -117,37 +136,38 @@ a {
 
   .about-content {
     padding: 15px;
-    margin-bottom: 5vh; 
   }
 
   .about-content h3 {
-    font-size: 5vw; 
+    font-size: 5vw;
   }
 
-  .about-content p, .about-content ul li {
-    font-size: 3.5vw; 
-  }
-
-  .search-bar {
-    margin-top: 0;
+  .about-content p,
+  .about-content ul li {
+    font-size: 3.5vw;
   }
 
   .about-content ul li::before {
     position: static;
     display: inline-block;
     margin-right: 10px;
-    font-size: 4vw; 
+    font-size: 4vw;
     vertical-align: middle;
   }
 }
 
 @media (max-width: 450px) {
-  #hero{
+  #hero {
     height: 40vh;
   }
-  
+
   .search-bar-wrapper{
-    transform: translateY(-65%);
+    transform: translateX(-6%)
   }
 }
- 
+
+@media (min-width: 1900px) {
+  #hero {
+    background-size: 100% auto;
+  }
+}
