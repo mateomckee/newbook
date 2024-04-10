@@ -13,7 +13,7 @@
 }
 
 .course-title {
-  font-size: 24px; /* Reduce the font size for mobile */
+  font-size: 24px; 
 }
 
 .course-label {
@@ -28,6 +28,7 @@
 .course-enrollment,
 .course-timestamp {
   font-size: 14px; /* Reduce the font size for mobile */
+  line-height: 1.2;
 }
 
 h2 {

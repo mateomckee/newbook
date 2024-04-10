@@ -45,13 +45,11 @@ a {
 .search-bar-wrapper {
   width: 90%;
   max-width: 800px;
-  transform: translateX(-5%);
-  z-index: 1;
+  padding-right: 35px;
 }
 
 .search-bar {
   max-width: 800px;
-  z-index: 1;
 }
 
 .rectangle.top {
@@ -60,7 +58,6 @@ a {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  z-index: 10;
 }
 
 .rectangle.middle {
@@ -70,7 +67,6 @@ a {
   justify-content: center;
   padding: 20px;
   height: 100%;
-  z-index: 0;
 }
 
 .rectangle.middle.container {

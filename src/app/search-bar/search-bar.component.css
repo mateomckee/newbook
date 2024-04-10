@@ -81,15 +81,6 @@ body {
 }
 
 /*----------------- Pop Up Styling ---------------------*/
-.modal {
-    margin: auto;
-    z-index: 1050 !important;
-}
-
-.modal-backdrop {
-    z-index: 1040 !important;
-}
-
 .modal-header {
     background-color: #051e42;
     color: #fff;
@@ -158,7 +149,6 @@ body {
     background-color: #fff;
     color: #888;
     border-top: none;
-    z-index: 10; 
     margin-top: -1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 25px 25px;

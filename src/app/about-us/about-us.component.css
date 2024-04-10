@@ -1,130 +1,87 @@
-.container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  flex-direction: column;
-}
-.small-container {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
+#hero{
+  background: url('/assets/images/UTSA background.jpg') center bottom no-repeat;
+  background-size: cover;
 }
 
+.container {
+  background: url('/assets/images/UTSA background.jpg') center bottom no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding: 20px;
+  padding-top: 10px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
 h1 {
-  color: #f15a22; 
-  font-size: 48px;
+  color: white;
+  font-size: 3em;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 30px;
 }
 
-.our-team-box {
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 8px;
-  padding: 20px;
-  margin: 0 auto 30px; 
-  text-align: center;
-  position: relative;
-  max-width: 60%; 
-  top: 20px; 
-  padding-top: 15%;
+h3 {
+  font-weight: bold;
 }
 
-.our-team-box img {
-  width: 50%; 
-  height: 55%;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  border-radius: 20px;
-}
-
-.team-section h3 {
-  color: #f15a22; 
-  font-weight: bold; 
-  font-size: 24px;
-  margin-top: 0;
-}
-
-.section-title{
-  color: #f15a22; 
-  position: relative;
+.team-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 10px; 
 }
 
 .team-section {
-  justify-content: flex-start;
-  min-width: 450px;
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  justify-content: center;
-  overflow-x: auto; 
-  margin-bottom: 100px;
-}
-
-.small-team-section {
-  width: 50%;
-  justify-content: center;
-  display: flex;
-  overflow-x: auto; 
-  margin-bottom: 30px;
-}
-
-.smaller {
-  width: 40%;
-}
-
-.team-member {
-  align-self: flex-start;
-  margin: auto 20px; /* Auto margin for top and bottom */
-  width: 200px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 8px;
+  flex: 1 1 300px;
   text-align: center;
 }
 
+.section-title {
+  color: white;
+  margin-bottom: 1em;
+  font-size: 1.5em;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-member {
+  flex: 1 1 140px; 
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  background-color: #0C2340;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 250px;
+  border: 2px solid #fff;
+}
+
 .profile-image {
-  width: 150px;
-  height: 150px;
+  width: 80px; 
+  height: 80px; 
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
-.team-member h3, .team-member p {
-  color: #333;
+.team-member h3 {
+  color: #fff;
+  margin: 5px 0;
+  font-size: 1em;
 }
 
 .team-member p {
-  color: #888; 
-  font-size: 14px;
+  color: #ddd;
+  font-size: 0.75em;
+  margin: 5px 0;
 }
-
-.profile-details {
-  display: block; 
-  text-align: center;
-}
-
-.profile-details a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.profile-details a:hover {
-  text-decoration: underline;
-}
-
 
 .social-link.linkedin {
   background-image: url('/assets/images/footer logos/blue linkedin.svg');
@@ -132,40 +89,52 @@ h1 {
 
 .social-link {
   display: inline-block;
-  width: 32.5px;
-  height: 32.5px;
+  width: 24px;
+  height: 24px;
   background-color: transparent;
   border-radius: 50%;
-  border: 2px solid #007bff ;
-  margin: 0 10px;
+  border: 2px solid #007bff;
+  margin-top: 10px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 55%;
   transition: background-image 0.3s, border-color 0.3s;
 }
 
-
-@media (max-width: 768px) { 
-  .our-team-box {
-    max-width: 95%; 
-    padding-top: 50%; 
-    margin-bottom: 13%;
-    margin-top: -8%;
+@media (max-width: 768px) {
+  .team-member {
+    flex: 1 1 100px; 
   }
 
-  .our-team-box img {
-    width: 60%;
-    top: 22.5%;
-    left: 50%;
-    transform: translate(-50%, -30%); 
+  .profile-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .team-member h3 {
+    font-size: 0.875em;
+  }
+
+  .team-member p {
+    font-size: 0.7em;
+  }
+
+  .social-link {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-container {
+    flex-direction: row;
   }
 
   .team-section {
-    display: block; 
+    width: auto; 
   }
 
-  .team-member {
-    width: 100%;
-    margin: 10px 0; 
+  .team-members {
+    flex-direction: row; 
   }
 }
