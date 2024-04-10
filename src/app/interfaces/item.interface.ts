@@ -1,5 +1,5 @@
 export interface ItemData {
-  key: number;
+  index: number;
   crn: number;
   semester: string;
   section: string;

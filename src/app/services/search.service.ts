@@ -10,69 +10,64 @@ import { ItemData } from '../interfaces/item.interface';
 })
 export class SearchService {
   private searchAPI_URL = 'https://newbook-functions.vercel.app/api/search';
+  
   inputQuery = '';
+
   public onChangeSearchResult: EventEmitter<any> = new EventEmitter<any>();
+
   public isLoading: boolean = false;
+
   private isSearchOnCooldown = false;
   private cooldownTimeMS = 5000;
-  public isError: boolean = false;
-  private searchInProgress = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  public resetSearchResults(): void {
-    this.onChangeSearchResult.emit(null);
-    this.isError = false;
-  }
-
   public onSearch(query: string): void {
-    if (!query) return;
-    this.isError = false;
+    if (query == "" || !query) return;
+    if(this.isSearchOnCooldown) return;
+
+    //navigate if necessary
+    if (this.router.url != '/results') {
+      this.router.navigate(['/results']);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    this.setSearchCooldown();
     this.isLoading = true;
+
+    //begin search
     this.search(query).subscribe(
       searchResult => {
-        this.isLoading = false;
-        if (!searchResult) {
-          this.isError = true;
-        }
+        if (!searchResult) searchResult = [];
         this.onChangeSearchResult.emit(searchResult);
-        this.router.navigate(['/results'], { queryParams: { q: query } });
+        this.isLoading = false;
       },
       error => {
-        this.isError = true;
-        this.isLoading = false;
         console.error('An error occurred during the search:', error);
+        this.isLoading = false;
       }
     );
   }
 
   public search(searchQuery: string): Observable<ItemData[]> {
     if (!searchQuery) {
-      // Return an empty array if the search query is empty
       return of([]);
     }
-  
-    if (this.searchInProgress) {
-      return throwError('Search in progress');
-    }
-  
-    /* to test error page delete for final version */
+    //temp
     if (searchQuery.toLowerCase() === 'error') {
       return throwError('Simulated error for testing');
     }
-  
-    this.searchInProgress = true;
-    this.isLoading = true;
-    this.isError = false;
+
     console.log("Beginning search for", searchQuery);
-  
+
     const url = `${this.searchAPI_URL}?q=${encodeURIComponent(searchQuery)}`;
     const headers = new HttpHeaders();
-  
+
     return this.http.get<any>(url, { headers }).pipe(
       map(response => {
         if (response && response.data && Array.isArray(response.data)) {
-          return response.data.map((item: any) => ({
+          return response.data.map((item: any, index: number) => ({
+            index: index + 1,
             crn: item.crn,
             semester: item.semester,
             section: item.section,
@@ -87,23 +82,16 @@ export class SearchService {
             description: item.description,
             timestamp: item.timestamp
           }));
-        } else {
-          throw new Error('Invalid response data');
-        }
+        } else { throw new Error('Invalid response data'); }
       }),
       catchError(error => {
         console.error('An error occurred during the search:', error);
         return throwError(error);
       }),
       map((items: ItemData[]) => {
-        this.searchInProgress = false;
-        this.isLoading = false;
         return items;
       }),
       catchError(error => {
-        this.searchInProgress = false;
-        this.isLoading = false;
-        this.isError = true;
         return throwError(error);
       })
     );

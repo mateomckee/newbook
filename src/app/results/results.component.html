@@ -9,12 +9,12 @@
 
 <div *ngIf="!errorMessage">
   <!-- Loading GIF -->
-  <div *ngIf="isLoading" class="loading-container">
+  <div *ngIf="searchService.isLoading" class="loading-container">
     <img src="/assets/images/Loading.gif" alt="Loading...">
   </div>
 
   <!-- Results Boxes -->
-  <div *ngIf="!isLoading && displayItems && displayItems.length > 0" class="rectangle middle container">
+  <div *ngIf="!searchService.isLoading && displayItems && displayItems.length > 0" class="rectangle middle container">
     <div class="results-container">
       <div class="course-list">
         <div *ngFor="let item of displayItems; let i = index" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
@@ -28,7 +28,7 @@
   </div>
 
   <!-- No Results Found -->
-  <div *ngIf="!isLoading && (!displayItems || displayItems.length === 0)" class="error-container">
+  <div *ngIf="!searchService.isLoading && (!displayItems || displayItems.length === 0)" class="error-container">
     <img src="/assets/images/No Results.png" alt="Error Image" class="error-image">
     <p class="no-results-message">No results found.</p>
   </div>
