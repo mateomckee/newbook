@@ -368,6 +368,10 @@ a {
     align-items: row;
   }
 
+  footer {
+    height: 5vh;
+  }
+
   .nav-link,
   .dropbtn,
   .footer-bottom a {
