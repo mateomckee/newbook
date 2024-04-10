@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('/assets/images/UTSA background.jpg') center bottom no-repeat;
   background-size: cover;
   min-height: 100vh; 
   padding: 20px;
@@ -18,7 +17,7 @@
   box-sizing: border-box;
 }
 h1 {
-  color: white;
+  color: #0C2340;
   font-size: 3em;
   font-weight: bold;
   text-align: center;
@@ -41,7 +40,7 @@ h3 {
 }
 
 .section-title {
-  color: white;
+  color: #0C2340;
   margin-bottom: 1em;
   font-size: 1.5em;
 }
@@ -56,8 +55,7 @@ h3 {
   flex: 1 1 140px; 
   padding: 10px;
   margin: 10px;
-  color: white;
-  background-color: #0C2340;
+  background-color: white;
   border-radius: 8px;
   text-align: center;
   display: flex;
@@ -65,26 +63,26 @@ h3 {
   align-items: center;
   justify-content: space-between;
   max-width: 250px;
-  border: 2px solid #fff;
+  border: 1px solid #ddd;
 }
 
 .profile-image {
-  width: 80px; 
-  height: 80px; 
+  width: 140px; 
+  height: 140px; 
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
 .team-member h3 {
-  color: #fff;
+  color: #333;
   margin: 5px 0;
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 .team-member p {
-  color: #ddd;
-  font-size: 0.75em;
+  color: #888;
+  font-size: .85em;
   margin: 5px 0;
 }
 
@@ -94,15 +92,16 @@ h3 {
 
 .social-link {
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 35px;
+  height: 35px;
   background-color: transparent;
   border-radius: 50%;
   border: 2px solid #007bff;
   margin-top: 10px;
+  margin-bottom: 10px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 55%;
+  background-size: 65%;
   transition: background-image 0.3s, border-color 0.3s;
 }
 
