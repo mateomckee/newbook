@@ -434,6 +434,10 @@ footer *:last-child {
     .logo-text {
       display: none;
     }
+
+    .hide-big{
+      display: none;
+    }
   }
 
   @media (max-width: 400px) {

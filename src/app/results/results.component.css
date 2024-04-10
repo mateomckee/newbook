@@ -355,9 +355,11 @@ body {
       padding: 5px;
     }
   
-    .course-list,
+    .course-list {
+      max-height: 200px;
+    }
     .course-details {
-      max-height: 300px;
+      max-height: 400px;
     }
   
     .error-image {
