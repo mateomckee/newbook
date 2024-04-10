@@ -38,6 +38,10 @@ export class ResultsComponent implements OnInit {
       this.items = newItems;
       this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
       this.updateDisplayItems();
+  
+      if (newItems.length === 0) {
+        this.selectedCourse = null;
+      }
     });
   }
 

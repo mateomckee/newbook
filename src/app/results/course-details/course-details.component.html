@@ -1,8 +1,8 @@
 <div *ngIf="data" class="course-details-container">
-  <h2 class="course-title">{{ data.coursetitle }}</h2>
-  <h3 class="course-label">({{ data.courselabel }}.{{data.section}}) {{ data.semester }}</h3>
-  <h4 class="course-instructor">Professor: {{ data.instructor }}</h4>
-  <p class="course-description">{{ data.description }}</p>
+  <h2 class="course-title"><strong>{{ data.coursetitle }}</strong></h2>
+  <h3 class="course-label">{{ data.courselabel }}.{{data.section}} — {{ data.semester }}</h3>
+  <h4 class="course-instructor">{{ data.instructor }}</h4>
+  <!-- <p class="course-description"><br><br>{{ data.description }}<br><br></p> -->
   <p class="course-enrollment">Students Enrolled: {{ data.enrollment }}</p>
   <div class="evaluation-container">
     <div class="evaluation">
@@ -48,8 +48,8 @@
     <p>Reviews: {{ data.crevalstudentnum || 'N/A' }}</p>
     </div>
   </div>
-  <p class="course-timestamp">Timestamp: {{ data.timestamp | date:'MMMM d, y, h:mm a' }}</p>
   <div class="syllabus-button-container">
     <button class="syllabus-button" (click)="tryGetSyllabus()">Download Syllabus</button>
   </div>
+  <p class="course-timestamp">Timestamp: {{ data.timestamp | date:'MMMM d, y, h:mm a' }}</p>
 </div>
