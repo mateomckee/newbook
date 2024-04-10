@@ -256,7 +256,7 @@ a {
 }
 
 .empty-image {
-  max-width: 50%; 
+  max-width: 50%;
   max-height: 50vh;
 }
 
@@ -344,14 +344,18 @@ a {
 
   .results-container {
     flex-direction: column;
-    height: auto;
+    height: 100%;
     gap: 10px;
   }
 
   .course-list,
   .course-details-container {
     height: 50vh;
-    overflow-y: auto;
+    overflow-y: none;
+  }
+
+  .course-list {
+    max-height: 200px;
   }
 
   .pagination {
