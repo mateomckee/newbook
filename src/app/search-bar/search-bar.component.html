@@ -4,8 +4,7 @@
   <form class="search-form d-flex" (ngSubmit)="onSearch()">
     <!-- Search Input -->
     <input type="search" id="search" name="search" (focus)="onInputFocus()" (blur)="onInputBlur()"
-       [(ngModel)]="inputQuery" (input)="filterSubjects()"
-       autocomplete="off" placeholder="{{placeholder}}">
+      [(ngModel)]="inputQuery" (input)="filterSubjects()" autocomplete="off" placeholder="{{placeholder}}">
     <!-- Suggestions List (if any) -->
     <ul *ngIf="isFocused && filteredSubjects.length > 0">
       <li *ngFor="let subject of filteredSubjects" (mousedown)="selectSubject(subject)">
@@ -25,7 +24,8 @@
       </svg>
     </button>
     <!-- Info Button -->
-    <button class="btn btn-outline-primary position-absolute search-button" type="button" data-bs-toggle="modal" data-bs-target="#infoModal">
+    <button class="btn btn-outline-primary position-absolute search-button" type="button" data-bs-toggle="modal"
+      data-bs-target="#infoModal">
       <!-- SVG for question mark icon -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1em" height="1em" fill="currentColor">
         <path fill-rule="evenodd"
@@ -33,28 +33,29 @@
       </svg>
     </button>
   </div>
-    <!-- PopUp -->
-    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="infoModalLabel">About This Site</h5>           
+  <!-- PopUp -->
+  <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="infoModalLabel">Newbook Tips</h5>
+        </div>
+        <div class="modal-body">
+          <p>1. Search for key terms separated by a space</p>
+          <p>2. You can search by course name, course label (e.g. WRC), section number, professor name, semester, and year</p>
+          <div class="evaluation-icon">
+            <p>3. If there is a "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="8" /></svg>"
+              icon in a search result, that means the course has evaluation data available (ratings)
+            </p>
+            <p>4. To get the best results, be specific!</p>
+            <p>5. If you want to see a new feature implemented, reach out to the developers! :&#x29;</p>
           </div>
-          <div class="modal-body">
-            <!-- Your info content here -->
-            <p>Here's some information about how the site works...</p>
-            <P>First you</P>
-            <p>And then you</p>
-            <p>After that you</p>
-            <p>Onced you've done that you</p>
-            <p>Finally you</p>
-            <p>Now use the site!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-
+</div>
