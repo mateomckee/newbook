@@ -78,7 +78,7 @@ export class AboutUsComponent implements OnInit {
       bio: 'Bio here',
       role: 'Manager',
       linkedInUrl: 'https://www.linkedin.com/in/reese-sylvester-234490242/',
-      imageUrl: '/assets/images/Profile Images/Default.jpg',
+      imageUrl: '/assets/images/Profile Images/Reese.jpg',
       },
   ];
   selectedProfile: Profile | null = null;

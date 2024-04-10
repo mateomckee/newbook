@@ -1,8 +1,20 @@
 .container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
+  flex-direction: column;
+}
+.small-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
 }
 
 h1 {
@@ -43,17 +55,33 @@ h1 {
 }
 
 .section-title{
-  text-align: center;
   color: #f15a22; 
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .team-section {
+  justify-content: flex-start;
+  min-width: 450px;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   justify-content: center;
   overflow-x: auto; 
+  margin-bottom: 100px;
+}
+
+.small-team-section {
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  overflow-x: auto; 
   margin-bottom: 30px;
+}
+
+.smaller {
+  width: 40%;
 }
 
 .team-member {

@@ -1,41 +1,20 @@
 <div class="container">
-    <h1>About Us</h1>
-    
-    <div class="our-team-box">
-      <img src="/assets/images/Profile Images/Team.png" alt="Our Team">
-      <h2>Our Team</h2>
-      <p>The team bio is here</p>
-    </div>
-  
-    <!-- Managerial Team -->
-    <h3 class="section-title">Managerial Team</h3>
-    <div class="team-section">
-      <ng-container *ngFor="let profile of profiles">
-        <div class="team-member" *ngIf="profile.role.includes('Manager')" (click)="selectProfile(profile)">
-          <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
-          <h3>{{ profile.name }}</h3>
-          <p>{{ profile.role }}</p>
-          <a [href]="profile.linkedInUrl" class="social-link linkedin" target="_blank"></a>
-        </div>
-      </ng-container>
-    </div>
-  
-    <!-- Web Development Team -->
-    <h3 class="section-title">Web Development Team</h3>
-    <div class="team-section">
-      <ng-container *ngFor="let profile of profiles">
-        <div class="team-member" *ngIf="profile.role.includes('Web Developer')" (click)="selectProfile(profile)">
-          <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
-          <h3>{{ profile.name }}</h3>
-          <p>{{ profile.role }}</p>
-          <a [href]="profile.linkedInUrl" class="social-link linkedin" target="_blank"></a>
-        </div>
-      </ng-container>
-    </div>
-  
+  <!-- Web Development Team -->
+  <h3 class="section-title">Web Development Team</h3>
+  <div class="team-section">
+    <ng-container *ngFor="let profile of profiles">
+      <div class="team-member" *ngIf="profile.role.includes('Web Developer')" (click)="selectProfile(profile)">
+        <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
+        <h3>{{ profile.name }}</h3>
+        <p>{{ profile.role }}</p>
+        <a [href]="profile.linkedInUrl" class="social-link linkedin" target="_blank"></a>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="small-container">
     <!-- Data Science Team -->
-    <h3 class="section-title">Data Science Team</h3>
-    <div class="team-section">
+    <div class="small-team-section">
       <ng-container *ngFor="let profile of profiles">
         <div class="team-member" *ngIf="profile.role.includes('Data Scientist')" (click)="selectProfile(profile)">
           <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
@@ -45,5 +24,16 @@
         </div>
       </ng-container>
     </div>
+    <!-- Managerial Team -->
+    <div class="small-team-section">
+      <ng-container *ngFor="let profile of profiles">
+        <div class="team-member" *ngIf="profile.role.includes('Manager')" (click)="selectProfile(profile)">
+          <img [src]="profile.imageUrl" alt="Profile Image" class="profile-image">
+          <h3>{{ profile.name }}</h3>
+          <p>{{ profile.role }}</p>
+          <a [href]="profile.linkedInUrl" class="social-link linkedin" target="_blank"></a>
+        </div>
+      </ng-container>
+    </div>
   </div>
-  
+</div>
