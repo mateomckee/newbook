@@ -368,13 +368,8 @@ a {
     align-items: row;
   }
 
-  footer {
-    height: 7vh;
-  }
-
   .nav-link,
-  .dropbtn,
-  .footer-bottom a {
+  .dropbtn{
     padding: 8px 0;
   }
 

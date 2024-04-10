@@ -12,37 +12,53 @@
   <div *ngIf="searchService.isLoading" class="loading-container">
     <img src="/assets/images/Loading.gif" alt="Loading...">
   </div>
-
-  <!-- Results Boxes -->
-  <div *ngIf="!searchService.isLoading && displayItems && displayItems.length > 0" class="rectangle middle container">
-    <div class="results-container">
-      <div class="course-list">
-        <div *ngFor="let item of displayItems; let i = index" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
-          <app-item [data]="item" [isSelected]="item === selectedCourse"></app-item>
+  
+    <!-- Results Boxes -->
+    <div *ngIf="!searchService.isLoading" class="rectangle middle container">
+      <div class="results-container">
+        <!-- Course List -->
+        <div class="course-list">
+          <div *ngIf="displayItems && displayItems.length > 0">
+            <div *ngFor="let item of displayItems; let i = index" (click)="selectCourse(item)" [class.active]="item === selectedCourse">
+              <app-item [data]="item" [isSelected]="item === selectedCourse"></app-item>
+            </div>
+          </div>
+          <!-- No Results Text in Course List -->
+          <div *ngIf="!displayItems || displayItems.length === 0" class="empty-list">
+            <p class="no-results-message">No results found.</p>
+          </div>
+          <!-- Error Message in Course List -->
+          <div *ngIf="errorMessage" class="empty-list">
+            <p class="error-message">{{ errorMessage }}</p>
+          </div>
+        </div>
+        <!-- Course Details or No Results/Error Image -->
+        <div class="course-details-container">
+          <div *ngIf="selectedCourse" class="course-details">
+            <app-course-details [data]="selectedCourse"></app-course-details>
+          </div>
+          <div *ngIf="(!displayItems || displayItems.length === 0) && !errorMessage" class="no-results-image">
+            <img src="/assets/images/No Results.png" alt="No Results Found" class="empty-image">
+          </div>
+          <div *ngIf="errorMessage" class="error-image">
+            <img src="/assets/images/error.png" alt="Error Image" class="empty-image">
+          </div>
         </div>
       </div>
-      <div class="course-details">
-        <app-course-details *ngIf="selectedCourse" [data]="selectedCourse"></app-course-details>
-      </div>
     </div>
-  </div>
-
-  <!-- No Results Found -->
-  <div *ngIf="!searchService.isLoading && (!displayItems || displayItems.length === 0)" class="error-container">
-    <img src="/assets/images/No Results.png" alt="Error Image" class="error-image">
-    <p class="no-results-message">No results found.</p>
-  </div>
 
   <div class="rectangle bottom">
     <!-- Pagination -->
-    <div *ngIf="items && items.length > 0" class="pagination bold-text">
+    <div class="pagination bold-text">
       <a href="#" (click)="navigateToFirstPage(); $event.preventDefault()"
         [class.disabled]="currentPage === 1">&lt;&lt;</a>
       <a href="#" (click)="navigateToPreviousPage(); $event.preventDefault()"
         [class.disabled]="currentPage === 1">&lt;</a>
-      <!-- Adjust your *ngFor to ensure paginationArray is populated -->
-      <a href="#" *ngFor="let page of paginationArray" (click)="navigateToPage(page); $event.preventDefault()"
-        [class.active]="currentPage === page">{{ page }}</a>
+      <!-- Page Numbers (only shown if there are items) -->
+      <ng-container *ngIf="items && items.length > 0">
+        <a href="#" *ngFor="let page of paginationArray" (click)="navigateToPage(page); $event.preventDefault()"
+          [class.active]="currentPage === page">{{ page }}</a>
+      </ng-container>
       <a href="#" (click)="navigateToNextPage(); $event.preventDefault()"
         [class.disabled]="currentPage >= maxPages">&gt;</a>
       <a href="#" (click)="navigateToLastPage(); $event.preventDefault()"
@@ -53,6 +69,19 @@
 
 <!-- Error Message -->
 <div *ngIf="errorMessage" class="error-container rectangle middle container">
-  <img src="/assets/images/error.png" alt="Error Image" class="error-image">
+  <div class="results-container">
+    <!-- Error List -->
+    <div class="error-list">
+      <div class="empty-list">
+        <p>Error occurred.</p>
+      </div>
+    </div>
+    <!-- Error Details -->
+    <div class="error-details">
+      <div class="empty-details">
+        <img src="/assets/images/error.png" alt="Error Image" class="empty-image">
+      </div>
+    </div>
+  </div>
   <p class="error-message">{{ errorMessage }}</p>
 </div>

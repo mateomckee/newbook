@@ -72,7 +72,6 @@ a {
 }
 
 .about-content ul li::before {
-  content: '•';
   color: #f15a22;
   position: absolute;
   left: 0;
