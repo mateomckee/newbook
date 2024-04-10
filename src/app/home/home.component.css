@@ -1,5 +1,6 @@
 /* General styles */
-html, body {
+html,
+body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -26,6 +27,7 @@ a {
   color: #f15a22;
   min-height: 80vh;
   padding-bottom: 20px;
+  background-attachment: fixed;
 }
 
 #hero h1 {
@@ -87,7 +89,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px;
 }
 
 .rectangle.middle {
@@ -110,7 +112,8 @@ a {
 @media (max-width: 768px) {
   #hero {
     padding: 10vh 0;
-    min-height: 60vh;
+    min-height: 70vh;
+    background-attachment: none;
   }
 
   #hero h1 {
@@ -152,7 +155,7 @@ a {
 
 @media (max-width: 450px) {
   #hero {
-    min-height: 40vh;
+    min-height: 70vh;
   }
 
   .search-bar-wrapper {

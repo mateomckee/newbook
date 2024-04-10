@@ -317,10 +317,10 @@ body {
       gap: 20px;
     }
   
-    .course-list,
+    .course-list {
+      max-height: 200px;
+    }
     .course-details {
-      width: 100%;
-      height: auto;
       max-height: 400px;
     }
   
@@ -353,13 +353,6 @@ body {
   
     .rectangle.bottom {
       padding: 5px;
-    }
-  
-    .course-list {
-      max-height: 200px;
-    }
-    .course-details {
-      max-height: 400px;
     }
   
     .error-image {
