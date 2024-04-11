@@ -158,7 +158,7 @@ a {
   }
 
   .search-bar-wrapper {
-    transform: translateX(-6%);
+    padding-right: 15px;
   }
 }
 
