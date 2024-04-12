@@ -142,12 +142,15 @@ a {
 }
 
 .loading-container {
+  color: #f15a22;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
   flex-grow: 1;
-  transform: translateY(25%);
+  transform: translateY(15%);
+  font-size: 26px;
 }
 
 /************************ Card styles ************************/
