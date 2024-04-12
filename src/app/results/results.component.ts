@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { ItemData } from '../interfaces/item.interface';
 import { SearchService } from '../services/search.service';
 import { ActivatedRoute } from '@angular/router';
@@ -20,9 +20,11 @@ export class ResultsComponent implements OnInit {
 
   errorMessage: string = '';
 
+  public onSelectItem: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(
     public searchService: SearchService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -32,17 +34,21 @@ export class ResultsComponent implements OnInit {
         this.searchService.onSearch(query);
       }
     });
-  
+
     this.searchService.onChangeSearchResult.subscribe((newItems: ItemData[]) => {
-      this.currentPage = 1;
-      this.items = newItems;
-      this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
-      this.updateDisplayItems();
-  
-      if (newItems.length === 0) {
-        this.selectedCourse = null;
-      }
+      this.onChangeSearchResult(newItems);
     });
+  }
+
+  private onChangeSearchResult(newItems: ItemData[]) {
+    this.currentPage = 1;
+    this.items = newItems;
+    this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
+    this.updateDisplayItems();
+
+    if (newItems.length === 0) {
+      this.selectedCourse = null;
+    }
   }
 
   private updateDisplayItems(): void {
@@ -64,7 +70,7 @@ export class ResultsComponent implements OnInit {
   get paginationArray(): number[] {
     const paginationStart = Math.max(1, this.currentPage - Math.floor(this.pagesToShow / 2));
     const paginationEnd = Math.min(paginationStart + this.pagesToShow - 1, this.maxPages);
-  
+
     const paginationArray: number[] = [];
     for (let i = paginationStart; i <= paginationEnd; i++) {
       paginationArray.push(i);
@@ -83,7 +89,7 @@ export class ResultsComponent implements OnInit {
   navigateToNextPage(): void {
     this.navigateToPage(Math.min(this.maxPages, this.currentPage + 1));
   }
-  
+
   navigateToLastPage(): void {
     this.navigateToPage(this.maxPages);
   }
@@ -101,12 +107,11 @@ export class ResultsComponent implements OnInit {
   selectCourse(course: ItemData) {
     if (this.selectedCourse !== course) {
       this.selectedCourse = course;
+      this.onSelectItem.emit();
     }
   }
 
   ngOnDestroy() {
     this.searchService.onChangeSearchResult.unsubscribe();
   }
-
-  
 }
