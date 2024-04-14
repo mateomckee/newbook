@@ -10,7 +10,7 @@ import { ItemData } from '../interfaces/item.interface';
 })
 export class SearchService {
   private searchAPI_URL = 'https://newbook-functions.vercel.app/api/search';
-  
+
   inputQuery = '';
 
   public onChangeSearchResult: EventEmitter<any> = new EventEmitter<any>();
@@ -25,16 +25,16 @@ export class SearchService {
   public onSearch(query: string): void {
     if (query == "" || !query) return;
     if (this.isSearchOnCooldown) return;
-  
+
     this.router.navigate(['/results'], { queryParams: { q: query } });
-  
+
     if (this.router.url === '/results') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  
+
     this.setSearchCooldown();
     this.isLoading = true;
-  
+
     // Begin search
     this.search(query).subscribe(
       searchResult => {
@@ -43,7 +43,8 @@ export class SearchService {
         this.isLoading = false;
       },
       error => {
-        console.error('An error occurred during the search:', error);
+        console.error('onSearch: An error occurred during the search:', error);
+        this.onChangeSearchResult.emit(null);
         this.isLoading = false;
       }
     );
@@ -52,10 +53,6 @@ export class SearchService {
   public search(searchQuery: string): Observable<ItemData[]> {
     if (!searchQuery) {
       return of([]);
-    }
-    //temp
-    if (searchQuery.toLowerCase() === 'error') {
-      return throwError('Simulated error for testing');
     }
 
     console.log("Beginning search for", searchQuery);
@@ -82,17 +79,18 @@ export class SearchService {
             description: item.description,
             timestamp: item.timestamp
           }));
-        } else { throw new Error('Invalid response data'); }
+        } else {
+          throw new Error('Invalid response data');
+        }
       }),
       catchError(error => {
-        console.error('An error occurred during the search:', error);
-        return throwError(error);
+        throw new Error(error);
       }),
       map((items: ItemData[]) => {
         return items;
       }),
       catchError(error => {
-        return throwError(error);
+        throw new Error(error);
       })
     );
   }

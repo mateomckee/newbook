@@ -43,7 +43,6 @@ export class CourseDetailsComponent {
   ngAfterViewInit() {
     this.adjustTextSize();
     window.addEventListener('resize', this.resizeListener);
-    console.log("view");
   }
 
   ngOnDestroy() {
@@ -90,11 +89,13 @@ export class CourseDetailsComponent {
 
   async tryGetSyllabus() {
     this.disableSyllabusButton = true;
+    this.displaySyllabusButtonText = "Downloading...";
 
     const result = await this.getSyllabus();
 
     //if success
     if (result == 1) {
+      this.displaySyllabusButtonText = "Download Syllabus";
       this.disableSyllabusButton = false;
     }
     //if fail, permanently keep button disabled
