@@ -7,7 +7,7 @@
   </div>
 </section>
 
-<div *ngIf="!errorMessage">
+<div>
   <!-- Loading GIF -->
   <div *ngIf="searchService.isLoading" class="loading-container">
     <p><strong>Searching...</strong></p>
@@ -26,12 +26,12 @@
           </div>
         </div>
         <!-- No Results Text in Course List -->
-        <div *ngIf="!displayItems || displayItems.length === 0" class="empty-list">
-          <p class="no-results-message">No results found.</p>
+        <div *ngIf="displayItems && displayItems.length === 0" class="empty-list">
+          <p class="no-results-message"><strong>No results found.</strong></p>
         </div>
         <!-- Error Message in Course List -->
-        <div *ngIf="errorMessage" class="empty-list">
-          <p class="error-message">{{ errorMessage }}</p>
+        <div *ngIf="!displayItems" class="empty-list">
+          <p class="error-message"><strong>{{ errorMessage }}</strong></p>
         </div>
       </div>
       <!-- Course Details or No Results/Error Image -->
@@ -39,11 +39,11 @@
         <div *ngIf="selectedCourse" class="course-details">
           <app-course-details [data]="selectedCourse"></app-course-details>
         </div>
-        <div *ngIf="(!displayItems || displayItems.length === 0) && !errorMessage" class="no-results-image">
+        <div *ngIf="displayItems && displayItems.length === 0" class="no-results-image">
           <img src="/assets/images/No Results.png" alt="No Results Found" class="empty-image">
         </div>
-        <div *ngIf="errorMessage" class="error-image">
-          <img src="/assets/images/error.png" alt="Error Image" class="empty-image">
+        <div *ngIf="!displayItems" class="error-image">
+          <img src="../../assets/images/error.png" alt="Error Image" class="empty-image">
         </div>
       </div>
     </div>
@@ -67,23 +67,4 @@
         [class.disabled]="currentPage >= maxPages">&gt;&gt;</a>
     </div>
   </div>
-</div>
-
-<!-- Error Message -->
-<div *ngIf="errorMessage" class="error-container rectangle middle container">
-  <div class="results-container">
-    <!-- Error List -->
-    <div class="error-list">
-      <div class="empty-list">
-        <p>Error occurred.</p>
-      </div>
-    </div>
-    <!-- Error Details -->
-    <div class="error-details">
-      <div class="empty-details">
-        <img src="/assets/images/error.png" alt="Error Image" class="empty-image">
-      </div>
-    </div>
-  </div>
-  <p class="error-message">{{ errorMessage }}</p>
 </div>

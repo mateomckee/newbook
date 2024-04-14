@@ -10,15 +10,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ResultsComponent implements OnInit {
 
-  items: ItemData[] = [];
-  displayItems: ItemData[] = [];
+  items: ItemData[] | null = [];
+  displayItems: ItemData[] | null = [];
   currentPage: number = 1;
   pagesToShow: number = 3;
   maxPages: number = 10;
   itemsPerPage: number = 50;
   selectedCourse: ItemData | null = null;
 
-  errorMessage: string = '';
+  errorMessage: string = 'An error occurred. Please try again.';
 
   public onSelectItem: EventEmitter<any> = new EventEmitter<any>();
 
@@ -40,7 +40,16 @@ export class ResultsComponent implements OnInit {
     });
   }
 
-  private onChangeSearchResult(newItems: ItemData[]) {
+  private onChangeSearchResult(newItems: ItemData[] | null) {
+    if (newItems == null) {
+      this.currentPage = 1;
+      this.maxPages = 1;
+      this.items = null;
+      this.displayItems = null;
+      this.selectedCourse = null;
+      return;
+    }
+
     this.currentPage = 1;
     this.items = newItems;
     this.maxPages = Math.ceil(this.items.length / this.itemsPerPage);
@@ -52,8 +61,8 @@ export class ResultsComponent implements OnInit {
   }
 
   private updateDisplayItems(): void {
-    if (!this.items || this.items.length === 0) {
-      console.log('No items to display');
+    if (!this.items) return;
+    if (this.items.length === 0) {
       this.displayItems = [];
       return;
     }
@@ -99,7 +108,7 @@ export class ResultsComponent implements OnInit {
     this.updateDisplayItems();
     window.scrollTo(0, 0);
 
-    if (this.displayItems.length > 0) {
+    if (this.displayItems && this.displayItems.length > 0) {
       this.selectedCourse = this.displayItems[0];
     }
   }
