@@ -142,12 +142,15 @@ a {
 }
 
 .loading-container {
+  color: #f15a22;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: auto;
   flex-grow: 1;
-  transform: translateY(25%);
+  transform: translateY(15%);
+  font-size: 26px;
 }
 
 /************************ Card styles ************************/
@@ -257,8 +260,7 @@ a {
 }
 
 .empty-image {
-  max-width: 50%;
-  max-height: 50vh;
+  max-width: 350px;
 }
 
 /************************ Pagination styles ************************/
@@ -380,8 +382,7 @@ a {
   }
 
   .empty-image {
-    max-width: 70%;
-    max-height: 40vh;
+    max-width: 300px;
   }
 }
 
@@ -402,9 +403,8 @@ a {
     padding: 5px;
   }
 
-  .error-image {
-    width: 150px;
-    height: 150px;
+  .empty-image {
+    max-width: 250px;
   }
 }
 

@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Component, Input, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { ItemData } from 'src/app/interfaces/item.interface';
+import { ResultsComponent } from '../results.component';
 
 @Component({
   selector: 'app-course-details',
@@ -13,14 +14,29 @@ export class CourseDetailsComponent {
   @ViewChild('instructorEvaluationScoreText') instructorEvaluationScoreText!: ElementRef<SVGTextElement>;
   @ViewChild('courseCircularChart') courseCircularChart!: ElementRef<SVGSVGElement>;
   @ViewChild('courseEvaluationScoreText') courseEvaluationScoreText!: ElementRef<SVGTextElement>;
-  
 
+  disableSyllabusButton: boolean = false;
+  defaultSyllabusButtonText: string = "Download Syllabus";
+  displaySyllabusButtonText: string = "Download Syllabus";
 
   private syllabusFileName: string = "";
 
   private syllabiAPI_URL = 'https://newbook-functions.vercel.app/api/syllabi';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private resultsComponent: ResultsComponent
+  ) { }
+
+
+  ngOnInit() {
+    this.resultsComponent.onSelectItem.subscribe(() => { this.onSelectItem(); });
+  }
+
+  private onSelectItem() {
+    this.disableSyllabusButton = false;
+    this.displaySyllabusButtonText = this.defaultSyllabusButtonText;
+  }
 
   resizeListener = () => this.adjustTextSize();
 
@@ -32,14 +48,14 @@ export class CourseDetailsComponent {
   ngOnDestroy() {
     window.removeEventListener('resize', this.resizeListener);
   }
-  
+
   private adjustTextSize(): void {
     requestAnimationFrame(() => {
       this.adjustSingleTextSize(this.instructorCircularChart, this.instructorEvaluationScoreText);
       this.adjustSingleTextSize(this.courseCircularChart, this.courseEvaluationScoreText);
     });
   }
-  
+
   private adjustSingleTextSize(chartElementRef: ElementRef<SVGSVGElement>, textElementRef: ElementRef<SVGTextElement>): void {
     if (chartElementRef && textElementRef) {
       const svgBox = chartElementRef.nativeElement.viewBox.baseVal;
@@ -50,7 +66,6 @@ export class CourseDetailsComponent {
       textElementRef.nativeElement.style.fontSize = `${fontSize}px`;
     }
   }
-  
 
   getStrokeDashArray(score: number | null | undefined): number {
     const circleCircumference = 2 * Math.PI * 15.9155;
@@ -73,20 +88,32 @@ export class CourseDetailsComponent {
   }
 
   async tryGetSyllabus() {
+    this.disableSyllabusButton = true;
+    this.displaySyllabusButtonText = "Downloading...";
+
     const result = await this.getSyllabus();
 
-    if (result == 0) {
-      console.log(`No syllabus exists for ${this.data?.courselabel}.${this.data?.section}`);
+    //if success
+    if (result == 1) {
+      this.displaySyllabusButtonText = "Download Syllabus";
+      this.disableSyllabusButton = false;
     }
-    //if error occurred
-    else if (result == -1) {
-      console.error(`An error ocurred while getting syllabus for ${this.data?.courselabel}.${this.data?.section}`);
+    //if fail, permanently keep button disabled
+    else if (result == 0) {
+      this.displaySyllabusButtonText = "No Syllabus Exists";
+    }
+    //if error, enable button again
+    else {
+      this.displaySyllabusButtonText = "Error - Try Again";
+      setTimeout(() => {
+        this.displaySyllabusButtonText = this.defaultSyllabusButtonText;
+        this.disableSyllabusButton = false;
+      }, 2000); //2 seconds
     }
   }
 
   public async getSyllabus(): Promise<number> {
     this.syllabusFileName = `${this.data?.instructor};${this.data?.crn};${this.data?.courselabel}.${this.data?.section};${this.data?.coursetitle};${this.data?.semester};pdf.pdf`.replaceAll(" ", "_");
-    console.log("Attempting to retrieve syllabus: ", this.syllabusFileName);
 
     //api parameters
     const url = new URL(`${this.syllabiAPI_URL}`);
@@ -103,8 +130,8 @@ export class CourseDetailsComponent {
       }
     }
     //error case
-    catch (error) { 
-      console.error("An error occurred during the search.", error);
+    catch (error) {
+      console.error("An error occurred while retrieving the syllabus.", error);
       return -1;
     }
 
