@@ -270,10 +270,22 @@ a {
 .pagination a {
   margin: 0 4px;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 8px 12px; 
+  min-width: 36px;
+  text-align: center;
   background: #f8f9fa;
   color: #333;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination a.disabled {
+  background-color: #f8f9fa;
+  color: #ccc;
+  pointer-events: none;
+  cursor: not-allowed; 
 }
 
 .pagination a.active {
@@ -364,7 +376,7 @@ a {
   }
 
   .pagination a {
-    padding: 6px 12px;
+    padding: 6px 10px;
   }
 
   .empty-image {

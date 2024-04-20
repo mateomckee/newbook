@@ -62,14 +62,23 @@ export class ResultsComponent implements OnInit {
   }
 
   get paginationArray(): number[] {
-    const paginationStart = Math.max(1, this.currentPage - Math.floor(this.pagesToShow / 2));
-    const paginationEnd = Math.min(paginationStart + this.pagesToShow - 1, this.maxPages);
+    let paginationArray: number[] = [];
+    const maxPageToShow = Math.min(this.maxPages, 3); 
+    let startPage = this.currentPage - 1 <= 0 ? 1 : this.currentPage - 1;
   
-    const paginationArray: number[] = [];
-    for (let i = paginationStart; i <= paginationEnd; i++) {
-      paginationArray.push(i);
+    if (startPage > this.maxPages - 2) {
+      startPage = this.maxPages - 2 > 0 ? this.maxPages - 2 : 1;
     }
+  
+    for (let i = 0; i < 3; i++) { 
+      paginationArray.push(startPage + i);
+    }
+  
     return paginationArray;
+  }
+
+  shouldDisablePage(page: number): boolean {
+    return page > this.maxPages;
   }
 
   navigateToFirstPage(): void {
