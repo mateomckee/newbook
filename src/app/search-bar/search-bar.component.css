@@ -5,37 +5,32 @@
 
 body {
     margin: 0;
-    font-family:  Arial, Helvetica, sans-serif;
-    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Main search container */
 .search-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: auto;
     gap: 10px;
-    font-family:  Arial, Helvetica, sans-serif;
+    width: 100%; 
 }
 
 /* Search form and input */
 .search-form {
     display: flex;
+    flex: 1;
     align-items: center;
-    position: relative;
-    width: 60vw;
-    max-width: 750px;
 }
 
 .search-container input[type="search"] {
-    flex-grow: 1; 
+    width: 100%; 
     border-radius: 10px;
     border: 1px solid #ddd;
     height: 40px;
-    padding-left: 15px; 
-    padding-right: 15px;
+    padding: 10px;
 }
+
 
 .search-container input[type="search"]:focus {
     outline: none;
@@ -43,8 +38,8 @@ body {
 
 /* Button styles */
 .buttons {
-    position: relative;
-    top: 50%; 
+    display: flex;
+    flex-shrink: 0;
 }
 
 .search-button {
@@ -52,18 +47,20 @@ body {
     background-color: white;
     border: 1px solid #ddd;
     cursor: pointer;
-    height: 40px; 
-    line-height: 40px; 
-    margin-right: 10px; 
-    text-align: center; 
+    height: 40px;
+    margin-right: 10px;
+    padding: 0 15px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 
+.buttons > :last-child {
+    margin-right: 0;
+}
 
 .search-button svg {
     fill: #000;
-    margin: auto;
-    vertical-align: middle;
-    margin-bottom: 2.5vh;
 }
 
 .search-button:hover {

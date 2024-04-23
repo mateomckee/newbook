@@ -1,7 +1,6 @@
 /* Rectangles */
 html,
 body {
-  min-height: 100vh;
   margin: 0;
   padding: 0;
   display: flex;
@@ -16,7 +15,6 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #F5F6FA;
-  max-width: 1200px;
 }
 
 a {
@@ -29,6 +27,7 @@ a {
 }
 
 #hero {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,12 +42,45 @@ a {
 }
 
 .search-bar-wrapper {
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .search-bar {
+  flex: 1;
   max-width: 800px;
+}
+
+.dropdown-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.dropdown-filters select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-left: 10vh;
+}
+
+.dropdown-filters select:focus {
+  outline: none; 
 }
 
 .rectangle.top {
@@ -57,6 +89,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  width: 100%;
 }
 
 .rectangle.middle {
@@ -65,13 +98,16 @@ a {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100%;
+  max-height: 80vh;
 }
 
 .rectangle.middle.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .rectangle.middle.no-results {
@@ -84,6 +120,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  margin: auto 0; 
 }
 
 #logo-container {
@@ -261,6 +298,7 @@ a {
 
 .empty-image {
   max-width: 350px;
+  max-height: 250px
 }
 
 /************************ Pagination styles ************************/
@@ -335,7 +373,12 @@ a {
 
 @media (max-width: 768px) {
   #hero {
-    margin-top: 0;
+    margin-top: 2vh;
+    margin-bottom: 6vh;
+  }
+
+  .dropdown-filters select{
+    margin-left: 0;
   }
 
   .rectangle.top {
@@ -349,8 +392,31 @@ a {
     margin-bottom: 0;
   }
 
+  .search-bar-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2vh;
+  }
+
+  .search-bar {
+    max-width: 100%;
+  }
+
+  .rectangle.top {
+    padding: 10px;
+    padding: 0;
+    width: auto;
+  }
+
   .rectangle.middle {
     padding: 20px;
+  }
+
+  .rectangle.middle.container {
+    padding: 0;
+    max-width: 100%;
+    margin: 0;
   }
 
   .rectangle.bottom {
@@ -383,6 +449,7 @@ a {
 
   .empty-image {
     max-width: 300px;
+    max-height: 200px;
   }
 }
 
@@ -405,6 +472,7 @@ a {
 
   .empty-image {
     max-width: 250px;
+    max-height: 150px;
   }
 }
 
