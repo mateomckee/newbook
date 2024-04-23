@@ -99,6 +99,7 @@ a {
   justify-content: center;
   padding: 20px;
   max-height: 80vh;
+  margin-top: 20px;
 }
 
 .rectangle.middle.container {
@@ -310,13 +311,14 @@ a {
 .pagination a {
   margin: 0 4px;
   text-decoration: none;
-  padding: 8px 12px; 
-  min-width: 36px;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
   text-align: center;
   background: #f8f9fa;
   color: #333;
   border-radius: 5px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
 }
@@ -374,7 +376,6 @@ a {
 @media (max-width: 768px) {
   #hero {
     margin-top: 2vh;
-    margin-bottom: 6vh;
   }
 
   .dropdown-filters select{
