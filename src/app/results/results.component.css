@@ -111,16 +111,12 @@ a {
   margin: 0 auto;
 }
 
-.rectangle.middle.no-results {
-  min-height: calc(100vh - 150px);
-}
-
 .rectangle.bottom {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 30px;
   margin: auto 0; 
 }
 
@@ -213,7 +209,7 @@ a {
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-  height: calc(100vh - 320px);
+  height: calc(100vh - 280px);
 }
 
 .course-list::-webkit-scrollbar {
