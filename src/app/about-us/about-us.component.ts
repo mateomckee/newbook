@@ -30,7 +30,7 @@ export class AboutUsComponent implements OnInit {
       bio: 'Bio here',
       role: 'Training Developer',
       linkedInUrl: 'https://www.linkedin.com/in/joshua-zamora-620984264/',
-      imageUrl: '/assets/images/Profile Images/Default.jpg',
+      imageUrl: '/assets/images/Profile Images/Joshua.jpg',
     },
     {
       id: 4,

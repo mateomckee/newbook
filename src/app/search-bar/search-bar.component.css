@@ -83,11 +83,9 @@ body {
     color: #fff;
     padding: 20px;
     font-weight: bold;
-    border-bottom: 5px solid #f15a22;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Modal title styles to match the header links */
@@ -102,23 +100,25 @@ body {
 
 /* Modal body styles */
 .modal-body {
-    text-align: center; 
+    text-align: left; 
     color: #000; 
-    font-weight: bold;
-    font-family:  Arial, Helvetica, sans-serif;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    line-height: 2;
 }
 
 /* Modal footer styles */
 .modal-footer {
+    font-weight: bold;
     background-color: #051e42;
     color: white;
     width: 100%;
-    border-top: 5px solid #f15a22;
     letter-spacing: 0.1em;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family:  Arial, Helvetica, sans-serif;
 }
 
 /* Modal close button */
