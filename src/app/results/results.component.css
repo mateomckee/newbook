@@ -1,7 +1,6 @@
 /* Rectangles */
 html,
 body {
-  min-height: 100vh;
   margin: 0;
   padding: 0;
   display: flex;
@@ -16,7 +15,6 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #F5F6FA;
-  max-width: 1200px;
 }
 
 a {
@@ -29,6 +27,7 @@ a {
 }
 
 #hero {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,12 +42,45 @@ a {
 }
 
 .search-bar-wrapper {
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .search-bar {
+  flex: 1;
   max-width: 800px;
+}
+
+.dropdown-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.dropdown-filters select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-left: 10vh;
+}
+
+.dropdown-filters select:focus {
+  outline: none; 
 }
 
 .rectangle.top {
@@ -57,6 +89,7 @@ a {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  width: 100%;
 }
 
 .rectangle.middle {
@@ -65,17 +98,17 @@ a {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  height: 100%;
+  max-height: 80vh;
+  margin-top: 20px;
 }
 
 .rectangle.middle.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.rectangle.middle.no-results {
-  min-height: calc(100vh - 150px);
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .rectangle.bottom {
@@ -83,7 +116,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 30px;
+  margin: auto 0; 
 }
 
 #logo-container {
@@ -160,6 +194,7 @@ a {
   padding: 20px;
   border-radius: 8px;
   width: 90%;
+  min-height: 400px;
   margin-left: auto;
   margin-right: auto;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -174,7 +209,7 @@ a {
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-  height: calc(100vh - 320px);
+  height: calc(100vh - 280px);
 }
 
 .course-list::-webkit-scrollbar {
@@ -261,6 +296,7 @@ a {
 
 .empty-image {
   max-width: 350px;
+  max-height: 250px
 }
 
 /************************ Pagination styles ************************/
@@ -272,10 +308,23 @@ a {
 .pagination a {
   margin: 0 4px;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  text-align: center;
   background: #f8f9fa;
   color: #333;
   border-radius: 5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination a.disabled {
+  background-color: #f8f9fa;
+  color: #ccc;
+  pointer-events: none;
+  cursor: not-allowed; 
 }
 
 .pagination a.active {
@@ -323,68 +372,77 @@ a {
 
 @media (max-width: 768px) {
   #hero {
-    margin-top: 0;
+    margin-top: 0vh;
+  }
+
+  .dropdown-filters select {
+    margin-left: 11vw;
+    margin-top:5px;
   }
 
   .rectangle.top {
     padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .search-bar-wrapper {
+  .search-bar-wrapper,
+  .search-bar-container {
+    width: 90%;
+    margin: 0;
+    padding: 10px 10px;
+    flex-direction: column;
+  }
+
+  .search-bar {
     width: 100%;
-    max-width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 10px;
   }
 
   .rectangle.middle {
-    padding: 20px;
+    flex: 0 0 auto;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%; 
+    box-sizing: border-box;
   }
 
-  .rectangle.bottom {
-    padding: 10px;
+  .rectangle.middle.container {
+    display: block; 
+    width: 100%;
+    margin: 0;
+    padding: 0 10px;
   }
 
   .results-container {
     flex-direction: column;
-    height: 100%;
+    min-height: 400px;
     gap: 10px;
   }
 
   .course-list,
   .course-details-container {
-    height: 50vh;
-    overflow-y: none;
-  }
-
-  .course-list {
-    max-height: 200px;
+    max-height: none;
+    overflow-y: auto;
   }
 
   .pagination {
-    transform: none;
+    padding: 10px 0;
   }
 
-  .pagination a {
-    padding: 6px 12px;
-  }
-
-  .empty-image {
-    max-width: 300px;
+  .rectangle.bottom {
+    padding: 10px;
+    width: 100%;
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 550px) {
   .rectangle.top {
-    padding: 5px;
-  }
-
-  .search-bar-wrapper {
-    max-width: 100%;
+    padding: 0px;
   }
 
   .rectangle.middle {
-    padding: 10px;
+    margin-top: 10px; 
   }
 
   .rectangle.bottom {
@@ -393,11 +451,22 @@ a {
 
   .empty-image {
     max-width: 250px;
+    max-height: 150px;
   }
 }
 
-@media(max-width: 550px) {
-  .results-container {
-    flex-direction: column;
+@media (max-width: 450px) {
+  .search-bar-container {
+    padding: 0 5px;
+  }
+
+  .rectangle.middle.container,
+  .rectangle.bottom {
+    padding: 10px 5px;
+  }
+
+  .empty-image {
+    max-width: 200px;
+    max-height: 150px;
   }
 }

@@ -1,8 +1,16 @@
 <section id="hero">
   <div class="rectangle top bottom-padding">
     <!-- Search Bar -->
-    <div class="search-bar-wrapper">
+    <div class="search-bar-container">
       <app-search-bar class="search-bar"></app-search-bar>
+      <div class="dropdown-filters">
+        <select>
+          <option value="">Sort by</option>
+          <option value="option4">Alphabet</option>
+          <option value="option1">Date</option>
+          <option value="option4">Rating</option>
+        </select>
+      </div>
     </div>
   </div>
 </section>
@@ -56,10 +64,12 @@
         [class.disabled]="currentPage === 1">&lt;&lt;</a>
       <a href="#" (click)="navigateToPreviousPage(); $event.preventDefault()"
         [class.disabled]="currentPage === 1">&lt;</a>
-      <!-- Page Numbers (only shown if there are items) -->
+      <!-- Page Numbers -->
       <ng-container *ngIf="items && items.length > 0">
-        <a href="#" *ngFor="let page of paginationArray" (click)="navigateToPage(page); $event.preventDefault()"
-          [class.active]="currentPage === page">{{ page }}</a>
+        <a href="#" *ngFor="let page of paginationArray"
+          (click)="!shouldDisablePage(page) && navigateToPage(page); $event.preventDefault()"
+          [class.active]="currentPage === page" 
+          [class.disabled]="shouldDisablePage(page)">{{ page }}</a>
       </ng-container>
       <a href="#" (click)="navigateToNextPage(); $event.preventDefault()"
         [class.disabled]="currentPage >= maxPages">&gt;</a>
