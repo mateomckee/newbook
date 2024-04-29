@@ -13,7 +13,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 100%; 
+    width: 100%;
 }
 
 /* Search form and input */
@@ -24,8 +24,8 @@ body {
 }
 
 .search-container input[type="search"] {
-    width: 100%; 
-    border-radius: 10px;
+    width: 100%;
+    border-radius: 5px;
     border: 1px solid #ddd;
     height: 40px;
     padding: 10px;
@@ -43,19 +43,17 @@ body {
 }
 
 .search-button {
-    border-radius: 10px;
     background-color: white;
     border: 1px solid #ddd;
     cursor: pointer;
     height: 40px;
     margin-right: 10px;
-    padding: 0 15px;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.buttons > :last-child {
+.buttons> :last-child {
     margin-right: 0;
 }
 
@@ -93,15 +91,15 @@ body {
     font-weight: bold;
     text-align: center;
     width: 100%;
-    font-family:  Arial, Helvetica, sans-serif;
-    font-size: 24px; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
     margin: 0;
 }
 
 /* Modal body styles */
 .modal-body {
-    text-align: left; 
-    color: #000; 
+    text-align: left;
+    color: #000;
     padding-left: 35px;
     padding-right: 35px;
     padding-top: 25px;
@@ -123,25 +121,25 @@ body {
 
 /* Modal close button */
 .modal-footer .btn-secondary {
-    background-color: transparent; 
-    border-color: transparent; 
-    color: #fff; 
-    border-radius: 25px; 
+    background-color: transparent;
+    border-color: transparent;
+    color: #fff;
+    border-radius: 25px;
     font-size: 1rem;
 }
 
 /* Hover */
 .modal-footer .btn-secondary:hover {
-    color: #f15a22; 
+    color: #f15a22;
 }
 
 /*-- Autocomplete suggestions container --*/
 .search-form ul {
     position: absolute;
-    top: 100%; 
-    left: 50%; 
+    top: 100%;
+    left: 50%;
     width: 100%;
-    max-width: 98%; 
+    max-width: 98%;
     transform: translateX(-50%);
     background-color: #fff;
     color: #888;
@@ -149,16 +147,16 @@ body {
     margin-top: -1px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 25px 25px;
-    overflow: hidden; 
-    max-height: 200px; 
-    overflow-y: auto; 
-    overflow-x: hidden; 
-    scrollbar-width: thin; 
-    scrollbar-color: #888 #f0f0f0; 
-    font-family:  Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f0f0f0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-  
+
 /*-- Style for each suggestion --*/
 .search-form li {
     padding: 10px;
@@ -166,59 +164,61 @@ body {
     cursor: pointer;
     border-bottom: 1px solid #ddd;
 }
-  
+
 .search-form li:last-child {
     border-bottom: none;
     border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px; 
+    border-bottom-right-radius: 25px;
 }
-  
+
 .search-form li:hover {
-    color: #333; 
+    color: #333;
 }
 
 .search-form ul {
-    -ms-overflow-style: none; 
-    scrollbar-width: none;  
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     padding-left: 0;
 }
 
 .search-form ul::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
 
 .search-form li.highlighted {
-    background-color: #e9ecef; 
-    color: #495057; 
-  }
-  
+    background-color: #e9ecef;
+    color: #495057;
+}
+
 
 /*----------------- Pop Up Styling Mobile ---------------------*/
 @media (max-width: 450px) {
-    .search-container {
-        padding: 0 3vw; 
+    .modal-body {
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
     }
-    
+
+    .search-container {
+        padding: 0 3vw;
+    }
+
     .search-container input[type="search"] {
-        padding: 5px 3vw; 
-        min-width: 50px; 
+        padding: 5px 3vw;
+        min-width: 50px;
     }
 
     .search-button {
-        padding: 5px; 
-        min-width: 40px; 
-        max-width: 60px; 
+        padding: 5px;
+        min-width: 40px;
+        max-width: 60px;
     }
 }
 
-@media (min-height: 700px) {
-    .search-button svg{
-        margin-top: .5vh;
-    }
-}
+@media (min-height: 700px) {}
 
 @media (min-height: 1000px) {
-    .search-button svg{
+    .search-button svg {
         margin-top: .15vh;
     }
 }
