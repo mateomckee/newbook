@@ -18,8 +18,6 @@ export class ResultsComponent implements OnInit {
   itemsPerPage: number = 50;
   selectedCourse: ItemData | null = null;
 
-  errorMessage: string = 'An error occurred. Please try again.';
-
   public onSelectItem: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(

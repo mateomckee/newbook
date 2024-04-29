@@ -229,7 +229,7 @@ a {
 .course-list {
   overflow-y: auto;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 5px;
   height: 100%;
   width: 100%;
   background-color: white;
@@ -356,11 +356,18 @@ a {
 }
 
 .error-message {
-  font-size: 18px;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
   color: red;
 }
 
 .no-results-message {
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
   color: #000;
 }
 

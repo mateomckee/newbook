@@ -3,14 +3,15 @@
     <!-- Search Bar -->
     <div class="search-bar-container">
       <app-search-bar class="search-bar"></app-search-bar>
-      <div class="dropdown-filters">
+      <!-- Dropdown Sort By -->
+      <!-- <div class="dropdown-filters">
         <select>
           <option value="">Sort by</option>
           <option value="option4">Alphabet</option>
           <option value="option1">Date</option>
           <option value="option4">Rating</option>
         </select>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
@@ -39,7 +40,7 @@
         </div>
         <!-- Error Message in Course List -->
         <div *ngIf="!displayItems" class="empty-list">
-          <p class="error-message"><strong>{{ errorMessage }}</strong></p>
+          <p class="error-message"><strong>An error occurred.<br><br>Please try again.</strong></p>
         </div>
       </div>
       <!-- Course Details or No Results/Error Image -->
